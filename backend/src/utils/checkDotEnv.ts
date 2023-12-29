@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-const requiredVars = ['JWT_KEY', 'JWT_KEY_REFRESH'];
+const requiredVars = ['JWT_KEY'];
 
 export default function checkDotEnv() {
 	const missingVars = requiredVars.filter((v) => !process.env[v]);
