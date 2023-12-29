@@ -1,8 +1,12 @@
 import cors from 'cors';
 import express from 'express';
-import { PORT } from './const';
+import { PORT } from './config/const';
+import initFK from './config/initFK';
+import accountRoutes from './routes/accountRoutes';
+import checkDotEnv from './utils/checkDotEnv';
 
 // setup
+checkDotEnv();
 const app = express();
 const corsOptions = {
 	origin: `http://localhost:${PORT}`,
@@ -11,16 +15,18 @@ const corsOptions = {
 
 // configuration
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use(
 	express.urlencoded({
 		extended: true,
 	})
 );
-app.use(cors(corsOptions));
 
-// code here
+// initialization
+initFK();
+app.use('/', accountRoutes);
 
-// port setup
+// starting
 app.listen(PORT, () => {
-	console.log('Backend is running at port ' + PORT);
+	console.log(`Backend is running at port http://localhost:${PORT}`);
 });
