@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { RequestWithToken } from '../config/requestInterfaces';
+import { RequestWithToken } from '../config/interfaces';
 import { User } from '../models/user';
 
 export const verifyToken = (req: RequestWithToken, res: Response, next: NextFunction) => {
