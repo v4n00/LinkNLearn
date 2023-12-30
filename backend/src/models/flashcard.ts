@@ -3,14 +3,15 @@ import db from '../config/database';
 
 export interface Flashcard {
 	id?: number;
-	userId?: number;
+	userId?: number | null;
 	frontSide: string;
 	backSide: string;
 }
 
 interface FlashcardAttributes extends Flashcard {}
+export interface FlashcardModel extends ModelDefined<Flashcard, FlashcardAttributes> {}
 
-const flashcard: ModelDefined<Flashcard, FlashcardAttributes> = db.define(
+const flashcard: FlashcardModel = db.define(
 	'flashcard',
 	{
 		id: {
@@ -35,7 +36,6 @@ const flashcard: ModelDefined<Flashcard, FlashcardAttributes> = db.define(
 	{
 		indexes: [
 			{
-				name: 'nonAssignedFlashcards',
 				fields: ['userId'],
 			},
 		],

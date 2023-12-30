@@ -19,6 +19,10 @@ const quiz: ModelDefined<Quiz, QuizAttributes> = db.define('quiz', {
 		type: Sequelize.STRING,
 		allowNull: false,
 	},
+	status: {
+		type: Sequelize.STRING,
+		allowNull: false,
+	},
 });
 
 export default quiz;

@@ -4,11 +4,11 @@ import { createUser, loginUser } from '../controllers/userController';
 import { generateToken } from '../middlewares/auth';
 import handleErrorWithResponse from '../utils/errorHandler';
 
-const accountRoutes = express.Router();
+const authRoutes = express.Router();
 
-accountRoutes.route('/user/login').post(async (req: Request, res: Response) => {
+authRoutes.route('/user/login').post(async (req: Request, res: Response) => {
 	let { email, password } = req.body as LoginRequest;
-	if (!email || !password) return res.status(400).json({ message: 'Bad Request' });
+	if (!email || !password) return res.status(400).json('Bad Request');
 
 	try {
 		const user = await loginUser(email, password);
@@ -18,27 +18,27 @@ accountRoutes.route('/user/login').post(async (req: Request, res: Response) => {
 	}
 });
 
-accountRoutes.route('/user/register').post(async (req: Request, res: Response) => {
+authRoutes.route('/user/register').post(async (req: Request, res: Response) => {
 	let { email, password, repeatPassword } = req.body as RegisterRequest;
-	if (!email || !password || !repeatPassword) return res.status(400).json({ message: 'Bad Request' });
+	if (!email || !password || !repeatPassword) return res.status(400).json('Bad Request');
 
 	// validations
 	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-		return res.status(400).json({ message: 'Invalid email format' });
+		return res.status(400).json('Invalid email format');
 	}
 	if (password !== repeatPassword) {
-		return res.status(400).json({ message: 'Passwords do not match' });
+		return res.status(400).json('Passwords do not match');
 	}
 	if (password.length < 8) {
-		return res.status(400).json({ message: 'Password must be at least 8 characters' });
+		return res.status(400).json('Password must be at least 8 characters');
 	}
 
 	try {
 		await createUser(email, password);
-		return res.status(200).json({ message: 'User created' });
+		return res.status(200).json('User created');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}
 });
 
-export default accountRoutes;
+export default authRoutes;

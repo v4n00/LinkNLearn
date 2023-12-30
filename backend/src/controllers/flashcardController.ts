@@ -1,20 +1,14 @@
-import flashcard from '../models/flashcard';
+import flashcard, { Flashcard } from '../models/flashcard';
 
 /**
  * Creates a flashcard in the database.
  *
- * @param {string} frontSide - The content for the front side of the flashcard.
- * @param {string} backSide - The content for the back side of the flashcard.
- * @param {number} [userId] - The ID of the user who created the flashcard. If not provided, the flashcard will be created globally.
+ * @param {Flashcard} data - An object containing the properties of the flashcard to create.
  * @throws Will throw an error if the creation process fails.
  */
-export async function createFlashcard(frontSide: string, backSide: string, userId?: number): Promise<any> {
+export async function createFlashcard(data: Flashcard): Promise<any> {
 	try {
-		if (userId) {
-			await flashcard.create({ frontSide, backSide, userId });
-		} else {
-			await flashcard.create({ frontSide, backSide });
-		}
+		await flashcard.create(data);
 	} catch (e) {
 		throw e;
 	}
@@ -52,13 +46,13 @@ export async function deleteFlashcard(id: number): Promise<any> {
  * Updates a flashcard in the database.
  *
  * @param {number} id - The ID of the flashcard to update.
- * @param {string} frontSide - The new content for the front side of the flashcard.
- * @param {string} backSide - The new content for the back side of the flashcard.
+ * @param {Partial<Flashcard>} updateData - An object containing the properties of the flashcard to update.
+ * @returns {Promise<any>} A promise that resolves when the flashcard is updated.
  * @throws Will throw an error if the update process fails.
  */
-export async function updateFlashcard(id: number, frontSide: string, backSide: string): Promise<any> {
+export async function updateFlashcard(id: number, updateData: Partial<Flashcard>): Promise<any> {
 	try {
-		await flashcard.update({ frontSide, backSide }, { where: { id } });
+		await flashcard.update(updateData, { where: { id } });
 	} catch (e) {
 		throw e;
 	}
@@ -76,7 +70,7 @@ export async function getFlashcards(userId?: number): Promise<any> {
 		if (userId) {
 			return await flashcard.findAll({ where: { userId } });
 		} else {
-			return await flashcard.findAll({ where: { userId: undefined } });
+			return await flashcard.findAll({ where: { userId: null } });
 		}
 	} catch (e) {
 		throw e;

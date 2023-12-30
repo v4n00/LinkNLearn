@@ -2,7 +2,8 @@ import cors from 'cors';
 import express from 'express';
 import { PORT } from './config/const';
 import initFK from './config/initFK';
-import accountRoutes from './routes/accountRoutes';
+import authRoutes from './routes/authRoutes';
+import flashcardRoutes from './routes/flashcardRoutes';
 import checkDotEnv from './utils/checkDotEnv';
 
 // setup
@@ -24,7 +25,8 @@ app.use(
 
 // initialization
 initFK();
-app.use('/', accountRoutes);
+app.use('/', authRoutes);
+app.use('/', flashcardRoutes);
 
 // starting
 app.listen(PORT, () => {

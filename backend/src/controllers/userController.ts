@@ -31,8 +31,9 @@ export async function loginUser(email: string, password: string): Promise<any> {
 		const user = await getUserByEmail(email);
 		if (user) {
 			const valid = await bcrypt.compare(password, user.dataValues.password);
+
 			if (!valid) throw new Error('Invalid password');
-		}
+		} else throw new Error('Email not found');
 		return user;
 	} catch (e) {
 		throw e;
@@ -47,9 +48,5 @@ export async function loginUser(email: string, password: string): Promise<any> {
  * @throws Will throw an error if the retrieval process fails or if the email is not found.
  */
 async function getUserByEmail(email: string): Promise<any> {
-	try {
-		return await user.findOne({ where: { email } });
-	} catch (e) {
-		throw new Error('Email not found');
-	}
+	return await user.findOne({ where: { email } });
 }
