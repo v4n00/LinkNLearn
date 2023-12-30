@@ -22,13 +22,14 @@ const flashcard: FlashcardModel = db.define(
 		},
 		userId: {
 			type: Sequelize.INTEGER,
+			defaultValue: null,
 			allowNull: true,
 		},
 		frontSide: {
 			type: Sequelize.STRING,
 			allowNull: false,
 		},
-		password: {
+		backSide: {
 			type: Sequelize.STRING,
 			allowNull: false,
 		},

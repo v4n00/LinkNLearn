@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import * as jwt from 'jsonwebtoken';
+import { JwtPayload } from 'jsonwebtoken';
 
 export interface LoginRequest {
 	email: string;
@@ -13,5 +13,5 @@ export interface RegisterRequest {
 }
 
 export interface RequestWithToken extends Request {
-	decodedToken?: string | jwt.JwtPayload;
+	decodedToken?: string | JwtPayload;
 }

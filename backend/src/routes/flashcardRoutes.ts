@@ -9,7 +9,19 @@ import handleErrorWithResponse from '../utils/errorHandler';
 
 const flashcardRoutes = express.Router();
 
-flashcardRoutes.route('/flashcards/:id').get(verifyToken, async (req, res) => {
+flashcardRoutes.route('/flashcard/user').get(verifyToken, async (req, res) => {
+	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
+
+	try {
+		let flashcards: FlashcardModel[] = await getFlashcards(userId);
+
+		return res.status(200).json(flashcards);
+	} catch (e) {
+		handleErrorWithResponse(e, res);
+	}
+});
+
+flashcardRoutes.route('/flashcard/:id').get(verifyToken, async (req, res) => {
 	const id = parseInt(req.params.id);
 	if (isNaN(id)) return res.status(400).json('Bad Request');
 
@@ -23,7 +35,7 @@ flashcardRoutes.route('/flashcards/:id').get(verifyToken, async (req, res) => {
 	}
 });
 
-flashcardRoutes.route('/flashcards/').get(verifyToken, async (req, res) => {
+flashcardRoutes.route('/flashcard').get(verifyToken, async (req, res) => {
 	try {
 		let flashcards: FlashcardModel[] = await getFlashcards();
 
@@ -33,21 +45,10 @@ flashcardRoutes.route('/flashcards/').get(verifyToken, async (req, res) => {
 	}
 });
 
-flashcardRoutes.route('/flashcards/user/').get(verifyToken, async (req, res) => {
-	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
-
-	try {
-		let flashcards: FlashcardModel[] = await getFlashcards(userId);
-
-		return res.status(200).json(flashcards);
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
 flashcardRoutes.route('/flashcard').post(verifyToken, async (req, res) => {
-	const { userId, frontSide, backSide }: Flashcard = req.body;
-	if (!userId || !frontSide || !backSide) return res.status(400).json('Bad Request');
+	const { frontSide, backSide }: Flashcard = req.body;
+	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
+	if (!frontSide || !backSide) return res.status(400).json('Bad Request');
 
 	try {
 		await createFlashcard({ userId, frontSide, backSide });

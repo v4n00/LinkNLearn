@@ -4,6 +4,7 @@ import db from '../config/database';
 export interface Quiz {
 	id?: number;
 	title: string;
+	isPublished: boolean;
 }
 
 interface QuizAttributes extends Quiz {}
@@ -19,8 +20,9 @@ const quiz: ModelDefined<Quiz, QuizAttributes> = db.define('quiz', {
 		type: Sequelize.STRING,
 		allowNull: false,
 	},
-	status: {
-		type: Sequelize.STRING,
+	isPublished: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false,
 		allowNull: false,
 	},
 });
