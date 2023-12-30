@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-const requiredVars = ['JWT_KEY'];
+const requiredVars = ['JWT_KEY', 'SYSADMIN_KEY'];
 
 export default function checkDotEnv() {
 	const missingVars = requiredVars.filter((v) => !process.env[v]);

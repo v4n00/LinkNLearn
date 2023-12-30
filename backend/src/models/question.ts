@@ -4,9 +4,8 @@ import db from '../config/database';
 export interface Question {
 	id?: number;
 	quizId: number;
-	test: string;
+	text: string;
 	options: string;
-	answer: number;
 }
 
 interface QuestionAttributes extends Question {}
@@ -23,15 +22,11 @@ const question: ModelDefined<Question, QuestionAttributes> = db.define('question
 		allowNull: false,
 	},
 	text: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING(1000),
 		allowNull: false,
 	},
 	options: {
-		type: Sequelize.STRING,
-		allowNull: false,
-	},
-	answer: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.STRING(1000),
 		allowNull: false,
 	},
 });

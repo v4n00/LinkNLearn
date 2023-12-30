@@ -26,11 +26,11 @@ const flashcard: FlashcardModel = db.define(
 			allowNull: true,
 		},
 		frontSide: {
-			type: Sequelize.STRING,
+			type: Sequelize.STRING(1000),
 			allowNull: false,
 		},
 		backSide: {
-			type: Sequelize.STRING,
+			type: Sequelize.STRING(1000),
 			allowNull: false,
 		},
 	},

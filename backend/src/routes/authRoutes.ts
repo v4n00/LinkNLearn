@@ -29,8 +29,8 @@ authRoutes.route('/user/register').post(async (req: Request, res: Response) => {
 	if (password !== repeatPassword) {
 		return res.status(400).json('Passwords do not match');
 	}
-	if (password.length < 8) {
-		return res.status(400).json('Password must be at least 8 characters');
+	if (password.length < 8 || password.length > 32) {
+		return res.status(400).json('Password must be at least 8 characters and maximum 32 characters');
 	}
 
 	try {

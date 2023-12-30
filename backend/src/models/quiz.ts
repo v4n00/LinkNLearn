@@ -17,7 +17,7 @@ const quiz: ModelDefined<Quiz, QuizAttributes> = db.define('quiz', {
 		allowNull: false,
 	},
 	title: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING(200),
 		allowNull: false,
 	},
 	isPublished: {
