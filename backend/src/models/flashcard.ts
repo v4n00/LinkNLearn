@@ -1,4 +1,4 @@
-import Sequelize, { ModelDefined } from 'sequelize';
+import Sequelize, { Model, ModelDefined } from 'sequelize';
 import db from '../config/database';
 
 export interface Flashcard {
@@ -9,9 +9,9 @@ export interface Flashcard {
 }
 
 interface FlashcardAttributes extends Flashcard {}
-export interface FlashcardModel extends ModelDefined<Flashcard, FlashcardAttributes> {}
+export interface FlashcardModel extends Model<Flashcard, FlashcardAttributes> {}
 
-const flashcard: FlashcardModel = db.define(
+const flashcard: ModelDefined<Flashcard, FlashcardAttributes> = db.define(
 	'flashcard',
 	{
 		id: {

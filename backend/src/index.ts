@@ -4,6 +4,8 @@ import { PORT } from './config/const';
 import initFK from './config/initFK';
 import authRoutes from './routes/authRoutes';
 import flashcardRoutes from './routes/flashcardRoutes';
+import questionRoutes from './routes/questionRoutes';
+import quizRoutes from './routes/quizRoutes';
 import checkDotEnv from './utils/checkDotEnv';
 
 // setup
@@ -27,6 +29,8 @@ app.use(
 initFK();
 app.use('/', authRoutes);
 app.use('/', flashcardRoutes);
+app.use('/', quizRoutes);
+app.use('/', questionRoutes);
 
 // starting
 app.listen(PORT, () => {

@@ -2,6 +2,7 @@ import Sequelize, { ModelDefined } from 'sequelize';
 import db from '../config/database';
 
 export interface QuizProgress {
+	id: number;
 	userId: number;
 	quizId: number;
 	score: number;
@@ -11,14 +12,18 @@ export interface QuizProgress {
 interface QuizProgressAttributes extends QuizProgress {}
 
 const quizProgress: ModelDefined<QuizProgress, QuizProgressAttributes> = db.define('quizProgress', {
+	id: {
+		type: Sequelize.INTEGER,
+		autoIncrement: true,
+		primaryKey: true,
+		allowNull: false,
+	},
 	userId: {
 		type: Sequelize.INTEGER,
-		primaryKey: true,
 		allowNull: false,
 	},
 	quizId: {
 		type: Sequelize.INTEGER,
-		primaryKey: true,
 		allowNull: false,
 	},
 	score: {

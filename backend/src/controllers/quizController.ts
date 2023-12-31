@@ -1,7 +1,5 @@
-import question, { Question } from '../models/question';
-import quiz, { Quiz } from '../models/quiz';
-
-// default functions for CRUD operations
+import quiz, { Quiz, QuizModel } from '../models/quiz';
+import { getQuestions } from './questionController';
 
 export async function createQuiz(data: Quiz): Promise<any> {
 	try {
@@ -11,9 +9,20 @@ export async function createQuiz(data: Quiz): Promise<any> {
 	}
 }
 
-export async function getQuizById(id: number): Promise<any> {
+export async function publishQuiz(id: number): Promise<any> {
 	try {
-		return await quiz.findOne({ where: { id } });
+		await quiz.update({ isPublished: true }, { where: { id } });
+	} catch (e) {
+		throw e;
+	}
+}
+
+export async function getQuizWithQuestionsById(id: number, hasAnswer: boolean): Promise<any> {
+	try {
+		const returnQuiz: QuizModel | null = await quiz.findOne({ where: { id } });
+		if (!returnQuiz || !returnQuiz.dataValues.id) return null;
+		returnQuiz.dataValues.questions = await getQuestions(returnQuiz.dataValues.id, hasAnswer);
+		return returnQuiz;
 	} catch (e) {
 		throw e;
 	}
@@ -21,7 +30,7 @@ export async function getQuizById(id: number): Promise<any> {
 
 export async function getQuizzes(): Promise<any> {
 	try {
-		return await quiz.findAll();
+		return await quiz.findAll({ where: { isPublished: true } });
 	} catch (e) {
 		throw e;
 	}
@@ -38,50 +47,6 @@ export async function updateQuiz(id: number, data: Partial<Quiz>): Promise<any> 
 export async function deleteQuiz(id: number): Promise<any> {
 	try {
 		await quiz.destroy({ where: { id } });
-	} catch (e) {
-		throw e;
-	}
-}
-
-// question operations
-
-export async function addQuestion(quizId: number, data: Question): Promise<any> {
-	try {
-		data.quizId = quizId;
-		data.options = JSON.stringify(data.options);
-		await question.create(data);
-	} catch (e) {
-		throw e;
-	}
-}
-
-export async function getQuestions(quizId: number): Promise<any> {
-	try {
-		return await question.findAll({ where: { quizId } });
-	} catch (e) {
-		throw e;
-	}
-}
-
-export async function getQuestionById(id: number): Promise<any> {
-	try {
-		return await question.findOne({ where: { id } });
-	} catch (e) {
-		throw e;
-	}
-}
-
-export async function updateQuestion(id: number, data: Partial<Question>): Promise<any> {
-	try {
-		await question.update(data, { where: { id } });
-	} catch (e) {
-		throw e;
-	}
-}
-
-export async function deleteQuestion(id: number): Promise<any> {
-	try {
-		await question.destroy({ where: { id } });
 	} catch (e) {
 		throw e;
 	}

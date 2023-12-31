@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { NextFunction, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import { RequestWithToken } from '../config/interfaces';
 import { User } from '../models/user';
 
@@ -27,6 +27,17 @@ export const verifyToken = (req: RequestWithToken, res: Response, next: NextFunc
 	});
 };
 
+export const verifyAdminToken = (req: RequestWithToken, res: Response, next: NextFunction) => {
+	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
+	if (userId !== 0) return res.status(401).json('Unauthorized');
+	next();
+};
+
+export function isAdmin(req: RequestWithToken) {
+	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
+	return userId === 0;
+}
+
 export function generateToken(user: User) {
 	return jwt.sign(
 		{
@@ -36,6 +47,18 @@ export function generateToken(user: User) {
 		process.env.JWT_KEY!,
 		{
 			expiresIn: '7d',
+		}
+	);
+}
+
+export function generateAdminToken() {
+	return jwt.sign(
+		{
+			userId: 0,
+		},
+		process.env.JWT_KEY!,
+		{
+			expiresIn: '1d',
 		}
 	);
 }

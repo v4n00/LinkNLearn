@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { LoginRequest, RegisterRequest } from '../config/interfaces';
 import { createUser, loginUser } from '../controllers/userController';
-import { generateToken } from '../middlewares/auth';
+import { generateAdminToken, generateToken } from '../middlewares/auth';
 import handleErrorWithResponse from '../utils/errorHandler';
 
 const authRoutes = express.Router();
@@ -11,6 +11,10 @@ authRoutes.route('/user/login').post(async (req: Request, res: Response) => {
 	if (!email || !password) return res.status(400).json('Bad Request');
 
 	try {
+		if (email === 'admin' && password === process.env.SYSADMIN_KEY) {
+			return res.status(200).json({ token: generateAdminToken() });
+		}
+
 		const user = await loginUser(email, password);
 		if (user) return res.status(200).json({ token: generateToken(user.dataValues) });
 	} catch (e) {

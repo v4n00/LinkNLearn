@@ -38,6 +38,7 @@ export async function deleteFlashcard(id: number): Promise<any> {
 
 export async function updateFlashcard(id: number, updateData: Partial<Flashcard>): Promise<any> {
 	try {
+		if (updateData.userId) throw new Error('Cannot change ownership of flashcard');
 		await flashcard.update(updateData, { where: { id } });
 	} catch (e) {
 		throw e;

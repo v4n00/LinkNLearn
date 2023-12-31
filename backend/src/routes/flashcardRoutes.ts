@@ -2,7 +2,7 @@ import express from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import { RequestWithToken } from '../config/interfaces';
 import { createFlashcard, deleteFlashcard, getFlashcardById, getFlashcards, updateFlashcard } from '../controllers/flashcardController';
-import { verifyToken } from '../middlewares/auth';
+import { isAdmin, verifyToken } from '../middlewares/auth';
 import { verifyFlashcardOwnership } from '../middlewares/flashcardOwnership';
 import { Flashcard, FlashcardModel } from '../models/flashcard';
 import handleErrorWithResponse from '../utils/errorHandler';
@@ -15,7 +15,8 @@ flashcardRoutes.route('/flashcard/user').get(verifyToken, async (req, res) => {
 	try {
 		let flashcards: FlashcardModel[] = await getFlashcards(userId);
 
-		return res.status(200).json(flashcards);
+		if (flashcards.length !== 0) return res.status(200).json(flashcards);
+		else return res.status(404).json('No flashcards found');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}
@@ -39,7 +40,8 @@ flashcardRoutes.route('/flashcard').get(verifyToken, async (req, res) => {
 	try {
 		let flashcards: FlashcardModel[] = await getFlashcards();
 
-		return res.status(200).json(flashcards);
+		if (flashcards.length !== 0) return res.status(200).json(flashcards);
+		else return res.status(404).json('No flashcards found');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}
@@ -47,11 +49,14 @@ flashcardRoutes.route('/flashcard').get(verifyToken, async (req, res) => {
 
 flashcardRoutes.route('/flashcard').post(verifyToken, async (req, res) => {
 	const { frontSide, backSide }: Flashcard = req.body;
-	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
 	if (!frontSide || !backSide) return res.status(400).json('Bad Request');
 
 	try {
-		await createFlashcard({ userId, frontSide, backSide });
+		if (isAdmin(req)) await createFlashcard({ frontSide, backSide });
+		else {
+			const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
+			await createFlashcard({ userId, frontSide, backSide });
+		}
 		return res.status(201).json('Flashcard created');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
