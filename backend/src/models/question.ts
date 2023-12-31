@@ -1,11 +1,12 @@
 import Sequelize, { ModelDefined } from 'sequelize';
 import db from '../config/database';
+import { QuestionText } from '../config/interfaces';
 
 export interface Question {
 	id?: number;
-	quizId: number;
+	quizId?: number;
 	text: string;
-	options: string;
+	options: QuestionText | string;
 }
 
 interface QuestionAttributes extends Question {}

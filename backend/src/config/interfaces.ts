@@ -15,3 +15,11 @@ export interface RegisterRequest {
 export interface RequestWithToken extends Request {
 	decodedToken?: string | JwtPayload;
 }
+
+export interface QuestionText {
+	option1: string;
+	option2: string;
+	option3?: string;
+	option4?: string;
+	answer: string;
+}
