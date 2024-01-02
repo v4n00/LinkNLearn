@@ -3,7 +3,6 @@ import { NextFunction, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { adminId } from '../config/const';
 import { RequestWithToken } from '../config/interfaces';
-import { User } from '../models/user';
 
 export const verifyToken = (req: RequestWithToken, res: Response, next: NextFunction) => {
 	// check if header has authorization field
@@ -33,33 +32,3 @@ export const verifyAdminToken = (req: RequestWithToken, res: Response, next: Nex
 	if (userId !== adminId) return res.status(401).json('Unauthorized');
 	next();
 };
-
-export function isAdmin(req: RequestWithToken) {
-	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
-	return userId === adminId;
-}
-
-export function generateToken(user: User) {
-	return jwt.sign(
-		{
-			userId: user.id,
-			email: user.email,
-		},
-		process.env.JWT_KEY!,
-		{
-			expiresIn: '7d',
-		}
-	);
-}
-
-export function generateAdminToken() {
-	return jwt.sign(
-		{
-			userId: adminId,
-		},
-		process.env.JWT_KEY!,
-		{
-			expiresIn: '1d',
-		}
-	);
-}

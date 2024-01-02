@@ -25,7 +25,7 @@ questionRoutes.route('/question/:quizId').get(verifyToken, verifyAdminToken, asy
 	try {
 		let questions = await getQuestions(quizId, false);
 
-		if (questions.length !== 0) return res.status(200).json(questions);
+		if (questions && questions.length !== 0) return res.status(200).json(questions);
 		else return res.status(404).json('No questions found');
 	} catch (e) {
 		handleErrorWithResponse(e, res);

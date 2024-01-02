@@ -12,7 +12,8 @@ export const verifyFlashcardOwnership = async (req: RequestWithToken, res: Respo
 
 		if (req.decodedToken) {
 			const userId = (req.decodedToken as JwtPayload).userId;
-			const flashcardItem: FlashcardModel = await getFlashcardById(flashcardId);
+			const flashcardItem: FlashcardModel | null = await getFlashcardById(flashcardId);
+			if (!flashcardItem) return res.status(404).json('Flascard not found');
 
 			if (flashcardItem.dataValues.userId === null && parseInt(userId) === 0) {
 				next();

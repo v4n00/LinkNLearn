@@ -1,8 +1,9 @@
 import express from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import { RequestWithToken } from '../config/interfaces';
+import { isAdmin } from '../controllers/authController';
 import { createFlashcard, deleteFlashcard, getFlashcardById, getFlashcards, updateFlashcard } from '../controllers/flashcardController';
-import { isAdmin, verifyToken } from '../middlewares/auth';
+import { verifyToken } from '../middlewares/auth';
 import { verifyFlashcardOwnership } from '../middlewares/flashcardOwnership';
 import { Flashcard, FlashcardModel } from '../models/flashcard';
 import handleErrorWithResponse from '../utils/errorHandler';

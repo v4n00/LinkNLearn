@@ -16,7 +16,6 @@ quizRoutes.route('/quiz/:id/verify').post(async (req, res) => {
 
 	try {
 		const quiz: QuizModel | null = await getQuizWithQuestionsById(id, true);
-
 		if (!quiz) return res.status(404).json('No quiz found');
 		if (!quiz.dataValues.questions) return res.status(404).json('No questions found');
 
@@ -30,6 +29,17 @@ quizRoutes.route('/quiz/:id/verify').post(async (req, res) => {
 		// if user logged in then add quizz progress, else, set it in local storage
 
 		return res.status(200).json({ score: score, total: quiz.dataValues.questions.length });
+	} catch (e) {
+		handleErrorWithResponse(e, res);
+	}
+});
+
+quizRoutes.route('/quiz/:id/progress/').get(verifyToken, async (req, res) => {
+	const id = parseInt(req.params.id);
+	if (isNaN(id)) return res.status(400).json('Bad Request');
+
+	try {
+		// TODO
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}

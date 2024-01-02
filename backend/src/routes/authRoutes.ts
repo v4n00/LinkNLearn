@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { LoginRequest, RegisterRequest } from '../config/interfaces';
+import { generateAdminToken, generateToken } from '../controllers/authController';
 import { createUser, loginUser } from '../controllers/userController';
-import { generateAdminToken, generateToken } from '../middlewares/auth';
 import handleErrorWithResponse from '../utils/errorHandler';
 
 const authRoutes = express.Router();
