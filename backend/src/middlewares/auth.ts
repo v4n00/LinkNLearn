@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { NextFunction, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { adminId } from '../config/const';
 import { RequestWithToken } from '../config/interfaces';
 import { User } from '../models/user';
 
@@ -29,13 +30,13 @@ export const verifyToken = (req: RequestWithToken, res: Response, next: NextFunc
 
 export const verifyAdminToken = (req: RequestWithToken, res: Response, next: NextFunction) => {
 	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
-	if (userId !== 0) return res.status(401).json('Unauthorized');
+	if (userId !== adminId) return res.status(401).json('Unauthorized');
 	next();
 };
 
 export function isAdmin(req: RequestWithToken) {
 	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
-	return userId === 0;
+	return userId === adminId;
 }
 
 export function generateToken(user: User) {
@@ -54,7 +55,7 @@ export function generateToken(user: User) {
 export function generateAdminToken() {
 	return jwt.sign(
 		{
-			userId: 0,
+			userId: adminId,
 		},
 		process.env.JWT_KEY!,
 		{

@@ -1,8 +1,8 @@
-import Sequelize, { ModelDefined } from 'sequelize';
+import Sequelize, { Model, ModelDefined } from 'sequelize';
 import db from '../config/database';
 
 export interface QuizProgress {
-	id: number;
+	id?: number;
 	userId: number;
 	quizId: number;
 	score: number;
@@ -10,6 +10,7 @@ export interface QuizProgress {
 }
 
 interface QuizProgressAttributes extends QuizProgress {}
+export interface QuizProgressModel extends Model<QuizProgress, QuizProgressAttributes> {}
 
 const quizProgress: ModelDefined<QuizProgress, QuizProgressAttributes> = db.define('quizProgress', {
 	id: {

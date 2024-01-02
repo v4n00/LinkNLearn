@@ -1,7 +1,7 @@
 import { QuestionText } from '../config/interfaces';
 import question, { Question, QuestionModel } from '../models/question';
 
-export async function addQuestion(data: Question): Promise<any> {
+export async function addQuestion(data: Question): Promise<void> {
 	try {
 		data.options = JSON.stringify(data.options);
 		await question.create(data);
@@ -10,34 +10,21 @@ export async function addQuestion(data: Question): Promise<any> {
 	}
 }
 
-export async function getQuestions(quizId: number, hasAnswer: boolean): Promise<any> {
+export async function getQuestions(quizId: number, hasAnswer: boolean): Promise<QuestionModel[] | null> {
 	try {
 		const questions = await question.findAll({ where: { quizId } });
-
-		return questions.map((q: QuestionModel) => {
+		questions.map((q: QuestionModel) => {
 			q.dataValues.options = JSON.parse(q.dataValues.options as string);
 			if (!hasAnswer) delete (q.dataValues.options as QuestionText).answer;
 			return q;
 		});
+		return questions;
 	} catch (e) {
 		throw e;
 	}
 }
 
-// export async function getQuestionById(id: number, hasAnswer: boolean): Promise<any> {
-// 	try {
-// 		let returnQuestion: QuestionModel | null = await question.findOne({ where: { id } });
-// 		if (returnQuestion) {
-// 			returnQuestion.dataValues.options = JSON.parse(returnQuestion.dataValues.options as string);
-// 			if (!hasAnswer) delete (returnQuestion.dataValues.options as QuestionText).answer;
-// 		}
-// 		return returnQuestion;
-// 	} catch (e) {
-// 		throw e;
-// 	}
-// }
-
-export async function updateQuestion(id: number, data: Partial<Question>): Promise<any> {
+export async function updateQuestion(id: number, data: Partial<Question>): Promise<void> {
 	try {
 		if (data.quizId) throw new Error('Cannot change ownership of question');
 		if (data.options) data.options = JSON.stringify(data.options);
@@ -47,7 +34,7 @@ export async function updateQuestion(id: number, data: Partial<Question>): Promi
 	}
 }
 
-export async function deleteQuestion(id: number): Promise<any> {
+export async function deleteQuestion(id: number): Promise<void> {
 	try {
 		await question.destroy({ where: { id } });
 	} catch (e) {

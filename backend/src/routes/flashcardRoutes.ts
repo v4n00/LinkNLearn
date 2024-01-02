@@ -13,9 +13,9 @@ flashcardRoutes.route('/flashcard/user').get(verifyToken, async (req, res) => {
 	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
 
 	try {
-		let flashcards: FlashcardModel[] = await getFlashcards(userId);
+		let flashcards: FlashcardModel[] | null = await getFlashcards(userId);
 
-		if (flashcards.length !== 0) return res.status(200).json(flashcards);
+		if (flashcards && flashcards.length !== 0) return res.status(200).json(flashcards);
 		else return res.status(404).json('No flashcards found');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
@@ -27,7 +27,7 @@ flashcardRoutes.route('/flashcard/:id').get(verifyToken, async (req, res) => {
 	if (isNaN(id)) return res.status(400).json('Bad Request');
 
 	try {
-		const flashcard: FlashcardModel = await getFlashcardById(id);
+		const flashcard: FlashcardModel | null = await getFlashcardById(id);
 
 		if (flashcard) return res.status(200).json(flashcard);
 		else return res.status(404).json('No flashcard found');
@@ -36,11 +36,11 @@ flashcardRoutes.route('/flashcard/:id').get(verifyToken, async (req, res) => {
 	}
 });
 
-flashcardRoutes.route('/flashcard').get(verifyToken, async (req, res) => {
+flashcardRoutes.route('/flashcard').get(async (req, res) => {
 	try {
-		let flashcards: FlashcardModel[] = await getFlashcards();
+		let flashcards: FlashcardModel[] | null = await getFlashcards();
 
-		if (flashcards.length !== 0) return res.status(200).json(flashcards);
+		if (flashcards && flashcards.length !== 0) return res.status(200).json(flashcards);
 		else return res.status(404).json('No flashcards found');
 	} catch (e) {
 		handleErrorWithResponse(e, res);

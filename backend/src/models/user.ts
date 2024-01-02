@@ -1,4 +1,4 @@
-import Sequelize, { ModelDefined } from 'sequelize';
+import Sequelize, { Model, ModelDefined } from 'sequelize';
 import db from '../config/database';
 
 export interface User {
@@ -8,6 +8,7 @@ export interface User {
 }
 
 interface UserAttributes extends User {}
+export interface UserModel extends Model<User, UserAttributes> {}
 
 const user: ModelDefined<User, UserAttributes> = db.define('user', {
 	id: {

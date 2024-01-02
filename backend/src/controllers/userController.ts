@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { bcryptSaltRounds } from '../config/const';
-import user from '../models/user';
+import user, { UserModel } from '../models/user';
 
 /**
  * Creates a new user in the database.
@@ -9,7 +9,7 @@ import user from '../models/user';
  * @param {string} password - The password of the user to create.
  * @throws Will throw an error if the user creation process fails.
  */
-export async function createUser(email: string, password: string): Promise<any> {
+export async function createUser(email: string, password: string): Promise<void> {
 	try {
 		password = await bcrypt.hash(password, await bcrypt.genSalt(bcryptSaltRounds));
 		await user.create({ email, password });
@@ -26,7 +26,7 @@ export async function createUser(email: string, password: string): Promise<any> 
  * @returns {Promise<any>} The user with all its data.
  * @throws Will throw an error if the login process fails or if the password is invalid.
  */
-export async function loginUser(email: string, password: string): Promise<any> {
+export async function loginUser(email: string, password: string): Promise<UserModel | null> {
 	try {
 		const user = await getUserByEmail(email);
 		if (user) {
@@ -47,6 +47,6 @@ export async function loginUser(email: string, password: string): Promise<any> {
  * @returns {Promise<any>} A promise that resolves to the retrieved user.
  * @throws Will throw an error if the retrieval process fails or if the email is not found.
  */
-async function getUserByEmail(email: string): Promise<any> {
+async function getUserByEmail(email: string): Promise<UserModel | null> {
 	return await user.findOne({ where: { email } });
 }

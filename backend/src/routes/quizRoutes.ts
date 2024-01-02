@@ -8,14 +8,14 @@ import handleErrorWithResponse from '../utils/errorHandler';
 
 const quizRoutes = express.Router();
 
-quizRoutes.route('/quiz/:id/verify').post(verifyToken, async (req, res) => {
+quizRoutes.route('/quiz/:id/verify').post(async (req, res) => {
 	const id = parseInt(req.params.id);
 	const { answers } = req.body;
 	if (isNaN(id) || !answers) return res.status(400).json('Bad Request');
 	if (!Array.isArray(answers)) return res.status(400).json('Answers must be an array');
 
 	try {
-		const quiz: QuizModel = await getQuizWithQuestionsById(id, true);
+		const quiz: QuizModel | null = await getQuizWithQuestionsById(id, true);
 
 		if (!quiz) return res.status(404).json('No quiz found');
 		if (!quiz.dataValues.questions) return res.status(404).json('No questions found');
@@ -25,9 +25,36 @@ quizRoutes.route('/quiz/:id/verify').post(verifyToken, async (req, res) => {
 			if ((q.dataValues.options as QuestionText).answer === answers[i]) score++;
 		});
 
-		// TODO: add quizz progress here
+		// TODO: add quiz progress here
+		// quiz progress should have a unique id, and link user and quiz by their ids
+		// if user logged in then add quizz progress, else, set it in local storage
 
 		return res.status(200).json({ score: score, total: quiz.dataValues.questions.length });
+	} catch (e) {
+		handleErrorWithResponse(e, res);
+	}
+});
+
+quizRoutes.route('/quiz').get(async (req, res) => {
+	try {
+		let quizzes: QuizModel[] | null = await getQuizzes();
+
+		if (quizzes && quizzes.length !== 0) return res.status(200).json(quizzes);
+		else return res.status(404).json('No quizzes found');
+	} catch (e) {
+		handleErrorWithResponse(e, res);
+	}
+});
+
+quizRoutes.route('/quiz/:id').get(async (req, res) => {
+	const id = parseInt(req.params.id);
+	if (isNaN(id)) return res.status(400).json('Bad Request');
+
+	try {
+		const quiz: QuizModel | null = await getQuizWithQuestionsById(id, false);
+
+		if (quiz) return res.status(200).json(quiz);
+		else return res.status(404).json('No quiz found');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}
@@ -40,31 +67,6 @@ quizRoutes.route('/quiz').post(verifyToken, verifyAdminToken, async (req, res) =
 	try {
 		await createQuiz({ title });
 		return res.status(201).json('Quiz created');
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
-quizRoutes.route('/quiz').get(verifyToken, async (req, res) => {
-	try {
-		let quizzes: QuizModel[] = await getQuizzes();
-
-		if (quizzes.length !== 0) return res.status(200).json(quizzes);
-		else return res.status(404).json('No quizzes found');
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
-quizRoutes.route('/quiz/:id').get(verifyToken, async (req, res) => {
-	const id = parseInt(req.params.id);
-	if (isNaN(id)) return res.status(400).json('Bad Request');
-
-	try {
-		const quiz: QuizModel = await getQuizWithQuestionsById(id, false);
-
-		if (quiz) return res.status(200).json(quiz);
-		else return res.status(404).json('No quiz found');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}
