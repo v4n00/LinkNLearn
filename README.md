@@ -1,6 +1,8 @@
 # LinkNLearn
 
-Bachelor Thesis Project
+Bachelor Thesis project
+
+[backend routes](./backend/README.md)
 
 # Database design
 
