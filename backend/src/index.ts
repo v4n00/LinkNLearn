@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
-import { PORT, apiLimiterWindowSeconds } from './config/const';
+import { apiLimiterWindowSeconds, clientPort, port } from './config/const';
 import initFK from './config/initFK';
 import authRoutes from './routes/authRoutes';
 import flashcardRoutes from './routes/flashcardRoutes';
@@ -17,7 +17,7 @@ const apiLimiter = rateLimit({
 	max: 1000,
 });
 const corsOptions = {
-	origin: `http://localhost:${PORT}`,
+	origin: `http://localhost:${clientPort}`,
 	methods: 'GET,PUT,PATCH,POST,DELETE',
 };
 
@@ -39,6 +39,6 @@ app.use('/', quizRoutes);
 app.use('/', questionRoutes);
 
 // starting
-app.listen(PORT, () => {
-	console.log(`Backend is running at port http://localhost:${PORT}`);
+app.listen(port, () => {
+	console.log(`Backend is running at port http://localhost:${port}`);
 });

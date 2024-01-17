@@ -1,3 +1,6 @@
+export const PORT: number = 3000;
+export const APIURL = `http://localhost:${PORT}`;
+
 export const links: { title: string; href: string }[] = [
 	{
 		title: 'Simple Linked List',
