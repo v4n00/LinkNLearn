@@ -1,11 +1,22 @@
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
-import { links } from '@/lib/const';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { APIURL, links } from '@/lib/const';
 import { cn } from '@/lib/utils';
-import React, { SVGProps } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import React, { SVGProps, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { JSX } from 'react/jsx-runtime';
+import * as z from 'zod';
+import { Button } from './ui/button';
 
 export default function Component() {
+	const [dialogOpen, dialogSetOpen] = useState(false);
+
 	return (
 		<header className="sticky z-20 flex h-20 w-full items-center px-4 md:px-6 bg-transparent border-b border-gray-200">
 			<div>
@@ -41,12 +52,93 @@ export default function Component() {
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>
-			<a href="/account">
-				<Button variant="outline">Account</Button>
-			</a>
+			<Dialog open={dialogOpen} onOpenChange={dialogSetOpen}>
+				<DialogTrigger asChild>
+					<Button variant="outline">Account</Button>
+				</DialogTrigger>
+				<DialogContent className="w-[400px]">
+					<DialogHeader>
+						<DialogTitle className="text-3xl">Account</DialogTitle>
+						<Tabs defaultValue="logIn">
+							<TabsList className="grid w-full grid-cols-2">
+								<TabsTrigger value="logIn">Log in</TabsTrigger>
+								<TabsTrigger value="signUp">Sign up</TabsTrigger>
+							</TabsList>
+							<TabsContent value="logIn">
+								<LogInComponent dialogSetOpen={dialogSetOpen} />
+							</TabsContent>
+							<TabsContent value="signUp">{/* <SignUpComponent /> */}</TabsContent>
+						</Tabs>
+					</DialogHeader>
+				</DialogContent>
+			</Dialog>
 		</header>
 	);
 }
+
+import { Dispatch, SetStateAction } from 'react';
+
+const LogInComponent = ({ dialogSetOpen }: { dialogSetOpen: Dispatch<SetStateAction<boolean>> }) => {
+	const logInFormSchema = z.object({
+		email: z.string().email(),
+		password: z.string().min(8, 'Password must contain at least 8 characters').max(32, 'Password must contain at most 32 characters'),
+	});
+
+	const form = useForm<z.infer<typeof logInFormSchema>>({
+		resolver: zodResolver(logInFormSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+		},
+	});
+
+	function onSubmit(values: z.infer<typeof logInFormSchema>) {
+		axios.post(`${APIURL}/user/login`, values).then((res) => {
+			console.log(res);
+			dialogSetOpen(false);
+		});
+	}
+
+	return (
+		<Card>
+			<CardContent>
+				<Form {...form}>
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 pt-6">
+						<FormField
+							control={form.control}
+							name="email"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Email</FormLabel>
+									<FormControl>
+										<Input {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="password"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Password</FormLabel>
+									<FormControl>
+										<Input {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<Button type="submit" className="w-full">
+							Log in
+						</Button>
+					</form>
+				</Form>
+			</CardContent>
+		</Card>
+	);
+};
 
 function MountainIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
 	return (

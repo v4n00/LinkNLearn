@@ -58,11 +58,7 @@ export default function Quizzes() {
 	);
 }
 
-interface QuizCarouselItemProps {
-	quiz: Quiz;
-}
-
-const QuizCarouselItem: React.FC<QuizCarouselItemProps> = ({ quiz }) => {
+const QuizCarouselItem = ({ quiz }: { quiz: Quiz }) => {
 	return (
 		<CarouselItem key={quiz.id} className="basis-1/3 w-[300px]">
 			<div className="p-1">
