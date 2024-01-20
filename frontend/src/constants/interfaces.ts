@@ -1,7 +1,7 @@
 export interface User {
 	id: string;
 	email: string;
-	authToken?: string;
+	token?: string;
 }
 
 export interface Quiz {

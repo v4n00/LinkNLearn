@@ -1,13 +1,12 @@
 import * as authApi from '@/api/authApi';
 import { User } from '@/constants/interfaces';
-import { ReactNode, createContext, useMemo, useState } from 'react';
+import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 
 interface AuthContextType {
 	user?: User;
 	loading: boolean;
-	error?: unknown;
-	login: ({ email, password }: authApi.loginType) => void;
-	register: ({ email, password, repeatPassword }: authApi.registerType) => void;
+	login: ({ email, password }: authApi.loginType) => Promise<void>;
+	register: ({ email, password, confirmPassword }: authApi.signUpType) => Promise<void>;
 	logOut: () => void;
 }
 
@@ -16,67 +15,47 @@ export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User>();
 	const [loading, setLoading] = useState<boolean>(false);
-	const [error, setError] = useState<unknown>('');
-	// const [loadingInitial, setLoadingInitial] = useState<boolean>(true);
 
-	// const location = useLocation();
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) authApi.validate({ token }).then((res) => setUser(res.data));
+	}, []);
 
-	// useEffect(() => {
-	//     if(error) setError(undefined);
-	// }, [location.pathname]);
-
-	// useEffect(() => {
-	//     usersApi.getCurrentUser()
-	//       .then((user) => setUser(user))
-	//       .catch((_error) => {})
-	//       .finally(() => setLoadingInitial(false));
-	//   }, []);
-
-	const login = ({ email, password }: authApi.loginType): void => {
+	const login = async ({ email, password }: authApi.loginType): Promise<void> => {
 		setLoading(true);
-		authApi
-			.login({ email, password })
-			.then((res) => {
-				setUser(res.data);
-			})
-			.catch((err) => {
-				setError(err);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
+		try {
+			const res = await authApi.login({ email, password });
+			localStorage.setItem('token', res.data.token);
+			setUser(res.data);
+		} finally {
+			setLoading(false);
+		}
 	};
 
-	const register = ({ email, password, repeatPassword }: authApi.registerType): void => {
+	const signUp = async ({ email, password, confirmPassword }: authApi.signUpType): Promise<void> => {
 		setLoading(true);
-		authApi
-			.register({ email, password, repeatPassword })
-			.then((res) => {
-				setUser(res.data);
-			})
-			.catch((err) => {
-				setError(err);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
+		try {
+			await authApi.signUp({ email, password, confirmPassword });
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	const logOut = (): void => {
 		setUser(undefined);
+		localStorage.removeItem('token');
 	};
 
-	const value = useMemo(
+	const values = useMemo(
 		() => ({
 			user,
 			loading,
-			error,
 			login,
-			register,
+			register: signUp,
 			logOut,
 		}),
-		[user, loading, error]
+		[user, loading]
 	);
 
-	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

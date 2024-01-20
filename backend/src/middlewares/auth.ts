@@ -32,3 +32,7 @@ export const verifyAdminToken = (req: RequestWithToken, res: Response, next: Nex
 	if (userId !== adminId) return res.status(401).json('Unauthorized');
 	next();
 };
+
+export const decodeToken = (token: string) => {
+	return jwt.verify(token, process.env.JWT_KEY!);
+};

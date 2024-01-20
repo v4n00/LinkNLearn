@@ -9,7 +9,7 @@ export interface LoginRequest {
 export interface RegisterRequest {
 	email: string;
 	password: string;
-	repeatPassword: string;
+	confirmPassword: string;
 }
 
 export interface RequestWithToken extends Request {

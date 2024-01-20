@@ -1,9 +1,9 @@
 # Authentication API Routes
 
-| Route            | Method | Parameters | Request Body                                                 | Middleware | Description                                                                 |
-| ---------------- | ------ | ---------- | ------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------- |
-| `/user/login`    | POST   | None       | `email`, `password` (as `LoginRequest`)                      | None       | Authenticates a user and returns a token. Special handling for admin login. |
-| `/user/register` | POST   | None       | `email`, `password`, `repeatPassword` (as `RegisterRequest`) | None       | Registers a new user, with email and password validation.                   |
+| Route            | Method | Parameters | Request Body                                                  | Middleware | Description                                                                 |
+| ---------------- | ------ | ---------- | ------------------------------------------------------------- | ---------- | --------------------------------------------------------------------------- |
+| `/user/login`    | POST   | None       | `email`, `password` (as `LoginRequest`)                       | None       | Authenticates a user and returns a token. Special handling for admin login. |
+| `/user/register` | POST   | None       | `email`, `password`, `confirmPassword` (as `RegisterRequest`) | None       | Registers a new user, with email and password validation.                   |
 
 # Flashcard API Routes
 

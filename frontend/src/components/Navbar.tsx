@@ -1,28 +1,35 @@
+import { signUp } from '@/api/authApi';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { APIURL, links } from '@/constants/const';
+import { links } from '@/constants/const';
+import useAuth from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
-import React, { Dispatch, SVGProps, SetStateAction, useState } from 'react';
+import { AxiosError } from 'axios';
+import { Mountain } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { JSX } from 'react/jsx-runtime';
 import * as z from 'zod';
-import { Button } from './ui/button';
+import { Link } from './Link';
+import { LoadingButton } from './LoadingButton';
+import { PasswordInput } from './PasswordInput';
+import { errorToast, successToast } from './Toasts';
 
-export default function Component() {
-	const [dialogOpen, dialogSetOpen] = useState(false);
+export default function Navbar() {
+	const { user } = useAuth();
 
 	return (
-		<header className="sticky z-20 flex h-20 w-full items-center px-4 md:px-6 bg-transparent border-b border-gray-200">
+		<header className="sticky z-20 flex h-20 w-full items-center px-4 md:px-6 bg-transparent border-b border-gray-200 bg-white">
 			<div>
-				<a className={navigationMenuTriggerStyle()} href="/">
-					<MountainIcon className="size-7" />
-				</a>
+				<Link href="/" className={navigationMenuTriggerStyle()}>
+					<Mountain className="size-7" />
+				</Link>
 			</div>
 			<div className="flex w-full justify-center">
 				<NavigationMenu>
@@ -32,7 +39,7 @@ export default function Component() {
 							<NavigationMenuContent>
 								<ul className="grid gap-3 p-4 md:grid-cols-2 md:w-[400px] grid-cols-1 w-[200px]">
 									{links.map((component) => (
-										<ListItem key={component.title} href={component.href}>
+										<ListItem key={component.title} href={component.href} className="">
 											{component.title}
 										</ListItem>
 									))}
@@ -40,61 +47,122 @@ export default function Component() {
 							</NavigationMenuContent>
 						</NavigationMenuItem>
 						<NavigationMenuItem>
-							<NavigationMenuLink href="/quizzes" className={navigationMenuTriggerStyle()}>
+							<Link href="/quizzes" className={navigationMenuTriggerStyle()}>
 								Quizzes
-							</NavigationMenuLink>
+							</Link>
 						</NavigationMenuItem>
 						<NavigationMenuItem>
-							<NavigationMenuLink href="/flashcards" className={navigationMenuTriggerStyle()}>
+							<Link href="/flashcards" className={navigationMenuTriggerStyle()}>
 								Flashcards
-							</NavigationMenuLink>
+							</Link>
 						</NavigationMenuItem>
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>
-			<Dialog open={dialogOpen} onOpenChange={dialogSetOpen}>
+			<Dialog>
 				<DialogTrigger asChild>
 					<Button variant="outline">Account</Button>
 				</DialogTrigger>
 				<DialogContent className="w-[400px]">
-					<DialogHeader>
-						<DialogTitle className="text-3xl">Account</DialogTitle>
-						<Tabs defaultValue="logIn">
-							<TabsList className="grid w-full grid-cols-2">
-								<TabsTrigger value="logIn">Log in</TabsTrigger>
-								<TabsTrigger value="signUp">Sign up</TabsTrigger>
-							</TabsList>
-							<TabsContent value="logIn">
-								<LogInComponent dialogSetOpen={dialogSetOpen} />
-							</TabsContent>
-							<TabsContent value="signUp">{/* <SignUpComponent /> */}</TabsContent>
-						</Tabs>
-					</DialogHeader>
+					<DialogTitle className="text-3xl">Account</DialogTitle>
+					{user ? <AuthenticatedComponent /> : <NotAuthenticatedComponent />}
 				</DialogContent>
 			</Dialog>
 		</header>
 	);
 }
 
-const LogInComponent = ({ dialogSetOpen }: { dialogSetOpen: Dispatch<SetStateAction<boolean>> }) => {
-	const logInFormSchema = z.object({
-		email: z.string().email(),
-		password: z.string().min(8, 'Password must contain at least 8 characters').max(32, 'Password must contain at most 32 characters'),
-	});
+const AuthenticatedComponent = () => {
+	const { user, logOut } = useAuth();
 
-	const form = useForm<z.infer<typeof logInFormSchema>>({
-		resolver: zodResolver(logInFormSchema),
+	return (
+		<>
+			<DialogHeader>
+				<div className="flex items-center gap-3">
+					<Avatar className="h-12 w-12">
+						<AvatarFallback>{user?.email?.at(0)?.toUpperCase()}</AvatarFallback>
+					</Avatar>
+					<div className="grid gap-0.5 text-xs">
+						<div className=" text-base">You are logged in as:</div>
+						<div className="text-sm text-gray-500">{user?.email}</div>
+					</div>
+				</div>
+			</DialogHeader>
+			<DialogFooter>
+				<Button
+					className="w-full"
+					type="submit"
+					onClick={() => {
+						logOut();
+						successToast('Logged out successfully');
+					}}
+				>
+					Log Out
+				</Button>
+			</DialogFooter>
+		</>
+	);
+};
+
+const NotAuthenticatedComponent = () => {
+	const [tab, setTab] = useState<string>('logIn');
+
+	const onTabChange = (value: string) => {
+		setTab(value);
+	};
+
+	return (
+		<Tabs value={tab} onValueChange={onTabChange} defaultValue="logIn">
+			<TabsList className="grid w-full grid-cols-2">
+				<TabsTrigger value="logIn">Log in</TabsTrigger>
+				<TabsTrigger value="signUp">Sign up</TabsTrigger>
+			</TabsList>
+			<TabsContent value="logIn">
+				<LogInComponent />
+			</TabsContent>
+			<TabsContent value="signUp">
+				<SignUpComponent changeTab={onTabChange} />
+			</TabsContent>
+		</Tabs>
+	);
+};
+
+const SignUpComponent = ({ changeTab }: { changeTab: (value: string) => void }) => {
+	const { loading } = useAuth();
+
+	const signUpFormSchema = z
+		.object({
+			email: z.string().email(),
+			password: z.string().min(8, 'Password must contain at least 8 characters').max(32, 'Password must contain at most 32 characters'),
+			confirmPassword: z.string().min(8, 'Password must contain at least 8 characters').max(32, 'Password must contain at most 32 characters'),
+		})
+		.refine((data) => data.password === data.confirmPassword, {
+			message: "Passwords don't match",
+			path: ['confirmPassword'],
+		});
+
+	const form = useForm<z.infer<typeof signUpFormSchema>>({
+		resolver: zodResolver(signUpFormSchema),
 		defaultValues: {
 			email: '',
 			password: '',
+			confirmPassword: '',
 		},
 	});
 
-	function onSubmit(values: z.infer<typeof logInFormSchema>) {
-		axios.post(`${APIURL}/user/login`, values).then((res) => {
-			dialogSetOpen(false);
-			console.log(res);
-		});
+	useEffect(() => {}, [loading]);
+
+	async function onSubmit(values: z.infer<typeof signUpFormSchema>) {
+		try {
+			await signUp(values);
+			successToast('Logged in successfully');
+			changeTab('logIn');
+		} catch (error) {
+			console.log(error);
+			if (error instanceof AxiosError && error.response) {
+				errorToast(error.response.data);
+			}
+		}
 	}
 
 	return (
@@ -122,15 +190,28 @@ const LogInComponent = ({ dialogSetOpen }: { dialogSetOpen: Dispatch<SetStateAct
 								<FormItem>
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<Input {...field} />
+										<PasswordInput {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
-						<Button type="submit" className="w-full">
-							Log in
-						</Button>
+						<FormField
+							control={form.control}
+							name="confirmPassword"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Confirm Password</FormLabel>
+									<FormControl>
+										<PasswordInput {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<LoadingButton type="submit" className="w-full">
+							Sign up
+						</LoadingButton>
 					</form>
 				</Form>
 			</CardContent>
@@ -138,23 +219,80 @@ const LogInComponent = ({ dialogSetOpen }: { dialogSetOpen: Dispatch<SetStateAct
 	);
 };
 
-function MountainIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-	return (
-		<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-			<path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-		</svg>
-	);
-}
+const LogInComponent = () => {
+	const { login } = useAuth();
 
-const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(({ className, children, ...props }, ref) => {
+	const logInFormSchema = z.object({
+		email: z.string().email(),
+		password: z.string().min(8, 'Password must contain at least 8 characters').max(32, 'Password must contain at most 32 characters'),
+	});
+
+	const form = useForm<z.infer<typeof logInFormSchema>>({
+		resolver: zodResolver(logInFormSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+		},
+	});
+
+	async function onSubmit(values: z.infer<typeof logInFormSchema>) {
+		try {
+			await login(values);
+			successToast('Logged in successfully');
+		} catch (error) {
+			if (error instanceof AxiosError && error.response) {
+				errorToast(error.response.data);
+			}
+		}
+	}
+
+	return (
+		<Card>
+			<CardContent>
+				<Form {...form}>
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 pt-6">
+						<FormField
+							control={form.control}
+							name="email"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Email</FormLabel>
+									<FormControl>
+										<Input {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="password"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Password</FormLabel>
+									<FormControl>
+										<PasswordInput {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<LoadingButton type="submit" className="w-full">
+							Log in
+						</LoadingButton>
+					</form>
+				</Form>
+			</CardContent>
+		</Card>
+	);
+};
+
+const ListItem = ({ href, className, children }: { href: string; className: string; children: React.ReactNode }) => {
 	return (
 		<li>
-			<NavigationMenuLink asChild>
-				<a ref={ref} className={cn('block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground', className)} {...props}>
-					<div className="text-sm font-medium leading-none">{children}</div>
-				</a>
-			</NavigationMenuLink>
+			<Link href={href} className={cn('block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground', className)}>
+				<div className="text-sm font-medium leading-none">{children}</div>
+			</Link>
 		</li>
 	);
-});
-ListItem.displayName = 'ListItem';
+};
