@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { adminId, adminTokenExpiration, userTokenExpiration } from '../config/const';
-import { RequestWithToken } from '../config/interfaces';
+import { adminId, adminTokenExpiration, userTokenExpiration } from '../constants/const';
+import { RequestWithToken } from '../constants/interfaces';
 import { User } from '../models/user';
 
 export function isLoggedIn(req: RequestWithToken): boolean {

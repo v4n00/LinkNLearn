@@ -1,6 +1,6 @@
 import express from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-import { RequestWithToken } from '../config/interfaces';
+import { RequestWithToken } from '../constants/interfaces';
 import { isAdmin } from '../controllers/authController';
 import { createFlashcard, deleteFlashcard, getFlashcardById, getFlashcards, updateFlashcard } from '../controllers/flashcardController';
 import { verifyToken } from '../middlewares/auth';

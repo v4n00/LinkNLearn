@@ -1,8 +1,8 @@
 import cors from 'cors';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
-import { apiLimiterWindowSeconds, clientPort, port } from './config/const';
 import initFK from './config/initFK';
+import { apiLimiterWindowSeconds, clientPort, port } from './constants/const';
 import authRoutes from './routes/authRoutes';
 import flashcardRoutes from './routes/flashcardRoutes';
 import questionRoutes from './routes/questionRoutes';

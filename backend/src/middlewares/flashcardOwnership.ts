@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken'; // Import JwtPayload
-import { RequestWithToken } from '../config/interfaces';
+import { RequestWithToken } from '../constants/interfaces';
 import { getFlashcardById } from '../controllers/flashcardController';
 import { FlashcardModel } from '../models/flashcard';
 import handleErrorWithResponse from '../utils/errorHandler';

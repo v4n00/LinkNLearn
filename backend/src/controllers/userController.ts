@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { bcryptSaltRounds } from '../config/const';
+import { bcryptSaltRounds } from '../constants/const';
 import user, { UserModel } from '../models/user';
 
 /**

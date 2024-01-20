@@ -1,5 +1,5 @@
 import express from 'express';
-import { QuestionText } from '../config/interfaces';
+import { QuestionText } from '../constants/interfaces';
 import { isLoggedIn } from '../controllers/authController';
 import { createQuiz, deleteQuiz, getQuizWithQuestionsById, getQuizzes, updateQuiz } from '../controllers/quizController';
 import { createQuizProgress, getQuizProgressByUserId } from '../controllers/quizProgressController';

@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { isDebugging } from '../config/const';
+import { isDebugging } from '../constants/const';
 
 export default function handleErrorWithResponse(e: unknown, res: Response) {
 	if (e instanceof Error) {

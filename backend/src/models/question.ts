@@ -1,6 +1,6 @@
 import Sequelize, { Model, ModelDefined } from 'sequelize';
 import db from '../config/database';
-import { QuestionText } from '../config/interfaces';
+import { QuestionText } from '../constants/interfaces';
 
 export interface Question {
 	id?: number;

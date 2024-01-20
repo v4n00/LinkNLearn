@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import { NextFunction, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { adminId } from '../config/const';
-import { RequestWithToken } from '../config/interfaces';
+import { adminId } from '../constants/const';
+import { RequestWithToken } from '../constants/interfaces';
 
 export const verifyToken = (req: RequestWithToken, res: Response, next: NextFunction) => {
 	// check if header has authorization field

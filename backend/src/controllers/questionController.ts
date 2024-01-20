@@ -1,4 +1,4 @@
-import { QuestionText } from '../config/interfaces';
+import { QuestionText } from '../constants/interfaces';
 import question, { Question, QuestionModel } from '../models/question';
 
 export async function addQuestion(data: Question): Promise<void> {

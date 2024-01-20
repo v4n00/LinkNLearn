@@ -4,11 +4,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { APIURL, links } from '@/lib/const';
+import { APIURL, links } from '@/constants/const';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import React, { SVGProps, useState } from 'react';
+import React, { Dispatch, SVGProps, SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { JSX } from 'react/jsx-runtime';
 import * as z from 'zod';
@@ -76,8 +76,6 @@ export default function Component() {
 	);
 }
 
-import { Dispatch, SetStateAction } from 'react';
-
 const LogInComponent = ({ dialogSetOpen }: { dialogSetOpen: Dispatch<SetStateAction<boolean>> }) => {
 	const logInFormSchema = z.object({
 		email: z.string().email(),
@@ -94,8 +92,8 @@ const LogInComponent = ({ dialogSetOpen }: { dialogSetOpen: Dispatch<SetStateAct
 
 	function onSubmit(values: z.infer<typeof logInFormSchema>) {
 		axios.post(`${APIURL}/user/login`, values).then((res) => {
-			console.log(res);
 			dialogSetOpen(false);
+			console.log(res);
 		});
 	}
 

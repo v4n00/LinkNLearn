@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Quiz } from '@/lib/interfaces';
+import { Quiz } from '@/constants/interfaces';
 import axios from 'axios';
 import { SVGProps, useEffect, useState } from 'react';
 import { JSX } from 'react/jsx-runtime';

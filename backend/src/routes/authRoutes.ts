@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { LoginRequest, RegisterRequest } from '../config/interfaces';
+import { LoginRequest, RegisterRequest } from '../constants/interfaces';
 import { generateAdminToken, generateToken } from '../controllers/authController';
 import { createUser, loginUser } from '../controllers/userController';
 import handleErrorWithResponse from '../utils/errorHandler';
