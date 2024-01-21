@@ -15,8 +15,8 @@ import { AxiosError } from 'axios';
 import { Mountain } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import * as z from 'zod';
-import { Link } from './Link';
 import { LoadingButton } from './LoadingButton';
 import { PasswordInput } from './PasswordInput';
 import { errorToast, successToast } from './Toasts';
@@ -27,7 +27,7 @@ export default function Navbar() {
 	return (
 		<header className="sticky z-20 flex h-20 w-full items-center px-4 md:px-6 bg-transparent border-b border-gray-200 bg-white">
 			<div>
-				<Link href="/" className={navigationMenuTriggerStyle()}>
+				<Link to="/" className={navigationMenuTriggerStyle()}>
 					<Mountain className="size-7" />
 				</Link>
 			</div>
@@ -47,12 +47,12 @@ export default function Navbar() {
 							</NavigationMenuContent>
 						</NavigationMenuItem>
 						<NavigationMenuItem>
-							<Link href="/quizzes" className={navigationMenuTriggerStyle()}>
+							<Link to="/quizzes" className={navigationMenuTriggerStyle()}>
 								Quizzes
 							</Link>
 						</NavigationMenuItem>
 						<NavigationMenuItem>
-							<Link href="/flashcards" className={navigationMenuTriggerStyle()}>
+							<Link to="/flashcards" className={navigationMenuTriggerStyle()}>
 								Flashcards
 							</Link>
 						</NavigationMenuItem>
@@ -290,7 +290,7 @@ const LogInComponent = () => {
 const ListItem = ({ href, className, children }: { href: string; className: string; children: React.ReactNode }) => {
 	return (
 		<li>
-			<Link href={href} className={cn('block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground', className)}>
+			<Link to={href} className={cn('block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground', className)}>
 				<div className="text-sm font-medium leading-none">{children}</div>
 			</Link>
 		</li>

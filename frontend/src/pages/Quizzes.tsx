@@ -13,6 +13,7 @@ export default function Quizzes() {
 
 	useEffect(() => {
 		fetchQuizzes();
+		document.title = 'LinkNLearn - Quizzes';
 	}, []);
 
 	const fetchQuizzes = async () => {
@@ -32,29 +33,27 @@ export default function Quizzes() {
 	}
 
 	return (
-		<div className="w-full bg-gray-100 flex flex-col items-center justify-center" style={{ height: 'calc(100vh - 5rem)' }}>
-			<main className="flex flex-1 flex-col gap-4 p-4 justify-evenly">
-				<div className="flex items-center justify-center">
-					<h1 className="font-extrabold text-7xl">Quizzes</h1>
-				</div>
-				<div className="border shadow-sm rounded-lg">
-					<Carousel
-						opts={{
-							align: 'start',
-						}}
-						className="w-full max-w-fit"
-					>
-						<CarouselContent>
-							{quizzes.map((quiz) => (
-								<QuizCarouselItem key={quiz.id} quiz={quiz} />
-							))}
-						</CarouselContent>
-						<CarouselPrevious />
-						<CarouselNext />
-					</Carousel>
-				</div>
-			</main>
-		</div>
+		<main className="flex flex-1 flex-col gap-4 p-4 justify-evenly">
+			<div className="flex items-center justify-center">
+				<h1 className="font-extrabold text-7xl">Quizzes</h1>
+			</div>
+			<div className="border shadow-sm rounded-lg">
+				<Carousel
+					opts={{
+						align: 'start',
+					}}
+					className="w-full max-w-fit"
+				>
+					<CarouselContent>
+						{quizzes.map((quiz) => (
+							<QuizCarouselItem key={quiz.id} quiz={quiz} />
+						))}
+					</CarouselContent>
+					<CarouselPrevious />
+					<CarouselNext />
+				</Carousel>
+			</div>
+		</main>
 	);
 }
 
