@@ -1,6 +1,6 @@
 import * as ToastPrimitives from '@radix-ui/react-toast';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AlertTriangle, Check, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
@@ -45,9 +45,8 @@ const toastVariants = cva(
 		variants: {
 			variant: {
 				default: 'border bg-background text-foreground',
-				destructive: 'destructive group border-destructive bg-destructive text-destructive-foreground',
-				error: 'bg-red-500 border-red-900 text-white',
-				success: 'bg-green-500 border-green-900 text-white',
+				success: 'bg-success border-success text-success-foreground',
+				destructive: 'bg-destructive border-destructive text-destructive-foreground',
 			},
 		},
 		defaultVariants: {
@@ -55,32 +54,3 @@ const toastVariants = cva(
 		},
 	}
 );
-
-export const toastDuration: number = 4000;
-
-export const SuccessToastAction = ({ children }: { children: React.ReactNode }) => {
-	return (
-		<div className="w-full flex">
-			<Check className="mr-2" />
-			{children}
-		</div>
-	);
-};
-
-export const ErrorToastAction = ({ children }: { children: React.ReactNode }) => {
-	return (
-		<div className="w-full flex">
-			<X className="mr-2" />
-			{children}
-		</div>
-	);
-};
-
-export const DefaultToastAction = ({ children }: { children: React.ReactNode }) => {
-	return (
-		<div className="w-full flex">
-			<AlertTriangle className="mr-2" />
-			{children}
-		</div>
-	);
-};

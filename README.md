@@ -12,7 +12,8 @@ Bachelor Thesis project
 -   [ ] Flashcard default
 -   [ ] Flashcard custom
 -   [ ] Flashcard manage
--   [ ] 404 page
+-   [x] 404 page
+-   [x] Dark theme
 -   [ ] Home page
 -   [ ] Quiz page
 

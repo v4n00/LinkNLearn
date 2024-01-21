@@ -14,7 +14,7 @@ const Flashcards = () => {
 			<h1>Flashcards</h1>
 			<div className="grid gap-6 text-center">
 				<div className="grid grid-cols-2 gap-6 w-[600px]">
-					<DisableCard disabled={false} href="/">
+					<DisableCard disabled={false} href="/flashcards/default">
 						<CardHeader>
 							<CardTitle>Default flashcards</CardTitle>
 							<CardDescription>

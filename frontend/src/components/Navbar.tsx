@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
@@ -12,26 +13,26 @@ import useAuth from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AxiosError } from 'axios';
-import { Mountain } from 'lucide-react';
+import { Github, Moon, Mountain, Sun } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as z from 'zod';
 import { LoadingButton } from './LoadingButton';
 import { PasswordInput } from './PasswordInput';
+import { useTheme } from './ThemeProvider';
 import { errorToast, successToast } from './Toasts';
 
 export default function Navbar() {
 	const { user } = useAuth();
+	const { setTheme } = useTheme();
 
 	return (
-		<header className="sticky z-20 flex h-20 w-full items-center px-4 md:px-6 bg-transparent border-b border-gray-200 bg-white">
-			<div>
+		<header className="bg-background sticky z-20 flex h-20 items-center px-6 border-b-2">
+			<div className="flex w-full">
 				<Link to="/" className={navigationMenuTriggerStyle()}>
 					<Mountain className="size-7" />
 				</Link>
-			</div>
-			<div className="flex w-full justify-center">
 				<NavigationMenu>
 					<NavigationMenuList>
 						<NavigationMenuItem>
@@ -59,15 +60,36 @@ export default function Navbar() {
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>
-			<Dialog>
-				<DialogTrigger asChild>
-					<Button variant="outline">Account</Button>
-				</DialogTrigger>
-				<DialogContent className="w-[400px]">
-					<DialogTitle className="text-3xl">Account</DialogTitle>
-					{user ? <AuthenticatedComponent /> : <NotAuthenticatedComponent />}
-				</DialogContent>
-			</Dialog>
+			<div className="flex flex-row">
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button variant="outline">Account</Button>
+					</DialogTrigger>
+					<DialogContent className="w-[400px]">
+						<DialogTitle className="text-3xl">Account</DialogTitle>
+						{user ? <AuthenticatedComponent /> : <NotAuthenticatedComponent />}
+					</DialogContent>
+				</Dialog>
+				<a href="https://github.com/v4n00/LinkNLearn">
+					<Button variant="outline" size="icon" className="mx-3">
+						<Github />
+					</Button>
+				</a>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="outline" size="icon">
+							<Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+							<Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+							<span className="sr-only">Toggle theme</span>
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end">
+						<DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+						<DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
+						<DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			</div>
 		</header>
 	);
 }

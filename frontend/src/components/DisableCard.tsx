@@ -11,10 +11,10 @@ type DisableCardProps = {
 } & ComponentPropsWithoutRef<typeof Card>;
 
 const DisableCard = ({ className, children, href, disabled = true, ...rest }: DisableCardProps) => {
-	const lockStyle = cn('size-10 absolute bg-gray-200 p-1 -top-[15px] -right-[15px] cursor-help rounded-xl');
+	const lockStyle = cn('size-10 absolute bg-muted p-1 -top-[15px] -right-[15px] cursor-help rounded-xl');
 	return (
 		<Link to={(!disabled && href) || ''}>
-			<Card {...rest} className={disabled ? cn(className, 'bg-gray-200 cursor-not-allowed relative') : className}>
+			<Card {...rest} className={disabled ? cn(className, 'bg-muted cursor-not-allowed relative') : className}>
 				<div>
 					<Lock className={disabled ? lockStyle : cn(lockStyle, 'hidden')} onClick={() => normalToast('Log in to use this feature')} />
 				</div>

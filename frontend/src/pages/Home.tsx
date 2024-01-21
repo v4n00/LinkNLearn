@@ -31,15 +31,15 @@ export default function Component() {
 
 	return (
 		<main>
-			<h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-200">Welcome to LinkNLearn</h1>
-			<p className="text-lg text-center text-gray-600 dark:text-gray-400">Your one-stop solution for learning and data structures concepts</p>
+			<h1 className="text-4xl font-bold text-center ">Welcome to LinkNLearn</h1>
+			<p className="text-lg text-center ">Your one-stop solution for learning and data structures concepts</p>
 			<div className="flex flex-wrap justify-center gap-8">
 				{cards.map((card) => (
 					<Link key={card.title} className="w-80" to={card.href}>
-						<Card className="flex flex-col items-center p-6 space-y-4 bg-white shadow-lg rounded-lg">
+						<Card className="flex flex-col items-center p-6 space-y-4 shadow-lg rounded-lg">
 							{card.icon}
 							<CardTitle className="text-2xl font-semibold text-center">{card.title}</CardTitle>
-							<CardDescription className="text-center text-gray-600">{card.description}</CardDescription>
+							<CardDescription className="text-center">{card.description}</CardDescription>
 						</Card>
 					</Link>
 				))}
