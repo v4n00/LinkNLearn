@@ -1,4 +1,3 @@
-import { signUp } from '@/api/authApi';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -14,7 +13,7 @@ import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AxiosError } from 'axios';
 import { Github, Moon, Mountain, Sun } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as z from 'zod';
@@ -150,7 +149,7 @@ const NotAuthenticatedComponent = () => {
 };
 
 const SignUpComponent = ({ changeTab }: { changeTab: (value: string) => void }) => {
-	const { loading } = useAuth();
+	const { signUp } = useAuth();
 
 	const signUpFormSchema = z
 		.object({
@@ -172,15 +171,12 @@ const SignUpComponent = ({ changeTab }: { changeTab: (value: string) => void }) 
 		},
 	});
 
-	useEffect(() => {}, [loading]);
-
 	async function onSubmit(values: z.infer<typeof signUpFormSchema>) {
 		try {
 			await signUp(values);
 			successToast('Logged in successfully');
 			changeTab('logIn');
 		} catch (error) {
-			console.log(error);
 			if (error instanceof AxiosError && error.response) {
 				errorToast(error.response.data);
 			}

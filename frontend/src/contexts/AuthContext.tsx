@@ -6,7 +6,7 @@ interface AuthContextType {
 	user?: User;
 	loading: boolean;
 	login: ({ email, password }: authApi.loginType) => Promise<void>;
-	register: ({ email, password, confirmPassword }: authApi.signUpType) => Promise<void>;
+	signUp: ({ email, password, confirmPassword }: authApi.signUpType) => Promise<void>;
 	logOut: () => void;
 }
 
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			user,
 			loading,
 			login,
-			register: signUp,
+			signUp,
 			logOut,
 		}),
 		[user, loading]
