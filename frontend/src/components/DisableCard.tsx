@@ -11,7 +11,7 @@ type DisableCardProps = {
 } & ComponentPropsWithoutRef<typeof Card>;
 
 const DisableCard = ({ className, children, href, disabled = true, ...rest }: DisableCardProps) => {
-	const lockStyle = cn('size-10 absolute bg-muted p-1 -top-[15px] -right-[15px] cursor-help rounded-xl');
+	const lockStyle = cn('size-auto absolute bg-muted p-1 -top-[15px] -right-[15px] cursor-help rounded-xl');
 	return (
 		<Link to={(!disabled && href) || ''}>
 			<Card {...rest} className={disabled ? cn(className, 'bg-muted cursor-not-allowed relative') : className}>

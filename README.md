@@ -8,12 +8,13 @@ Bachelor Thesis project
 
 -   [x] Navbar
 -   [x] Account functionality
--   [ ] Protected routes
+-   [x] 404 page
+-   [x] Unauthorized page
+-   [x] Dark theme
+-   [x] Protected routes
 -   [ ] Flashcard default
 -   [ ] Flashcard custom
 -   [ ] Flashcard manage
--   [x] 404 page
--   [x] Dark theme
 -   [ ] Home page
 -   [ ] Quiz page
 
