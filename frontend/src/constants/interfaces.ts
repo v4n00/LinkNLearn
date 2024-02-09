@@ -25,3 +25,10 @@ export interface QuestionText {
 	option4?: string;
 	answer?: string;
 }
+
+export interface FlashcardType {
+	id?: number;
+	userId?: number;
+	frontSide: string;
+	backSide: string;
+}
