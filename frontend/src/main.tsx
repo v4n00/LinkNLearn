@@ -30,7 +30,7 @@ const flashcards: FlashcardType[] = [
 		id: 660,
 	},
 	{
-		frontSide: 'ilorem	iasdjiajioqji qn3irjn32 qjnrio23jn ijrun2j3nrj2iknr jekwnfkwjn fkjwenfkj wnfkjsdnfkj sdfsdf sdf sdf sdf sdf sdfsdf sdf sdf sdfsilorem	iasdjiajioqji qn3irjn32 qjnrio23jn ijrun2j3nrj2iknr jekwnfkwjn fkjwenfkj wnfkjsdnfkj sdfsdf sdf sdf sdf sdf sdfsdf sdf sdf sdfsilorem	iasdjiajioqji qn3irjn32 qjnrio23jn ijrun2j3nrj2iknr jekwnfkwjn fkjwenfkj wnfkjsdnfkj sdfsdf sdf sdf sdf sdf sdfsdf sdf sdf sdfsilorem	iasdjiajioqji qn3irjn32 qjnrio23jn ijrun2j3nrj2iknr jekwnfkwjn fkjwenfkj wnfkjsdnfkj sdfsdf sdf sdf sdf sdf sdfsdf sdf sdf sdfs',
+		frontSide: 'ilorem	iasdjiajioqji qn3irjn32 qjnrio23jn ijrun2j3nrj2iknr jekwnfkwjn fkjwenfkj wnfkjsdnfkj sdfsdf sdf sdf sdf sdf sdfsdf sdf sdf sdfsilorem	iasdjiajioqji qn3irjn32 qjnrio23jn ijrun2j3nrj2iknr jekwnfkwjn fkjwenfkj wnfkjsdnfkj sdfsdf sdf sdf sdf sdf sdfsdf sdf sdf sdfsilorem	iasdjiajioqji qn3irjn32 qjnrio23jn ijrun2j3nrj2iknr jekwnfkwjn fkjwenfkj wnfkjsdnfkj sdfsaafafsasdf sdfsdf sdfsdf sfsdadasdasdadsada asdaasdaasdaasda asdaasda',
 		backSide: 'aaaa',
 		id: 668,
 		userId: 1,
