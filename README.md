@@ -12,11 +12,17 @@ Bachelor Thesis project
 -   [x] Unauthorized page
 -   [x] Dark theme
 -   [x] Protected routes
--   [ ] Flashcard default
--   [ ] Flashcard custom
+-   [x] Flashcard default
+-   [x] Flashcard custom
 -   [ ] Flashcard manage
--   [ ] Home page
 -   [ ] Quiz page
+-   [ ] Home page
+
+# EXTRAS
+
+-   [ ] forgot password
+-   [ ] email verification
+-   [ ] reset password
 
 # Database design
 

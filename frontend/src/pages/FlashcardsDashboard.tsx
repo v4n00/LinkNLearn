@@ -3,7 +3,7 @@ import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import useAuth from '@/hooks/useAuth';
 import { useEffect } from 'react';
 
-const FlashcardsDasboard = () => {
+const FlashcardsDashboard = () => {
 	const { user } = useAuth();
 	useEffect(() => {
 		document.title = 'LinkNLearn - Flashcards';
@@ -51,4 +51,4 @@ const FlashcardsDasboard = () => {
 	);
 };
 
-export default FlashcardsDasboard;
+export default FlashcardsDashboard;

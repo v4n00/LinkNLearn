@@ -7,7 +7,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { links } from '@/constants/const';
 import useAuth from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,11 +25,30 @@ export default function Navbar() {
 	const { user } = useAuth();
 	const { setTheme } = useTheme();
 
+	const links: { title: string; href: string }[] = [
+		{
+			title: 'Simple Linked List',
+			href: '/data-structures/simple-linked-list',
+		},
+		{
+			title: 'Double Linked List',
+			href: '/data-structures/double-linked-list',
+		},
+		{
+			title: 'Hash Table',
+			href: '/data-structures/hash-table',
+		},
+		{
+			title: 'Binary Search Tree',
+			href: '/data-structures/binary-search-tree',
+		},
+	];
+
 	return (
 		<header className="bg-background sticky z-20 flex h-20 items-center px-6 border-b-2">
 			<div className="flex w-full">
 				<Link to="/" className={navigationMenuTriggerStyle()}>
-					<Mountain className="size-7" />
+					<Mountain />
 				</Link>
 				<NavigationMenu>
 					<NavigationMenuList>
@@ -69,14 +87,10 @@ export default function Navbar() {
 						{user ? <AuthenticatedComponent /> : <NotAuthenticatedComponent />}
 					</DialogContent>
 				</Dialog>
-				<a href="https://github.com/v4n00/LinkNLearn">
-					<Button variant="outline" size="icon" className="mx-3">
-						<Github />
-					</Button>
-				</a>
+
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant="outline" size="icon">
+						<Button variant="outline" size="icon" className="mx-3">
 							<Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
 							<Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
 						</Button>
@@ -87,6 +101,11 @@ export default function Navbar() {
 						<DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
+				<a href="https://github.com/v4n00/LinkNLearn">
+					<Button variant="outline" size="icon">
+						<Github />
+					</Button>
+				</a>
 			</div>
 		</header>
 	);

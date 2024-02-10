@@ -8,7 +8,6 @@ const Flashcard = ({ frontSide, backSide }: { frontSide: string; backSide: strin
 	const [flipped, setFlipped] = useState(false);
 
 	const handleLength = (style: string, text: string) => {
-		console.log(text.length);
 		let size: string = 'text-4xl';
 		if (text.length > 70) size = 'text-3xl';
 		if (text.length > 100) size = 'text-2xl';
@@ -28,9 +27,9 @@ const Flashcard = ({ frontSide, backSide }: { frontSide: string; backSide: strin
 				tabIndex={0}
 				ref={ref}
 			>
-				{frontSide.length > 400 ? <ScrollArea className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 absolute text-center [transform:translate(-50%,-50%)] [backface-visibility:hidden]', frontSide)}>{frontSide}</ScrollArea> : <CardHeader className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 absolute flex items-center justify-center text-center [transform:translate(-50%,-50%)] [backface-visibility:hidden]', frontSide)}>{frontSide}</CardHeader>}
+				{frontSide.length > 400 ? <ScrollArea className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 absolute text-center select-none [transform:translate(-50%,-50%)] [backface-visibility:hidden]', frontSide)}>{frontSide}</ScrollArea> : <CardHeader className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 absolute flex items-center justify-center text-center select-none [transform:translate(-50%,-50%)] [backface-visibility:hidden]', frontSide)}>{frontSide}</CardHeader>}
 
-				{backSide.length > 400 ? <ScrollArea className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 rotate-x-180 absolute flex items-center justify-center text-center [backface-visibility:hidden]', backSide)}>{backSide}</ScrollArea> : <CardHeader className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 rotate-x-180 absolute flex items-center justify-center text-center [backface-visibility:hidden]', backSide)}>{backSide}</CardHeader>}
+				{backSide.length > 400 ? <ScrollArea className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 rotate-x-180 absolute flex items-center justify-center text-center select-none [backface-visibility:hidden]', backSide)}>{backSide}</ScrollArea> : <CardHeader className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 rotate-x-180 absolute flex items-center justify-center text-center select-none [backface-visibility:hidden]', backSide)}>{backSide}</CardHeader>}
 			</Card>
 		</div>
 	);
