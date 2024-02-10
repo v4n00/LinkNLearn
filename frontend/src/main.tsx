@@ -8,6 +8,7 @@ import { ThemeProvider } from './components/ThemeProvider';
 import { AuthProvider } from './contexts/AuthContext';
 import './index.css';
 import FlashcardsDashboard from './pages/FlashcardsDashboard';
+import FlashcardsManager from './pages/FlashcardsManager';
 import FlashcardsViewer from './pages/FlashcardsViewer';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 								}
 							/>
 
+							{/* Flashcard routes */}
 							<Route path="/flashcards" element={<FlashcardsDashboard />} />
 							<Route path="/flashcards/default" element={<FlashcardsViewer type="Default" />} />
 							<Route
@@ -56,7 +58,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 								path="/flashcards/manage"
 								element={
 									<ProtectedRoute>
-										<FlashcardsViewer type="Manage" />
+										<FlashcardsManager />
 									</ProtectedRoute>
 								}
 							/>

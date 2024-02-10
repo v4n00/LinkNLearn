@@ -1,17 +1,22 @@
 import { FlashcardType } from '@/constants/interfaces';
-import { Shuffle } from 'lucide-react';
+import { Loader2, Shuffle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Flashcard from './Flashcard';
 import { Button } from './ui/button';
+import { Card } from './ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
-import { Skeleton } from './ui/skeleton';
 
 const FlashcardsNavigator = ({ flashcards }: { flashcards: FlashcardType[] }) => {
 	const [flashcardsArray, setFlashcardsArray] = useState<FlashcardType[]>(flashcards);
+	const [loading, setLoading] = useState(false);
 
 	const shuffleOrder = () => {
-		const shuffledArray = flashcardsArray.sort(() => Math.random() - 0.5);
-		setFlashcardsArray([...shuffledArray]);
+		setLoading(true);
+		setTimeout(() => {
+			const shuffledArray = flashcardsArray.sort(() => Math.random() - 0.5);
+			setFlashcardsArray([...shuffledArray]);
+			setLoading(false);
+		}, 300);
 	};
 
 	useEffect(() => {
@@ -31,7 +36,9 @@ const FlashcardsNavigator = ({ flashcards }: { flashcards: FlashcardType[] }) =>
 					) : (
 						<CarouselItem>
 							<div className="p-4 w-full h-full">
-								<Skeleton className="p-4 w-[452px] h-[368px] rounded-xl" />
+								<Card className="p-4 w-[452px] h-[368px] rounded-xl flex items-center justify-center">
+									<Loader2 className="animate-spin" />
+								</Card>
 							</div>
 						</CarouselItem>
 					)}
@@ -40,7 +47,8 @@ const FlashcardsNavigator = ({ flashcards }: { flashcards: FlashcardType[] }) =>
 				<CarouselNext />
 			</Carousel>
 			<Button onClick={shuffleOrder} variant="outline">
-				<Shuffle className="mr-3" /> Shuffle
+				<Loader2 className={!loading ? 'hidden' : 'mr-2 size-7 animate-spin'} />
+				<Shuffle className={!loading ? 'mr-3' : 'hidden'} /> Shuffle
 			</Button>
 		</div>
 	);

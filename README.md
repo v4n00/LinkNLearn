@@ -14,7 +14,9 @@ Bachelor Thesis project
 -   [x] Protected routes
 -   [x] Flashcard default
 -   [x] Flashcard custom
--   [ ] Flashcard manage
+-   [x] Flashcard manage design
+-   [ ] Flashcard manage functionality
+-   [ ] Flashcard manage pagination
 -   [ ] Quiz page
 -   [ ] Home page
 
