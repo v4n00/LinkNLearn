@@ -16,6 +16,7 @@ Bachelor Thesis project
 -   [x] Flashcard custom
 -   [x] Flashcard manage design
 -   [x] Flashcard manage functionality
+-   [ ] Seed database
 -   [ ] Quiz page
 -   [ ] Home page
 

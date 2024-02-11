@@ -2,13 +2,24 @@ import express from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import { RequestWithToken } from '../constants/interfaces';
 import { isAdmin } from '../controllers/authController';
-import { createFlashcard, deleteFlashcard, getFlashcardById, getFlashcards, updateFlashcard } from '../controllers/flashcardController';
+import { createFlashcard, deleteFlashcard, getFlashcards, updateFlashcard } from '../controllers/flashcardController';
 import { verifyToken } from '../middlewares/auth';
 import { verifyFlashcardOwnership } from '../middlewares/flashcardOwnership';
 import { Flashcard, FlashcardModel } from '../models/flashcard';
 import handleErrorWithResponse from '../utils/errorHandler';
 
 const flashcardRoutes = express.Router();
+
+flashcardRoutes.route('/flashcard').get(async (req, res) => {
+	try {
+		let flashcards: FlashcardModel[] | null = await getFlashcards();
+
+		if (flashcards && flashcards.length !== 0) return res.status(200).json(flashcards);
+		else return res.status(404).json('No flashcards found');
+	} catch (e) {
+		handleErrorWithResponse(e, res);
+	}
+});
 
 flashcardRoutes.route('/flashcard/user').get(verifyToken, async (req, res) => {
 	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
@@ -34,31 +45,6 @@ flashcardRoutes.route('/flashcard/all').get(verifyToken, async (req, res) => {
 
 		if (flashcards && flashcards.length !== 0) return res.status(200).json(flashcards);
 		else return res.status(404).json('No flashcards found');
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
-flashcardRoutes.route('/flashcard').get(async (req, res) => {
-	try {
-		let flashcards: FlashcardModel[] | null = await getFlashcards();
-
-		if (flashcards && flashcards.length !== 0) return res.status(200).json(flashcards);
-		else return res.status(404).json('No flashcards found');
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
-flashcardRoutes.route('/flashcard/:id').get(verifyToken, async (req, res) => {
-	const id = parseInt(req.params.id);
-	if (isNaN(id)) return res.status(400).json('Bad Request');
-
-	try {
-		const flashcard: FlashcardModel | null = await getFlashcardById(id);
-
-		if (flashcard) return res.status(200).json(flashcard);
-		else return res.status(404).json('No flashcard found');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}
