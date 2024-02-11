@@ -1,4 +1,5 @@
 import cors from 'cors';
+import 'dotenv/config';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import initFK from './config/initFK';
@@ -7,10 +8,14 @@ import authRoutes from './routes/authRoutes';
 import flashcardRoutes from './routes/flashcardRoutes';
 import questionRoutes from './routes/questionRoutes';
 import quizRoutes from './routes/quizRoutes';
-import checkDotEnv from './utils/checkDotEnv';
 
 // setup
-checkDotEnv();
+const requiredVars = ['JWT_KEY', 'SYSADMIN_KEY'];
+const missingVars = requiredVars.filter((v) => !process.env[v]);
+if (missingVars.length > 0) {
+	console.error(`Missing environment variables: ${missingVars.join(', ')}`);
+	process.exit(1);
+}
 const app = express();
 const apiLimiter = rateLimit({
 	windowMs: apiLimiterWindowSeconds * 60 * 1000,

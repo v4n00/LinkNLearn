@@ -1,4 +1,5 @@
 import FlashcardEditor from '@/components/FlashcardEditor';
+import { errorToast } from '@/components/Toasts';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { APIURL } from '@/constants/const';
 import { FlashcardType } from '@/constants/interfaces';
@@ -9,6 +10,9 @@ import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const FlashcardsManager = () => {
+	useEffect(() => {
+		document.title = 'LinkNLearn - Flashcards';
+	}, []);
 	const { user } = useAuth();
 	const headers = { headers: { Authorization: `Bearer ${user?.token}` } };
 	const [onChange, setOnChange] = useState(false);
@@ -20,6 +24,7 @@ const FlashcardsManager = () => {
 				.then((res) => res.data)
 				.catch((e) => {
 					if ((e as AxiosError).response?.status === 404) return [] as FlashcardType[];
+					else errorToast(`Error: ${(e as AxiosError).response?.data}`);
 				}),
 		gcTime: 0,
 		retry: 0,

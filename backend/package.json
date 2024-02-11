@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "nodemon --exec ts-node src/index.ts",
-		"rdb": "ts-node src/utils/resetDatabase.ts"
+		"seed": "ts-node src/utils/seedDatabase.ts"
 	},
 	"license": "ISC",
 	"devDependencies": {

@@ -18,7 +18,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		if (token) authApi.validate({ token }).then((res) => setUser(res.data));
+		if (token)
+			authApi
+				.validate({ token })
+				.then((res) => setUser(res.data))
+				.catch(() => localStorage.removeItem('token'));
 	}, []);
 
 	const login = async ({ email, password }: authApi.loginType): Promise<void> => {

@@ -4,10 +4,10 @@ import useAuth from '@/hooks/useAuth';
 import { useEffect } from 'react';
 
 const FlashcardsDashboard = () => {
-	const { user } = useAuth();
 	useEffect(() => {
 		document.title = 'LinkNLearn - Flashcards';
 	}, []);
+	const { user } = useAuth();
 
 	return (
 		<main>

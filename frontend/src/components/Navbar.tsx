@@ -192,7 +192,7 @@ const SignUpComponent = ({ changeTab }: { changeTab: (value: string) => void }) 
 	async function onSubmit(values: z.infer<typeof signUpFormSchema>) {
 		try {
 			await signUp(values);
-			successToast('Logged in successfully');
+			successToast('Signed up successfully');
 			changeTab('logIn');
 		} catch (error) {
 			if (error instanceof AxiosError && error.response) {

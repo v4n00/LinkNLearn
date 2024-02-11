@@ -92,7 +92,7 @@
 		@apply bg-background text-foreground;
 	}
 	h1 {
-		@apply text-7xl font-extrabold flex justify-center;
+		@apply text-7xl font-extrabold text-center my-20;
 	}
 	main {
 		@apply space-y-20;

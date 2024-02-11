@@ -2,7 +2,7 @@
 
 Bachelor Thesis project
 
-[backend routes](./backend/README.md)
+[backend routes](./backend/README.md) <-- needs rewriting
 
 # TODO frontend
 
@@ -16,7 +16,7 @@ Bachelor Thesis project
 -   [x] Flashcard custom
 -   [x] Flashcard manage design
 -   [x] Flashcard manage functionality
--   [ ] Seed database
+-   [x] Seed database
 -   [ ] Quiz page
 -   [ ] Home page
 
@@ -25,6 +25,7 @@ Bachelor Thesis project
 -   [ ] forgot password
 -   [ ] email verification
 -   [ ] reset password
+-   [ ] responsive design
 
 # Database design
 

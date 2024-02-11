@@ -5,7 +5,6 @@ import user, { UserModel } from '../models/user';
 export async function createUser(email: string, password: string): Promise<void> {
 	try {
 		password = await bcrypt.hash(password, await bcrypt.genSalt(bcryptSaltRounds));
-		console.log(email, password);
 		await user.create({ email, password });
 	} catch (e) {
 		throw e;

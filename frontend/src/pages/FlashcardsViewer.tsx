@@ -5,23 +5,27 @@ import { FlashcardType } from '@/constants/interfaces';
 import useAuth from '@/hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
+import { useEffect } from 'react';
 
 interface FlashcardViewerType {
 	type: 'Default' | 'Custom' | 'All';
 }
 
 const FlashcardsViewer = ({ type }: FlashcardViewerType) => {
+	useEffect(() => {
+		document.title = 'LinkNLearn - Flashcards';
+	}, []);
 	const { user } = useAuth();
-	let queryFn = (): Promise<FlashcardType[]> => axios.get(`${APIURL}/flashcard`).then((res) => res.data);
 
-	if (type !== 'Default') {
-		const headers = { headers: { Authorization: `Bearer ${user?.token}` } };
-		if (type === 'Custom') {
-			queryFn = (): Promise<FlashcardType[]> => axios.get(`${APIURL}/flashcard/user`, headers).then((res) => res.data);
-		} else {
-			queryFn = (): Promise<FlashcardType[]> => axios.get(`${APIURL}/flashcard/all`, headers).then((res) => res.data);
-		}
-	}
+	const path = type === 'Default' ? '/flashcard' : type === 'Custom' ? '/flashcard/user' : '/flashcard/all';
+	const queryFn = (): Promise<FlashcardType[]> =>
+		axios
+			.get(`${APIURL}${path}`, { headers: { Authorization: `Bearer ${user?.token}` } })
+			.then((res) => res.data)
+			.catch((e) => {
+				if ((e as AxiosError).response?.status === 404) return [] as FlashcardType[];
+				else errorToast(`Error: ${(e as AxiosError).response?.data}`);
+			});
 
 	const { error, data } = useQuery({
 		queryKey: ['flashcards'],
@@ -39,7 +43,7 @@ const FlashcardsViewer = ({ type }: FlashcardViewerType) => {
 	return (
 		<main>
 			<h1>{type} flashcards</h1>
-			<FlashcardsNavigator flashcards={data ?? []} />
+			<FlashcardsNavigator flashcards={data} />
 		</main>
 	);
 };

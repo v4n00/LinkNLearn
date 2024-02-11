@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 			<BrowserRouter>
 				<AuthProvider>
 					<Navbar />
-					<div className="flex justify-center items-center" style={{ height: 'calc(100vh - 5rem)' }}>
+					<div className="flex justify-center" style={{ height: 'calc(100vh - 5rem)' }}>
 						<Routes>
 							<Route path="/" element={<Home />} />
 
