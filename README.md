@@ -15,8 +15,7 @@ Bachelor Thesis project
 -   [x] Flashcard default
 -   [x] Flashcard custom
 -   [x] Flashcard manage design
--   [ ] Flashcard manage functionality
--   [ ] Flashcard manage pagination
+-   [x] Flashcard manage functionality
 -   [ ] Quiz page
 -   [ ] Home page
 
