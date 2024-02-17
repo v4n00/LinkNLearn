@@ -17,6 +17,7 @@ Bachelor Thesis project
 -   [x] Flashcard manage design
 -   [x] Flashcard manage functionality
 -   [x] Seed database
+-   [ ] Logo
 -   [ ] Quiz page
 -   [ ] Home page
 
@@ -25,7 +26,7 @@ Bachelor Thesis project
 -   [ ] forgot password
 -   [ ] email verification
 -   [ ] reset password
--   [ ] responsive design
+-   [ ] responsive design (use drawer for log in)
 
 # Database design
 

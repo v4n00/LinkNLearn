@@ -76,9 +76,6 @@
 }
 
 @layer utilities {
-	/* .rotate-x-180 {
-		transform: rotateX(180deg) translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-	} */
 	.rotate-x-180 {
 		transform: translate(-50%, -50%) rotateX(180deg);
 	}

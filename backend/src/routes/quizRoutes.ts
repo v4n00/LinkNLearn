@@ -1,11 +1,11 @@
 import express from 'express';
 import { QuestionText } from '../constants/interfaces';
 import { isLoggedIn } from '../controllers/authController';
-import { createQuiz, deleteQuiz, getQuizWithQuestionsById, getQuizzes, updateQuiz } from '../controllers/quizController';
+import { getQuizWithQuestionsById, getQuizzes } from '../controllers/quizController';
 import { createQuizProgress, getQuizProgressByUserId } from '../controllers/quizProgressController';
-import { verifyAdminToken, verifyToken } from '../middlewares/auth';
+import { verifyToken } from '../middlewares/auth';
 import { QuestionModel } from '../models/question';
-import { Quiz, QuizModel } from '../models/quiz';
+import { QuizModel } from '../models/quiz';
 import handleErrorWithResponse from '../utils/errorHandler';
 
 const quizRoutes = express.Router();
@@ -72,55 +72,6 @@ quizRoutes.route('/quiz/:id').get(async (req, res) => {
 
 		if (quiz) return res.status(200).json(quiz);
 		else return res.status(404).json('No quiz found');
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
-quizRoutes.route('/quiz').post(verifyToken, verifyAdminToken, async (req, res) => {
-	const { title }: Quiz = req.body;
-	if (!title) return res.status(400).json('Bad Request');
-
-	try {
-		await createQuiz({ title });
-		return res.status(201).json('Quiz created');
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
-quizRoutes.route('/quiz/:id').patch(verifyToken, verifyAdminToken, async (req, res) => {
-	const id = parseInt(req.params.id);
-	const updateData = req.body;
-	if (!id || isNaN(id) || !updateData) return res.status(400).json('Bad Request');
-
-	try {
-		await updateQuiz(id, updateData);
-		return res.status(200).json('Quiz updated');
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
-quizRoutes.route('/quiz/:id/publish').patch(verifyToken, verifyAdminToken, async (req, res) => {
-	const id = parseInt(req.params.id);
-	if (isNaN(id)) return res.status(400).json('Bad Request');
-
-	try {
-		await updateQuiz(id, { isPublished: true });
-		return res.status(200).json('Quiz published');
-	} catch (e) {
-		handleErrorWithResponse(e, res);
-	}
-});
-
-quizRoutes.route('/quiz/:id').delete(verifyToken, verifyAdminToken, async (req, res) => {
-	const id = parseInt(req.params.id);
-	if (isNaN(id)) return res.status(400).json('Bad Request');
-
-	try {
-		await deleteQuiz(id);
-		return res.status(200).json('Quiz deleted');
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}

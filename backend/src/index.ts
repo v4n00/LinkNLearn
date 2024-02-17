@@ -6,16 +6,9 @@ import initFK from './config/initFK';
 import { apiLimiterWindowSeconds, clientPort, port } from './constants/const';
 import authRoutes from './routes/authRoutes';
 import flashcardRoutes from './routes/flashcardRoutes';
-import questionRoutes from './routes/questionRoutes';
 import quizRoutes from './routes/quizRoutes';
 
 // setup
-const requiredVars = ['JWT_KEY', 'SYSADMIN_KEY'];
-const missingVars = requiredVars.filter((v) => !process.env[v]);
-if (missingVars.length > 0) {
-	console.error(`Missing environment variables: ${missingVars.join(', ')}`);
-	process.exit(1);
-}
 const app = express();
 const apiLimiter = rateLimit({
 	windowMs: apiLimiterWindowSeconds * 60 * 1000,
@@ -41,7 +34,6 @@ initFK();
 app.use('/', authRoutes);
 app.use('/', flashcardRoutes);
 app.use('/', quizRoutes);
-app.use('/', questionRoutes);
 
 // starting
 app.listen(port, () => {

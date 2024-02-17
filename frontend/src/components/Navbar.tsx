@@ -11,12 +11,13 @@ import useAuth from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AxiosError } from 'axios';
-import { Github, Moon, Mountain, Sun } from 'lucide-react';
+import { Github, Moon, Sun } from 'lucide-react';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as z from 'zod';
 import { LoadingButton } from './LoadingButton';
+import { Logo } from './Logo';
 import { PasswordInput } from './PasswordInput';
 import { useTheme } from './ThemeProvider';
 import { errorToast, successToast } from './Toasts';
@@ -48,7 +49,7 @@ export default function Navbar() {
 		<header className="bg-background sticky z-20 flex h-20 items-center px-6 border-b-2">
 			<div className="flex w-full">
 				<Link to="/" className={navigationMenuTriggerStyle()}>
-					<Mountain />
+					<Logo className="fill-black dark:fill-white size-8" />
 				</Link>
 				<NavigationMenu>
 					<NavigationMenuList>
