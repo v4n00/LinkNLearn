@@ -9,14 +9,6 @@ export async function createQuiz(data: Quiz): Promise<void> {
 	}
 }
 
-export async function publishQuiz(id: number): Promise<void> {
-	try {
-		await quiz.update({ isPublished: true }, { where: { id } });
-	} catch (e) {
-		throw e;
-	}
-}
-
 export async function getQuizWithQuestionsById(id: number, hasAnswer: boolean): Promise<QuizModel | null> {
 	try {
 		const returnQuiz: QuizModel | null = await quiz.findOne({ where: { id } });
@@ -32,7 +24,7 @@ export async function getQuizWithQuestionsById(id: number, hasAnswer: boolean): 
 
 export async function getQuizzes(): Promise<QuizModel[] | null> {
 	try {
-		return await quiz.findAll({ where: { isPublished: true } });
+		return await quiz.findAll();
 	} catch (e) {
 		throw e;
 	}

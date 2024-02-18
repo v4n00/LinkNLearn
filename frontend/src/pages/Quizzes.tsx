@@ -33,11 +33,9 @@ export default function Quizzes() {
 	}
 
 	return (
-		<main className="flex flex-1 flex-col gap-4 p-4 justify-evenly">
-			<div className="flex items-center justify-center">
-				<h1 className="font-extrabold text-7xl">Quizzes</h1>
-			</div>
-			<div className="border shadow-sm rounded-lg">
+		<main>
+			<h1>Quizzes</h1>
+			<div className="border shadow-sm rounded-lg w-[1500px]">
 				<Carousel
 					opts={{
 						align: 'start',
@@ -59,7 +57,7 @@ export default function Quizzes() {
 
 const QuizCarouselItem = ({ quiz }: { quiz: Quiz }) => {
 	return (
-		<CarouselItem key={quiz.id} className="basis-1/3 w-[300px]">
+		<CarouselItem key={quiz.id} className="basis-1/3 w-[500px]">
 			<div className="p-1">
 				<Card className="max-w-2xl mx-auto">
 					<CardHeader>

@@ -5,7 +5,6 @@ import { QuestionModel } from './question';
 export interface Quiz {
 	id?: number;
 	title: string;
-	isPublished?: boolean;
 	questions?: QuestionModel[];
 }
 
@@ -21,11 +20,6 @@ const quiz: ModelDefined<Quiz, QuizAttributes> = db.define('quiz', {
 	},
 	title: {
 		type: Sequelize.STRING(200),
-		allowNull: false,
-	},
-	isPublished: {
-		type: Sequelize.BOOLEAN,
-		defaultValue: false,
 		allowNull: false,
 	},
 });

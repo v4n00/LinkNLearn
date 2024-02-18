@@ -7,7 +7,6 @@ export interface User {
 export interface Quiz {
 	id?: number;
 	title: string;
-	isPublished?: boolean;
 	questions?: Question[];
 }
 
