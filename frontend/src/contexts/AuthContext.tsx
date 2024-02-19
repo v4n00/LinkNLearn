@@ -1,9 +1,9 @@
 import * as authApi from '@/api/authApi';
-import { User } from '@/constants/interfaces';
+import { UserType } from '@/constants/interfaces';
 import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 
 interface AuthContextType {
-	user?: User;
+	user?: UserType;
 	loading: boolean;
 	login: ({ email, password }: authApi.loginType) => Promise<void>;
 	signUp: ({ email, password, confirmPassword }: authApi.signUpType) => Promise<void>;
@@ -13,7 +13,7 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-	const [user, setUser] = useState<User>();
+	const [user, setUser] = useState<UserType>();
 	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {

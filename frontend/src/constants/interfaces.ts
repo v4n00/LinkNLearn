@@ -1,23 +1,23 @@
-export interface User {
+export interface UserType {
 	id: string;
 	email: string;
 	token?: string;
 }
 
-export interface Quiz {
+export interface QuizType {
 	id?: number;
 	title: string;
-	questions?: Question[];
+	questions?: QuestionType[];
 }
 
-export interface Question {
+export interface QuestionType {
 	id?: number;
 	quizId: number;
 	text: string;
-	options: QuestionText | string;
+	options: QuestionTextType | string;
 }
 
-export interface QuestionText {
+export interface QuestionTextType {
 	option1: string;
 	option2: string;
 	option3?: string;
