@@ -14,15 +14,7 @@ export interface QuestionType {
 	id?: number;
 	quizId: number;
 	text: string;
-	options: QuestionTextType | string;
-}
-
-export interface QuestionTextType {
-	option1: string;
-	option2: string;
-	option3?: string;
-	option4?: string;
-	answer?: string;
+	options: string[];
 }
 
 export interface FlashcardType {

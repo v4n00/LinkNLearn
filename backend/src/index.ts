@@ -9,6 +9,11 @@ import flashcardRoutes from './routes/flashcardRoutes';
 import quizRoutes from './routes/quizRoutes';
 
 // setup
+const missingVars = ['JWT_KEY', 'SYSADMIN_KEY'].filter((v) => !process.env[v]);
+if (missingVars.length > 0) {
+	console.error(`Missing environment variables: ${missingVars.join(', ')}`);
+	process.exit(1);
+}
 const app = express();
 const apiLimiter = rateLimit({
 	windowMs: apiLimiterWindowSeconds * 60 * 1000,

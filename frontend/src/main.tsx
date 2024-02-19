@@ -13,6 +13,7 @@ import FlashcardsViewer from './pages/FlashcardsViewer';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import QuizzesDashboard from './pages/QuizzesDashboard';
+import QuizzesTaker from './pages/QuizzesTaker';
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 							{/* Quizzes routes */}
 							<Route path="/quizzes" element={<QuizzesDashboard />} />
+							<Route path="/quizzes/:quizId" element={<QuizzesTaker />} />
 
 							{/* Flashcard routes */}
 							<Route path="/flashcards" element={<FlashcardsDashboard />} />

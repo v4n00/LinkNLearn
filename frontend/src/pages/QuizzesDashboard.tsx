@@ -8,13 +8,15 @@ import { QuizType } from '@/constants/interfaces';
 import { useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
-import { SVGProps, useEffect } from 'react';
-import { JSX } from 'react/jsx-runtime';
+import { Check, Loader2 } from 'lucide-react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function QuizzesDashboard() {
 	useEffect(() => {
 		document.title = 'LinkNLearn - Quizzes';
 	}, []);
-	const { data, isPending } = useQuery({
+
+	const { data } = useQuery({
 		queryKey: ['quizzesDashboard'],
 		queryFn: (): Promise<QuizType[]> =>
 			axios
@@ -32,14 +34,20 @@ export default function QuizzesDashboard() {
 		<main>
 			<h1>Quizzes</h1>
 			<div>
-				<Carousel plugins={[WheelGesturesPlugin()]} className="w-[1000px] max-w-fit border shadow-sm rounded-lg p-2">
+				<Carousel plugins={[WheelGesturesPlugin({ forceWheelAxis: 'y' })]} className="w-[1500px] border shadow-sm rounded-lg p-2">
 					<CarouselContent>
-						{isPending ? (
-							<CarouselItem>
-								<Card className="max-w-2xl mx-auto">Loading</Card>
-							</CarouselItem>
+						{data !== undefined ? (
+							data.length > 0 ? (
+								data.map((quiz) => <QuizCarouselItem key={quiz.id} quiz={quiz} />)
+							) : (
+								<div className="h-[434.5px] w-full flex justify-center items-center">
+									<p>No quizzes found</p>
+								</div>
+							)
 						) : (
-							data && data.map((quiz) => <QuizCarouselItem key={quiz.id} quiz={quiz} />)
+							<div className="h-[434.5px] w-full flex justify-center items-center">
+								<Loader2 className="animate-spin" />
+							</div>
 						)}
 					</CarouselContent>
 					<CarouselPrevious />
@@ -51,9 +59,11 @@ export default function QuizzesDashboard() {
 }
 
 const QuizCarouselItem = ({ quiz }: { quiz: QuizType }) => {
+	const navigate = useNavigate();
+
 	return (
-		<CarouselItem key={quiz.id} className="basis-1/2">
-			<Card className="max-w-[500px] mx-auto">
+		<CarouselItem key={quiz.id} className="basis-1/3">
+			<Card className="w-max-[500px]">
 				<CardHeader>
 					<CardTitle>{quiz.title}</CardTitle>
 					<CardDescription>10 Questions</CardDescription>
@@ -86,22 +96,21 @@ const QuizCarouselItem = ({ quiz }: { quiz: QuizType }) => {
 						</TableBody>
 					</Table>
 					<div className="mt-4 flex items-center">
-						<CheckIcon className="w-6 h-6 text-green-500" />
+						<Check className="text-green-500" />
 						<span className="ml-2 text-green-500">Quiz Passed</span>
 					</div>
 				</CardContent>
 				<CardFooter>
-					<Button className="w-full">Take Quiz</Button>
+					<Button
+						onClick={() => {
+							navigate(`/quizzes/${quiz.id}`);
+						}}
+						className="w-full"
+					>
+						Take Quiz
+					</Button>
 				</CardFooter>
 			</Card>
 		</CarouselItem>
 	);
 };
-
-function CheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-	return (
-		<svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-			<polyline points="20 6 9 17 4 12" />
-		</svg>
-	);
-}

@@ -69,6 +69,9 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+	h2 {
+		@apply text-3xl font-bold text-center;
+	}
 	h1 {
 		@apply text-7xl font-extrabold text-center my-20;
 	}
