@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { userTokenExpiration } from '../constants/const';
+import { adminId, adminTokenExpiration, userTokenExpiration } from '../constants/const';
 import { RequestWithToken } from '../constants/interfaces';
 import { User } from '../models/user';
 
@@ -22,6 +22,11 @@ export function isLoggedIn(req: RequestWithToken): boolean {
 	return true;
 }
 
+export function isAdmin(req: RequestWithToken): boolean {
+	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
+	return userId === adminId;
+}
+
 export function generateToken(user: User): string {
 	return jwt.sign(
 		{
@@ -31,6 +36,18 @@ export function generateToken(user: User): string {
 		process.env.JWT_KEY!,
 		{
 			expiresIn: userTokenExpiration,
+		}
+	);
+}
+
+export function generateAdminToken(): string {
+	return jwt.sign(
+		{
+			userId: adminId,
+		},
+		process.env.JWT_KEY!,
+		{
+			expiresIn: adminTokenExpiration,
 		}
 	);
 }

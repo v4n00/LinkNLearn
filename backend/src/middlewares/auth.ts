@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { NextFunction, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import { adminId } from '../constants/const';
 import { RequestWithToken } from '../constants/interfaces';
 
 export const verifyToken = (req: RequestWithToken, res: Response, next: NextFunction) => {
@@ -24,6 +25,12 @@ export const verifyToken = (req: RequestWithToken, res: Response, next: NextFunc
 		req.decodedToken = decodedToken;
 		next();
 	});
+};
+
+export const verifyAdminToken = (req: RequestWithToken, res: Response, next: NextFunction) => {
+	const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
+	if (userId !== adminId) return res.status(401).json('Unauthorized');
+	next();
 };
 
 export const decodeToken = (token: string) => {

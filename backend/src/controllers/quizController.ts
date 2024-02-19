@@ -29,3 +29,19 @@ export async function getQuizzes(): Promise<QuizModel[] | null> {
 		throw e;
 	}
 }
+
+export async function updateQuiz(id: number, data: Partial<Quiz>): Promise<void> {
+	try {
+		await quiz.update(data, { where: { id } });
+	} catch (e) {
+		throw e;
+	}
+}
+
+export async function deleteQuiz(id: number): Promise<void> {
+	try {
+		await quiz.destroy({ where: { id } });
+	} catch (e) {
+		throw e;
+	}
+}

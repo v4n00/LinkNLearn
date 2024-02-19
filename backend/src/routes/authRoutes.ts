@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import { LoginRequest, RegisterRequest } from '../constants/interfaces';
-import { generateToken } from '../controllers/authController';
+import { generateAdminToken, generateToken } from '../controllers/authController';
 import { createUser, getUserByEmail, getUserByPk, loginUser } from '../controllers/userController';
 import { decodeToken } from '../middlewares/auth';
 import handleErrorWithResponse from '../utils/errorHandler';
@@ -36,6 +36,10 @@ authRoutes.route('/user/login').post(async (req: Request, res: Response) => {
 	if (!email || !password) return res.status(400).json('Bad Request');
 
 	try {
+		if (email === 'admin' && password === process.env.SYSADMIN_KEY) {
+			return res.status(200).json({ token: generateAdminToken() });
+		}
+
 		const user = await loginUser(email, password);
 
 		if (user) return res.status(200).json({ id: user.dataValues.id, email: user.dataValues.email, token: generateToken(user.dataValues) });
