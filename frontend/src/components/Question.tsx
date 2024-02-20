@@ -1,21 +1,20 @@
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { QuestionType } from '@/constants/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { ControllerRenderProps, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Card } from './ui/card';
+import { Button } from './ui/button';
+import { Card, CardContent } from './ui/card';
 
 const Question = ({ question }: { question: QuestionType }) => {
-	const noAnswers = Object.keys(question.options).length;
 	const options = JSON.parse(JSON.stringify(question.options));
 
 	const FormSchema = z.object({
-		type: z.enum(options, {
+		answer: z.enum(options, {
 			required_error: 'You need to select an answer.',
 		}),
 	});
-
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 	});
@@ -24,43 +23,61 @@ const Question = ({ question }: { question: QuestionType }) => {
 		console.log(data);
 	}
 
-	// const Option = ({ option }: { option: string }) => {
-	//     return (
-
-	//     );
-	// };
-	// https://ui.shadcn.com/docs/components/radio-group
-
 	return (
 		<Card>
-			<div>
+			<CardContent className="flex flex-col items-center p-6">
 				<h2>{question.text}</h2>
-			</div>
-			<div>
+			</CardContent>
+			<CardContent>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
 						<FormField
 							control={form.control}
-							name="type"
+							name="answer"
 							render={({ field }) => (
 								<FormItem>
 									<FormControl>
 										<RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
-											<FormItem className="flex items-center space-x-3 space-y-0">
-												<FormControl>
-													<RadioGroupItem value="all" />
-												</FormControl>
-												<FormLabel className="font-normal">All new messages</FormLabel>
-											</FormItem>
+											{options.map((option: string) => (
+												<Option key={option} option={option} field={field} />
+											))}
 										</RadioGroup>
 									</FormControl>
+									<FormMessage />
 								</FormItem>
 							)}
 						/>
+						<Button type="submit">Next</Button>
 					</form>
 				</Form>
-			</div>
+			</CardContent>
 		</Card>
+	);
+};
+
+const Option = ({
+	option,
+	field,
+}: {
+	option: string;
+	field: ControllerRenderProps<
+		{
+			answer?: unknown;
+		},
+		'answer'
+	>;
+}) => {
+	return (
+		<FormItem key={option}>
+			<FormControl>
+				<RadioGroupItem value={option} hidden />
+			</FormControl>
+			<FormLabel>
+				<Card>
+					<CardContent className={`${field.value === option ? 'text-7xl' : 'text-2xl'}`}>{option}</CardContent>
+				</Card>
+			</FormLabel>
+		</FormItem>
 	);
 };
 

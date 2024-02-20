@@ -5,12 +5,7 @@ const question = {
 	id: 1,
 	quizId: 1,
 	text: 'What is the capital of France?',
-	options: {
-		option1: 'New York',
-		option2: 'London',
-		option3: 'Paris',
-		option4: 'Dublin',
-	},
+	options: ['London', 'Paris', 'New York', 'Madrid'],
 };
 
 const QuizzesTaker = () => {
