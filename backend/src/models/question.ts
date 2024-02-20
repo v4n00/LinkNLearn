@@ -1,12 +1,17 @@
 import Sequelize, { Model, ModelDefined } from 'sequelize';
 import db from '../config/database';
-import { QuestionText } from '../constants/interfaces';
 
 export interface Question {
 	id?: number;
 	quizId: number;
 	text: string;
-	options: QuestionText | string;
+	options: string | string[];
+	answer?: string;
+}
+
+export interface AnswerType {
+	questionId: number;
+	answer: string;
 }
 
 interface QuestionAttributes extends Question {}
@@ -30,6 +35,10 @@ const question: ModelDefined<Question, QuestionAttributes> = db.define('question
 	options: {
 		type: Sequelize.STRING(1000),
 		allowNull: false,
+	},
+	answer: {
+		type: Sequelize.STRING(1000),
+		allowNull: true,
 	},
 });
 

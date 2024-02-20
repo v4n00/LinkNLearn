@@ -10,6 +10,11 @@ export interface QuizType {
 	questions?: QuestionType[];
 }
 
+export interface AnswerType {
+	questionId: number;
+	answer: string;
+}
+
 export interface QuestionType {
 	id?: number;
 	quizId: number;

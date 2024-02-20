@@ -168,7 +168,7 @@ const NotAuthenticatedComponent = () => {
 };
 
 const SignUpComponent = ({ changeTab }: { changeTab: (value: string) => void }) => {
-	const { signUp } = useAuth();
+	const { signUp, loading } = useAuth();
 
 	const signUpFormSchema = z
 		.object({
@@ -246,7 +246,7 @@ const SignUpComponent = ({ changeTab }: { changeTab: (value: string) => void }) 
 								</FormItem>
 							)}
 						/>
-						<LoadingButton type="submit" className="w-full">
+						<LoadingButton loading={loading} type="submit" className="w-full">
 							Sign up
 						</LoadingButton>
 					</form>
@@ -257,7 +257,7 @@ const SignUpComponent = ({ changeTab }: { changeTab: (value: string) => void }) 
 };
 
 const LogInComponent = () => {
-	const { login } = useAuth();
+	const { login, loading } = useAuth();
 
 	const logInFormSchema = z.object({
 		email: z.string().email(),
@@ -314,7 +314,7 @@ const LogInComponent = () => {
 								</FormItem>
 							)}
 						/>
-						<LoadingButton type="submit" className="w-full">
+						<LoadingButton loading={loading} type="submit" className="w-full">
 							Log in
 						</LoadingButton>
 					</form>

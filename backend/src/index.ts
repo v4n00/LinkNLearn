@@ -6,6 +6,7 @@ import initFK from './config/initFK';
 import { apiLimiterWindowSeconds, clientPort, port } from './constants/const';
 import authRoutes from './routes/authRoutes';
 import flashcardRoutes from './routes/flashcardRoutes';
+import questionRoutes from './routes/questionRoutes';
 import quizRoutes from './routes/quizRoutes';
 
 // setup
@@ -39,6 +40,7 @@ initFK();
 app.use('/', authRoutes);
 app.use('/', flashcardRoutes);
 app.use('/', quizRoutes);
+app.use('/', questionRoutes);
 
 // starting
 app.listen(port, () => {

@@ -1,17 +1,17 @@
 import express from 'express';
-import { addQuestion, deleteQuestion, getQuestions, isValidQuestionText, updateQuestion } from '../controllers/questionController';
+import { addQuestion, deleteQuestion, getQuestions, updateQuestion } from '../controllers/questionController';
 import { verifyAdminToken, verifyToken } from '../middlewares/auth';
 import handleErrorWithResponse from '../utils/errorHandler';
 
 const questionRoutes = express.Router();
 
 questionRoutes.route('/question').post(verifyToken, verifyAdminToken, async (req, res) => {
-	const { quizId, text, options } = req.body;
-	if (!quizId || !text || !options) return res.status(400).json('Bad Request');
-	if (!isValidQuestionText(options)) return res.status(400).json('Invalid question text');
+	const { quizId, text, options, answer } = req.body;
+	if (!quizId || !text || !options || !answer) return res.status(400).json('Bad Request');
+	if (!Array.isArray(options) || options.length < 2) return res.status(400).json('Options array error');
 
 	try {
-		await addQuestion({ quizId, text, options });
+		await addQuestion({ quizId, text, options, answer });
 		return res.status(201).json('Question created');
 	} catch (e) {
 		handleErrorWithResponse(e, res);

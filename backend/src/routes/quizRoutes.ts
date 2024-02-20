@@ -1,10 +1,9 @@
 import express from 'express';
-import { QuestionText } from '../constants/interfaces';
 import { isLoggedIn } from '../controllers/authController';
 import { createQuiz, deleteQuiz, getQuizWithQuestionsById, getQuizzes, updateQuiz } from '../controllers/quizController';
 import { createQuizProgress, getQuizProgressByUserId } from '../controllers/quizProgressController';
 import { verifyAdminToken, verifyToken } from '../middlewares/auth';
-import { QuestionModel } from '../models/question';
+import { AnswerType } from '../models/question';
 import { Quiz, QuizModel } from '../models/quiz';
 import handleErrorWithResponse from '../utils/errorHandler';
 
@@ -12,19 +11,22 @@ const quizRoutes = express.Router();
 
 quizRoutes.route('/quiz/:quizId/verify').post(async (req, res) => {
 	const quizId = parseInt(req.params.quizId);
-	const { answers } = req.body;
+	const answers = req.body as AnswerType[];
 	if (isNaN(quizId) || !answers) return res.status(400).json('Bad Request');
 	if (!Array.isArray(answers)) return res.status(400).json('Answers must be an array');
 
 	try {
 		const quiz: QuizModel | null = await getQuizWithQuestionsById(quizId, true);
 		if (!quiz) return res.status(404).json('No quiz found');
-		if (!quiz.dataValues.questions) return res.status(404).json('No questions found');
+
+		const questions = quiz.dataValues.questions;
+		if (!questions) return res.status(404).json('No questions found');
 
 		// calculate score
 		let score = 0;
-		quiz.dataValues.questions.forEach((q: QuestionModel, i: number) => {
-			if ((q.dataValues.options as QuestionText).answer === answers[i]) score++;
+		answers.forEach((answer) => {
+			const question = questions.find((q) => q.dataValues.id === answer.questionId);
+			if (question && question.dataValues.answer === answer.answer) score++;
 		});
 
 		// quiz progress
@@ -33,7 +35,7 @@ quizRoutes.route('/quiz/:quizId/verify').post(async (req, res) => {
 			await createQuizProgress({ userId: userId, quizId: quizId, score: score, dateTaken: new Date() });
 		}
 
-		return res.status(200).json({ score: score, total: quiz.dataValues.questions.length });
+		return res.status(200).json({ score: score, total: questions.length });
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}

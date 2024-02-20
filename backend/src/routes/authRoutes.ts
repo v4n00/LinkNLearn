@@ -36,7 +36,7 @@ authRoutes.route('/user/login').post(async (req: Request, res: Response) => {
 	if (!email || !password) return res.status(400).json('Bad Request');
 
 	try {
-		if (email === 'admin' && password === process.env.SYSADMIN_KEY) {
+		if (email === 'admin@admin.admin' && password === process.env.SYSADMIN_KEY) {
 			return res.status(200).json({ token: generateAdminToken() });
 		}
 

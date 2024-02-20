@@ -1,13 +1,19 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { QuestionType } from '@/constants/interfaces';
+import { AnswerType, QuestionType } from '@/constants/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ControllerRenderProps, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from './ui/button';
-import { Card, CardContent } from './ui/card';
+import { Card, CardContent, CardHeader } from './ui/card';
 
-const Question = ({ question }: { question: QuestionType }) => {
+interface QuestionProps {
+	question: QuestionType;
+	doOnSubmit: (answer: AnswerType) => void;
+	buttonText: string;
+}
+
+const Question = ({ question, doOnSubmit, buttonText }: QuestionProps) => {
 	const options = JSON.parse(JSON.stringify(question.options));
 
 	const FormSchema = z.object({
@@ -18,16 +24,17 @@ const Question = ({ question }: { question: QuestionType }) => {
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 	});
-
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		console.log(data);
+		if (question.id) {
+			doOnSubmit({ questionId: question.id, answer: data.answer });
+		}
 	}
 
 	return (
-		<Card>
-			<CardContent className="flex flex-col items-center p-6">
+		<Card className="max-w-[700px] max-h-[800px] min-w-[500px]">
+			<CardHeader className="text-center p-6">
 				<h2>{question.text}</h2>
-			</CardContent>
+			</CardHeader>
 			<CardContent>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
@@ -47,7 +54,9 @@ const Question = ({ question }: { question: QuestionType }) => {
 								</FormItem>
 							)}
 						/>
-						<Button type="submit">Next</Button>
+						<Button type="submit" className="w-full my-2">
+							{buttonText}
+						</Button>
 					</form>
 				</Form>
 			</CardContent>
@@ -73,8 +82,8 @@ const Option = ({
 				<RadioGroupItem value={option} hidden />
 			</FormControl>
 			<FormLabel>
-				<Card>
-					<CardContent className={`${field.value === option ? 'text-7xl' : 'text-2xl'}`}>{option}</CardContent>
+				<Card className={`cursor-pointer ${field.value === option ? 'bg-muted' : 'bg-inherit'}`}>
+					<CardContent className={`max-w-full flex items-center text-xl p-4`}>{option}</CardContent>
 				</Card>
 			</FormLabel>
 		</FormItem>
