@@ -18,8 +18,21 @@ Bachelor Thesis project
 -   [x] Flashcard manage functionality
 -   [x] Seed database
 -   [x] Logo
+-   [ ] Flashcard search functionality
+-   [ ] Flashcard sysadmin page
+-   [x] Question design
+-   [ ] Quiz submit functionality
+-   [ ] Quiz show progress
+-   [ ] Quiz sysadmin page
 -   [ ] Quiz page
 -   [ ] Home page
+
+# TODO backend
+
+-   [x] Rewrite quiz routes - validation
+-   [x] Add quiz sysadmin routes
+-   [x] Rewrite question model & controller
+-   [ ] Add flashcard sysadmin routes
 
 # EXTRAS
 
