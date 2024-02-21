@@ -54,8 +54,28 @@ export default function QuizzesDashboard() {
 			<CarouselItem key={quiz.id} className="xl:basis-1/3 lg:basis-1/2">
 				<Card>
 					<CardHeader>
-						<CardTitle>{quiz.title}</CardTitle>
+						<CardTitle className="text-center">{quiz.title}</CardTitle>
 					</CardHeader>
+					<CardContent className="flex items-center justify-center flex-row">
+						{quizProgress.length > 0 ? (
+							quizProgress.find((p) => p.score / p.maxScore > QUIZ_THRESHOLD) !== undefined ? (
+								<>
+									<Check className="text-success" />
+									<span className="ml-2 text-success">Quiz Passed</span>
+								</>
+							) : (
+								<>
+									<Check className="text-destructive" />
+									<span className="ml-2 text-destructive">Quiz failed</span>
+								</>
+							)
+						) : (
+							<>
+								<ShieldQuestion className="text-muted-foreground" />
+								<span className="ml-2 text-muted-foreground">Quiz not attempted</span>
+							</>
+						)}
+					</CardContent>
 					<CardContent>
 						{user ? (
 							quizProgress?.length > 0 ? (
@@ -95,26 +115,6 @@ export default function QuizzesDashboard() {
 								</div>
 							</Card>
 						)}
-						<div className="mt-4 flex items-center">
-							{quizProgress.length > 0 ? (
-								quizProgress.find((p) => p.score / p.maxScore > QUIZ_THRESHOLD) !== undefined ? (
-									<>
-										<Check className="text-success" />
-										<span className="ml-2 text-success">Quiz Passed</span>
-									</>
-								) : (
-									<>
-										<Check className="text-destructive" />
-										<span className="ml-2 text-destructive">Quiz failed</span>
-									</>
-								)
-							) : (
-								<>
-									<ShieldQuestion className="text-muted-foreground" />
-									<span className="ml-2 text-muted-foreground">Quiz not attempted</span>
-								</>
-							)}
-						</div>
 					</CardContent>
 					<CardFooter>
 						<Button
