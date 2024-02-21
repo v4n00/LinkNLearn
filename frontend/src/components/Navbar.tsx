@@ -48,11 +48,13 @@ export default function Navbar() {
 	return (
 		<header className="bg-background sticky z-20 flex h-20 items-center px-6 border-b-2">
 			<div className="flex w-full">
-				<Link to="/" className={navigationMenuTriggerStyle()}>
-					<Logo className="fill-black dark:fill-white size-8" />
-				</Link>
 				<NavigationMenu>
 					<NavigationMenuList>
+						<NavigationMenuItem>
+							<Link to="/" className={navigationMenuTriggerStyle()}>
+								<Logo className="fill-black dark:fill-white size-8" />
+							</Link>
+						</NavigationMenuItem>
 						<NavigationMenuItem>
 							<NavigationMenuTrigger>Data Structures</NavigationMenuTrigger>
 							<NavigationMenuContent>

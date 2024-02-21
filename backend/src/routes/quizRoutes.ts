@@ -32,7 +32,7 @@ quizRoutes.route('/quiz/:quizId/verify').post(async (req, res) => {
 		// quiz progress
 		if (isLoggedIn(req)) {
 			const userId = (req as any).decodedToken.userId;
-			await createQuizProgress({ userId: userId, quizId: quizId, score: score, dateTaken: new Date() });
+			await createQuizProgress({ userId: userId, quizId: quizId, score: score, maxScore: questions.length, dateTaken: new Date() });
 		}
 
 		return res.status(200).json({ score: score, maxScore: questions.length });

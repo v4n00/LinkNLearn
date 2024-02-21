@@ -1,36 +1,37 @@
 # LinkNLearn
 
 Bachelor Thesis project
-!!!!!!!!!!! this is a reminder to myself to update the database design image !!!!!!!!!!!!
 
 # TODO frontend
 
 -   [ ] Flashcard search functionality
 -   [ ] Flashcard sysadmin page
--   [ ] Quiz show past attempts
+-   [ ] Quiz refresh keeps data
 -   [ ] Quiz sysadmin page
 -   [ ] General: Quiz page
 -   [ ] General: Home page
 -   [ ] General: Data structure page
--   [x] ~~Quiz show progress~~
+-   [x] ~~Quiz show past attempts~~
 -   [x] ~~Question design~~
+-   [x] ~~Quiz show progress~~
 -   [x] ~~Quiz submit functionality~~
--   [x] ~~Navbar~~
--   [x] ~~Account functionality~~
--   [x] ~~404 page~~
--   [x] ~~Unauthorized page~~
--   [x] ~~Dark theme~~
+-   [x] ~~Logo~~
+-   [x] ~~Seed database~~
+-   [x] ~~General: Flashcard page~~
 -   [x] ~~Protected routes~~
 -   [x] ~~Flashcard default~~
 -   [x] ~~Flashcard custom~~
 -   [x] ~~Flashcard manage design~~
 -   [x] ~~Flashcard manage functionality~~
--   [x] ~~General: Flashcard page~~
--   [x] ~~Seed database~~
--   [x] ~~Logo~~
+-   [x] ~~404 page~~
+-   [x] ~~Unauthorized page~~
+-   [x] ~~Dark theme~~
+-   [x] ~~Account functionality~~
+-   [x] ~~Navbar~~
 
 # TODO backend
 
+-   [ ] Update database design image
 -   [ ] Add flashcard sysadmin routes
 -   [x] ~~Rewrite quiz routes - validation~~
 -   [x] ~~Add quiz sysadmin routes~~
@@ -41,7 +42,7 @@ Bachelor Thesis project
 -   [ ] forgot password
 -   [ ] email verification
 -   [ ] reset password
--   [ ] responsive design (use drawer for log in)
+-   [ ] responsive design (use drawer for log in/sheet for menu)
 
 # Database design <-- UPDATE THIS
 

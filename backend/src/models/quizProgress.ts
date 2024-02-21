@@ -6,6 +6,7 @@ export interface QuizProgress {
 	userId: number;
 	quizId: number;
 	score: number;
+	maxScore: number;
 	dateTaken: Date;
 }
 
@@ -28,6 +29,10 @@ const quizProgress: ModelDefined<QuizProgress, QuizProgressAttributes> = db.defi
 		allowNull: false,
 	},
 	score: {
+		type: Sequelize.INTEGER,
+		allowNull: false,
+	},
+	maxScore: {
 		type: Sequelize.INTEGER,
 		allowNull: false,
 	},

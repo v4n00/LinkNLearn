@@ -10,6 +10,15 @@ export interface QuizType {
 	questions: QuestionType[];
 }
 
+export interface QuizProgressType {
+	id: number;
+	userId: number;
+	quizId: number;
+	score: number;
+	maxScore: number;
+	dateTaken: string;
+}
+
 export interface AnswerType {
 	questionId: number;
 	answer: string;

@@ -43,6 +43,9 @@ const QuizzesTaker = () => {
 		retry: 0,
 	});
 
+	const removeDuplicateAnswers = (answers: AnswerType[]): AnswerType[] => {
+		return answers.filter((answer, index, self) => index === self.findIndex((t) => t.questionId === answer.questionId));
+	};
 	const clearAnswersFromLocalStorage = (): void => {
 		localStorage.removeItem(`answers-${quizId}`);
 	};
@@ -57,13 +60,9 @@ const QuizzesTaker = () => {
 	};
 	const submitAnswers = (answer: AnswerType): void => {
 		addAnswerToLocalStorage(answer);
-		let answers = getAnswersFromLocalStorage();
-
-		// remove duplicate answers
-		answers = answers.filter((answer, index, self) => index === self.findIndex((t) => t.questionId === answer.questionId));
+		const answers = removeDuplicateAnswers(getAnswersFromLocalStorage());
 
 		submitAnswersToServer.mutate(answers);
-
 		clearAnswersFromLocalStorage();
 	};
 
