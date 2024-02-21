@@ -73,7 +73,7 @@
 		@apply text-3xl font-bold text-center;
 	}
 	h1 {
-		@apply whitespace-pre-wrap text-7xl font-extrabold text-center my-20;
+		@apply whitespace-pre-wrap text-7xl font-extrabold text-center my-16;
 	}
 	main {
 		@apply space-y-20;

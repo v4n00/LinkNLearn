@@ -9,9 +9,9 @@ const QuizScores = ({ score, maxScore }: { score?: number; maxScore?: number }) 
 	const navigate = useNavigate();
 
 	return (
-		<div>
-			{score && maxScore ? (
-				<Card className="flex flex-col justify-center items-center p-4 gap-4 min-h-[300px] min-w-[400px]">
+		<Card className="flex flex-col justify-center items-center p-4 gap-4 min-h-[250px] min-w-[400px]">
+			{score !== undefined && maxScore ? (
+				<>
 					<div className="flex flex-col justify-center items-center">
 						<div className="text-4xl font-bold">Congratulations!</div>
 						<div className="text-l text-muted-foreground/70">You have completed the quiz.</div>
@@ -23,16 +23,14 @@ const QuizScores = ({ score, maxScore }: { score?: number; maxScore?: number }) 
 						<div className="text-l text-muted-foreground/70">You scored {((score / maxScore) * 100).toFixed(1)}%</div>
 					</div>
 					<div className="text-md italic">{user ? 'The result has been saved to your account.' : 'Log in in order to save your result.'}</div>
-				</Card>
+				</>
 			) : (
-				<Card className="flex flex-col justify-center items-center p-6 min-h-[300px] min-w-[400px]">
-					<Loader2 className="animate-spin" />
-				</Card>
+				<Loader2 className="animate-spin" />
 			)}
 			<Button className="mt-4 w-full" onClick={() => navigate(-1)}>
 				Go back to quizzes
 			</Button>
-		</div>
+		</Card>
 	);
 };
 

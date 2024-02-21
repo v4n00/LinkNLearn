@@ -5,34 +5,36 @@ Bachelor Thesis project
 
 # TODO frontend
 
--   [x] Navbar
--   [x] Account functionality
--   [x] 404 page
--   [x] Unauthorized page
--   [x] Dark theme
--   [x] Protected routes
--   [x] Flashcard default
--   [x] Flashcard custom
--   [x] Flashcard manage design
--   [x] Flashcard manage functionality
--   [x] Seed database
--   [x] Logo
 -   [ ] Flashcard search functionality
 -   [ ] Flashcard sysadmin page
--   [x] Question design
--   [x] Quiz submit functionality
--   [ ] Quiz show progress
 -   [ ] Quiz show past attempts
 -   [ ] Quiz sysadmin page
--   [ ] Quiz page
--   [ ] Home page
+-   [ ] General: Quiz page
+-   [ ] General: Home page
+-   [ ] General: Data structure page
+-   [x] ~~Quiz show progress~~
+-   [x] ~~Question design~~
+-   [x] ~~Quiz submit functionality~~
+-   [x] ~~Navbar~~
+-   [x] ~~Account functionality~~
+-   [x] ~~404 page~~
+-   [x] ~~Unauthorized page~~
+-   [x] ~~Dark theme~~
+-   [x] ~~Protected routes~~
+-   [x] ~~Flashcard default~~
+-   [x] ~~Flashcard custom~~
+-   [x] ~~Flashcard manage design~~
+-   [x] ~~Flashcard manage functionality~~
+-   [x] ~~General: Flashcard page~~
+-   [x] ~~Seed database~~
+-   [x] ~~Logo~~
 
 # TODO backend
 
--   [x] Rewrite quiz routes - validation
--   [x] Add quiz sysadmin routes
--   [x] Rewrite question model & controller
 -   [ ] Add flashcard sysadmin routes
+-   [x] ~~Rewrite quiz routes - validation~~
+-   [x] ~~Add quiz sysadmin routes~~
+-   [x] ~~Rewrite question model & controller~~
 
 # EXTRAS
 

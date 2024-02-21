@@ -2,10 +2,10 @@ import Question from '@/components/Question';
 import QuizScores from '@/components/QuizScore';
 import { errorToast } from '@/components/Toasts';
 import { Card } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 import { APIURL } from '@/constants/const';
 import { AnswerType, QuizResultType, QuizType } from '@/constants/interfaces';
 import useAuth from '@/hooks/useAuth';
-import { Progress } from '@radix-ui/react-progress';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { Loader2 } from 'lucide-react';
@@ -68,7 +68,7 @@ const QuizzesTaker = () => {
 	};
 
 	return (
-		<main>
+		<div>
 			<h1>{data?.title ?? ' '}</h1>
 			<div>
 				{data !== undefined ? (
@@ -81,17 +81,16 @@ const QuizzesTaker = () => {
 							<Question buttonText="Submit" question={data.questions[currentQuestionIndex]} doOnSubmit={submitAnswers} />
 						)
 					) : (
-						<Card className="w-[500px] h-[550px] flex justify-center items-center">This quiz has no questions.</Card>
+						<Card className="w-[500px] h-[350px] flex justify-center items-center">This quiz has no questions.</Card>
 					)
 				) : (
-					<Card className="w-[500px] h-[550px] flex justify-center items-center">
+					<Card className="w-[500px] h-[350px] flex justify-center items-center">
 						<Loader2 className="animate-spin" />
 					</Card>
 				)}
 			</div>
-			{/* fix this */}
-			<Progress value={33} />
-		</main>
+			<Progress className="mt-10 rounded-md" value={data && (currentQuestionIndex / data?.questions.length) * 100} />
+		</div>
 	);
 };
 

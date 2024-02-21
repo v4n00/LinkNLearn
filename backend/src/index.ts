@@ -3,7 +3,7 @@ import 'dotenv/config';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import initFK from './config/initFK';
-import { apiLimiterWindowSeconds, clientPort, port } from './constants/const';
+import { apiLimiterMax, apiLimiterWindowSeconds, clientPort, port } from './constants/const';
 import authRoutes from './routes/authRoutes';
 import flashcardRoutes from './routes/flashcardRoutes';
 import questionRoutes from './routes/questionRoutes';
@@ -18,7 +18,7 @@ if (missingVars.length > 0) {
 const app = express();
 const apiLimiter = rateLimit({
 	windowMs: apiLimiterWindowSeconds * 60 * 1000,
-	max: 1000,
+	limit: apiLimiterMax,
 });
 const corsOptions = {
 	origin: `http://localhost:${clientPort}`,

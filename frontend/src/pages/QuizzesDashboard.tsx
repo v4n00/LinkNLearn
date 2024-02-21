@@ -34,7 +34,7 @@ export default function QuizzesDashboard() {
 		<main>
 			<h1>Quizzes</h1>
 			<div>
-				<Carousel plugins={[WheelGesturesPlugin({ forceWheelAxis: 'y' })]} className="w-[1500px] border shadow-sm rounded-lg p-2">
+				<Carousel plugins={[WheelGesturesPlugin({ forceWheelAxis: 'y' })]} className="2xl:w-[1400px] xl:w-[1100px] lg:w-[900px] md:w-[600px] w-[400px] border shadow-sm rounded-lg p-2">
 					<CarouselContent>
 						{data !== undefined ? (
 							data.length > 0 ? (
@@ -63,8 +63,8 @@ const QuizCarouselItem = ({ quiz }: { quiz: QuizType }) => {
 	const navigate = useNavigate();
 
 	return (
-		<CarouselItem key={quiz.id} className="basis-1/3">
-			<Card className="w-max-[500px]">
+		<CarouselItem key={quiz.id} className="xl:basis-1/3 lg:basis-1/2">
+			<Card>
 				<CardHeader>
 					<CardTitle>{quiz.title}</CardTitle>
 					<CardDescription>10 Questions</CardDescription>
