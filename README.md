@@ -1,8 +1,7 @@
 # LinkNLearn
 
 Bachelor Thesis project
-
-[backend routes](./backend/README.md) <-- needs rewriting
+!!!!!!!!!!! this is a reminder to myself to update the database design image !!!!!!!!!!!!
 
 # TODO frontend
 
@@ -21,8 +20,9 @@ Bachelor Thesis project
 -   [ ] Flashcard search functionality
 -   [ ] Flashcard sysadmin page
 -   [x] Question design
--   [ ] Quiz submit functionality
+-   [x] Quiz submit functionality
 -   [ ] Quiz show progress
+-   [ ] Quiz show past attempts
 -   [ ] Quiz sysadmin page
 -   [ ] Quiz page
 -   [ ] Home page
@@ -41,6 +41,6 @@ Bachelor Thesis project
 -   [ ] reset password
 -   [ ] responsive design (use drawer for log in)
 
-# Database design
+# Database design <-- UPDATE THIS
 
 ![Database design](backend/database%20design.png)

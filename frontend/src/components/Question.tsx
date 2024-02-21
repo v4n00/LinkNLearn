@@ -1,8 +1,7 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { AnswerType, QuestionType } from '@/constants/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ControllerRenderProps, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader } from './ui/card';
@@ -23,15 +22,17 @@ const Question = ({ question, doOnSubmit, buttonText }: QuestionProps) => {
 	});
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
+		defaultValues: {
+			answer: undefined,
+		},
 	});
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		if (question.id) {
-			doOnSubmit({ questionId: question.id, answer: data.answer });
-		}
+		doOnSubmit({ questionId: question.id, answer: data.answer });
+		form.resetField('answer');
 	}
 
 	return (
-		<Card className="max-w-[700px] max-h-[800px] min-w-[500px]">
+		<Card className="max-w-[700px] max-h-[550px] min-w-[500px]">
 			<CardHeader className="text-center p-6">
 				<h2>{question.text}</h2>
 			</CardHeader>
@@ -44,11 +45,20 @@ const Question = ({ question, doOnSubmit, buttonText }: QuestionProps) => {
 							render={({ field }) => (
 								<FormItem>
 									<FormControl>
-										<RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
+										<div>
 											{options.map((option: string) => (
-												<Option key={option} option={option} field={field} />
+												<FormItem key={option}>
+													<FormControl>
+														<input {...field} type="radio" value={option} checked={field.value === option} hidden />
+													</FormControl>
+													<FormLabel>
+														<Card className={`cursor-pointer mt-2 ${field.value === option ? 'bg-muted' : 'bg-inherit'}`}>
+															<CardContent className={`max-w-full flex items-center text-xl p-4`}>{option}</CardContent>
+														</Card>
+													</FormLabel>
+												</FormItem>
 											))}
-										</RadioGroup>
+										</div>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -61,32 +71,6 @@ const Question = ({ question, doOnSubmit, buttonText }: QuestionProps) => {
 				</Form>
 			</CardContent>
 		</Card>
-	);
-};
-
-const Option = ({
-	option,
-	field,
-}: {
-	option: string;
-	field: ControllerRenderProps<
-		{
-			answer?: unknown;
-		},
-		'answer'
-	>;
-}) => {
-	return (
-		<FormItem key={option}>
-			<FormControl>
-				<RadioGroupItem value={option} hidden />
-			</FormControl>
-			<FormLabel>
-				<Card className={`cursor-pointer ${field.value === option ? 'bg-muted' : 'bg-inherit'}`}>
-					<CardContent className={`max-w-full flex items-center text-xl p-4`}>{option}</CardContent>
-				</Card>
-			</FormLabel>
-		</FormItem>
 	);
 };
 

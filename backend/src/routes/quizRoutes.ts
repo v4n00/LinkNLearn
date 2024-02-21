@@ -11,7 +11,7 @@ const quizRoutes = express.Router();
 
 quizRoutes.route('/quiz/:quizId/verify').post(async (req, res) => {
 	const quizId = parseInt(req.params.quizId);
-	const answers = req.body as AnswerType[];
+	const { answers }: { answers: AnswerType[] } = req.body;
 	if (isNaN(quizId) || !answers) return res.status(400).json('Bad Request');
 	if (!Array.isArray(answers)) return res.status(400).json('Answers must be an array');
 
@@ -35,7 +35,7 @@ quizRoutes.route('/quiz/:quizId/verify').post(async (req, res) => {
 			await createQuizProgress({ userId: userId, quizId: quizId, score: score, dateTaken: new Date() });
 		}
 
-		return res.status(200).json({ score: score, total: questions.length });
+		return res.status(200).json({ score: score, maxScore: questions.length });
 	} catch (e) {
 		handleErrorWithResponse(e, res);
 	}

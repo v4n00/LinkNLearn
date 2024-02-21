@@ -5,9 +5,9 @@ export interface UserType {
 }
 
 export interface QuizType {
-	id?: number;
+	id: number;
 	title: string;
-	questions?: QuestionType[];
+	questions: QuestionType[];
 }
 
 export interface AnswerType {
@@ -16,10 +16,15 @@ export interface AnswerType {
 }
 
 export interface QuestionType {
-	id?: number;
+	id: number;
 	quizId: number;
 	text: string;
 	options: string[];
+}
+
+export interface QuizResultType {
+	score: number;
+	maxScore: number;
 }
 
 export interface FlashcardType {

@@ -58,6 +58,7 @@ export default function QuizzesDashboard() {
 	);
 }
 
+// https://github.com/shadcn-ui/ui/issues/1151#issuecomment-1823750732
 const QuizCarouselItem = ({ quiz }: { quiz: QuizType }) => {
 	const navigate = useNavigate();
 
