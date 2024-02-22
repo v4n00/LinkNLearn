@@ -4,9 +4,11 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipProvider } from '@/components/ui/tooltip';
 import { APIURL, QUIZ_THRESHOLD } from '@/constants/const';
 import { QuizProgressType, QuizType } from '@/constants/interfaces';
 import useAuth from '@/hooks/useAuth';
+import { TooltipContent, TooltipTrigger } from '@radix-ui/react-tooltip';
 import { useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { Check, Loader2, ShieldQuestion } from 'lucide-react';
@@ -57,24 +59,33 @@ export default function QuizzesDashboard() {
 						<CardTitle className="text-center">{quiz.title}</CardTitle>
 					</CardHeader>
 					<CardContent className="flex items-center justify-center flex-row">
-						{quizProgress.length > 0 ? (
-							quizProgress.find((p) => p.score / p.maxScore > QUIZ_THRESHOLD) !== undefined ? (
-								<>
-									<Check className="text-success" />
-									<span className="ml-2 text-success">Quiz Passed</span>
-								</>
-							) : (
-								<>
-									<Check className="text-destructive" />
-									<span className="ml-2 text-destructive">Quiz failed</span>
-								</>
-							)
-						) : (
-							<>
-								<ShieldQuestion className="text-muted-foreground" />
-								<span className="ml-2 text-muted-foreground">Quiz not attempted</span>
-							</>
-						)}
+						<TooltipProvider delayDuration={100}>
+							<Tooltip>
+								<TooltipTrigger className="flex items-center justify-center flex-row">
+									{quizProgress.length > 0 ? (
+										quizProgress.find((p) => p.score / p.maxScore > QUIZ_THRESHOLD) !== undefined ? (
+											<>
+												<Check className="text-success" />
+												<span className="ml-2 text-success">Quiz Passed</span>
+											</>
+										) : (
+											<>
+												<Check className="text-destructive" />
+												<span className="ml-2 text-destructive">Quiz failed</span>
+											</>
+										)
+									) : (
+										<>
+											<ShieldQuestion className="text-muted-foreground" />
+											<span className="ml-2 text-muted-foreground">Quiz not attempted</span>
+										</>
+									)}
+								</TooltipTrigger>
+								<TooltipContent className="bg-muted p-2 rounded-md shadow z-20 text-center" sideOffset={4}>
+									You need 70% score in <br /> order to pass a quiz
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
 					</CardContent>
 					<CardContent>
 						{user ? (
