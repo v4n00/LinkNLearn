@@ -23,7 +23,15 @@ const QuizzesTaker = () => {
 		queryFn: (): Promise<QuizType> =>
 			axios
 				.get(`${APIURL}/quiz/${quizId}`)
-				.then((res) => res.data)
+				.then((res) => {
+					// randomly shuffle the questions
+					(res.data as QuizType).questions = (res.data as QuizType).questions.sort(() => Math.random() - 0.5);
+					// randomyl shuffle the options for each question
+					(res.data as QuizType).questions.forEach((question) => {
+						question.options = question.options.sort(() => Math.random() - 0.5);
+					});
+					return res.data;
+				})
 				.catch((e) => {
 					errorToast(`Error: ${(e as AxiosError).response?.data}`);
 				}),

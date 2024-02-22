@@ -25,7 +25,9 @@ const QuizScores = ({ score, maxScore }: { score?: number; maxScore?: number }) 
 					<div className="text-md italic">{user ? 'The result has been saved to your account.' : 'Log in in order to save your result.'}</div>
 				</>
 			) : (
-				<Loader2 className="animate-spin" />
+				<div className="flex justify-center items-center h-[180px] w-[366px]">
+					<Loader2 className="animate-spin" />
+				</div>
 			)}
 			<Button className="mt-4 w-full" onClick={() => navigate(-1)}>
 				Go back to quizzes
