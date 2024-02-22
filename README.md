@@ -6,11 +6,11 @@ Bachelor Thesis project
 
 -   [ ] Flashcard search functionality
 -   [ ] Flashcard sysadmin page
--   [ ] Quiz refresh keeps data
 -   [ ] Quiz sysadmin page
--   [ ] General: Quiz page
 -   [ ] General: Home page
 -   [ ] General: Data structure page
+-   [x] ~~General: Quiz page~~
+-   [x] ~~Quiz refresh keeps data~~
 -   [x] ~~Quiz show past attempts~~
 -   [x] ~~Question design~~
 -   [x] ~~Quiz show progress~~

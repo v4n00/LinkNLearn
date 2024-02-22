@@ -1,6 +1,6 @@
 import Question from '@/components/Question';
 import QuizScores from '@/components/QuizScore';
-import { errorToast } from '@/components/Toasts';
+import { errorToast, successToast } from '@/components/Toasts';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { APIURL } from '@/constants/const';
@@ -9,12 +9,13 @@ import useAuth from '@/hooks/useAuth';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const QuizzesTaker = () => {
 	const { quizId } = useParams();
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+	const [questionIndexOffset, setQuestionIndexOffset] = useState<number>(0);
 	const { user } = useAuth();
 	const headers = { headers: { Authorization: `Bearer ${user?.token}` } };
 
@@ -50,6 +51,24 @@ const QuizzesTaker = () => {
 		gcTime: 0,
 		retry: 0,
 	});
+
+	useEffect(() => {
+		if (data) {
+			const savedAnswers = getAnswersFromLocalStorage();
+			if (savedAnswers.length > 0) {
+				// filter data.questions to only include questions that are not in savedAnswers and also increment the currentQuestionIndex
+				if (savedAnswers.length < data.questions.length) {
+					const questions = data.questions.filter((question) => !savedAnswers.some((answer) => answer.questionId === question.id));
+					data.questions = questions;
+					setQuestionIndexOffset(savedAnswers.length);
+					successToast('Answers successfully restored, the progress bar may be innacurate.');
+				} else {
+					clearAnswersFromLocalStorage();
+				}
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [data]);
 
 	const removeDuplicateAnswers = (answers: AnswerType[]): AnswerType[] => {
 		return answers.filter((answer, index, self) => index === self.findIndex((t) => t.questionId === answer.questionId));
@@ -96,7 +115,7 @@ const QuizzesTaker = () => {
 					</Card>
 				)}
 			</div>
-			<Progress className="mt-10 rounded-md" value={data && (currentQuestionIndex / data?.questions.length) * 100} />
+			<Progress className="mt-10 rounded-md" value={data && ((currentQuestionIndex + questionIndexOffset) / (data.questions.length + questionIndexOffset)) * 100} />
 		</div>
 	);
 };
