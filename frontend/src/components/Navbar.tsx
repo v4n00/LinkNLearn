@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import useAuth from '@/hooks/useAuth';
-import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AxiosError } from 'axios';
 import { Github, Moon, Sun } from 'lucide-react';
@@ -58,9 +57,9 @@ export default function Navbar() {
 						<NavigationMenuItem>
 							<NavigationMenuTrigger>Data Structures</NavigationMenuTrigger>
 							<NavigationMenuContent>
-								<ul className="grid gap-3 p-4 md:grid-cols-2 md:w-[400px] grid-cols-1 w-[200px]">
+								<ul className="grid gap-3 p-4 md:grid-cols-2 md:w-[400px] grid-cols-1 w-[200px] text-center">
 									{links.map((component) => (
-										<ListItem key={component.title} href={component.href} className="">
+										<ListItem key={component.title} href={component.href}>
 											{component.title}
 										</ListItem>
 									))}
@@ -326,10 +325,10 @@ const LogInComponent = () => {
 	);
 };
 
-const ListItem = ({ href, className, children }: { href: string; className: string; children: React.ReactNode }) => {
+const ListItem = ({ href, children }: { href: string; children: React.ReactNode }) => {
 	return (
 		<li>
-			<Link to={href} className={cn('block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground', className)}>
+			<Link to={href} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
 				<div className="text-sm font-medium leading-none">{children}</div>
 			</Link>
 		</li>

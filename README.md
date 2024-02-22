@@ -1,6 +1,6 @@
 # LinkNLearn
 
-Bachelor Thesis project
+Bachelor Thesis Project
 
 # TODO frontend
 
@@ -31,7 +31,7 @@ Bachelor Thesis project
 
 # TODO backend
 
--   [ ] Update database design image
+-   [x] ~~Update database design image~~
 -   [x] ~~Add flashcard sysadmin routes~~
 -   [x] ~~Rewrite quiz routes - validation~~
 -   [x] ~~Add quiz sysadmin routes~~
@@ -44,6 +44,6 @@ Bachelor Thesis project
 -   [ ] reset password
 -   [ ] responsive design (use drawer for log in/sheet for menu)
 
-# Database design <-- UPDATE THIS
+# Database design
 
 ![Database design](backend/database%20design.png)
