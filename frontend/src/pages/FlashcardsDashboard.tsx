@@ -2,6 +2,7 @@ import DisableCard from '@/components/DisableCard';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import useAuth from '@/hooks/useAuth';
 import { useEffect } from 'react';
+import FlashcardsManager from './FlashcardsManager';
 
 const FlashcardsDashboard = () => {
 	useEffect(() => {
@@ -9,11 +10,15 @@ const FlashcardsDashboard = () => {
 	}, []);
 	const { user } = useAuth();
 
+	if (user && user.id === 0) {
+		return <FlashcardsManager />;
+	}
+
 	return (
 		<main>
 			<h1>Flashcards</h1>
 			<div className="grid gap-6 text-center">
-				<div className="grid grid-cols-2 gap-6 w-[600px]">
+				<div className="grid md:grid-cols-2 grid-cols-1 gap-6 md:w-[600px] w-full">
 					<DisableCard disabled={false} href="/flashcards/default">
 						<CardHeader>
 							<CardTitle>Default flashcards</CardTitle>

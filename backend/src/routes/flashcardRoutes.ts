@@ -1,6 +1,7 @@
 import express from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import { RequestWithToken } from '../constants/interfaces';
+import { isAdmin } from '../controllers/authController';
 import { createFlashcard, deleteFlashcard, getFlashcards, updateFlashcard } from '../controllers/flashcardController';
 import { verifyToken } from '../middlewares/auth';
 import { verifyFlashcardOwnership } from '../middlewares/flashcardOwnership';
@@ -54,8 +55,11 @@ flashcardRoutes.route('/flashcard').post(verifyToken, async (req, res) => {
 	if (!frontSide || !backSide) return res.status(400).json('Bad Request');
 
 	try {
-		const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
-		await createFlashcard({ userId, frontSide, backSide });
+		if (isAdmin(req)) await createFlashcard({ frontSide, backSide });
+		else {
+			const userId = ((req as RequestWithToken).decodedToken as JwtPayload).userId;
+			await createFlashcard({ userId, frontSide, backSide });
+		}
 
 		return res.status(201).json('Flashcard created');
 	} catch (e) {

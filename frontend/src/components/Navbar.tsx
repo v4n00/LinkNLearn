@@ -262,7 +262,7 @@ const LogInComponent = () => {
 	const { login, loading } = useAuth();
 
 	const logInFormSchema = z.object({
-		email: z.string().email(),
+		email: z.string().email().or(z.literal('admin')),
 		password: z.string().min(8, 'Password must contain at least 8 characters').max(32, 'Password must contain at most 32 characters'),
 	});
 

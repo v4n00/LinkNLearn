@@ -15,7 +15,9 @@ export const verifyFlashcardOwnership = async (req: RequestWithToken, res: Respo
 			const flashcardItem: FlashcardModel | null = await getFlashcardById(flashcardId);
 			if (!flashcardItem) return res.status(404).json('Flascard not found');
 
-			if (flashcardItem.dataValues.userId === userId) {
+			if (flashcardItem.dataValues.userId === null && parseInt(userId) === 0) {
+				next();
+			} else if (flashcardItem.dataValues.userId === userId) {
 				next();
 			} else {
 				return res.status(401).json('Unauthorized');

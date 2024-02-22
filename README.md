@@ -4,10 +4,10 @@ Bachelor Thesis project
 
 # TODO frontend
 
--   [ ] Flashcard sysadmin page
 -   [ ] Quiz sysadmin page
--   [ ] General: Home page
+-   [ ] Remake Home page
 -   [ ] General: Data structure page
+-   [x] ~~Flashcard sysadmin page~~
 -   [x] ~~Flashcard search functionality~~
 -   [x] ~~General: Quiz page~~
 -   [x] ~~Quiz refresh keeps data~~
@@ -32,7 +32,7 @@ Bachelor Thesis project
 # TODO backend
 
 -   [ ] Update database design image
--   [ ] Add flashcard sysadmin routes
+-   [x] ~~Add flashcard sysadmin routes~~
 -   [x] ~~Rewrite quiz routes - validation~~
 -   [x] ~~Add quiz sysadmin routes~~
 -   [x] ~~Rewrite question model & controller~~

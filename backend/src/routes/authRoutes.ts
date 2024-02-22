@@ -1,26 +1,20 @@
 import express, { Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-import { LoginRequest, RegisterRequest } from '../constants/interfaces';
-import { generateAdminToken, generateToken } from '../controllers/authController';
+import { LoginRequest, RegisterRequest, RequestWithToken } from '../constants/interfaces';
+import { generateAdminToken, generateToken, isAdmin } from '../controllers/authController';
 import { createUser, getUserByEmail, getUserByPk, loginUser } from '../controllers/userController';
-import { decodeToken } from '../middlewares/auth';
+import { verifyToken } from '../middlewares/auth';
 import handleErrorWithResponse from '../utils/errorHandler';
 
 const authRoutes = express.Router();
 
-authRoutes.route('/user/validate').get(async (req: Request, res: Response) => {
-	const authHeader = req.headers.authorization;
-	if (!authHeader) {
-		return res.status(401).json('Authorization header not provided');
-	}
-
-	const token = authHeader.split(' ')[1];
-	if (!token) {
-		return res.status(401).json('No token provided');
-	}
-
+authRoutes.route('/user/validate').get(verifyToken, async (req: RequestWithToken, res: Response) => {
 	try {
-		const decodedToken = decodeToken(token);
+		const decodedToken = req.decodedToken;
+
+		if (isAdmin(req)) {
+			return res.status(200).json({ id: 0, email: 'admin', token: generateToken({ id: 0, email: 'admin', password: '' }) });
+		}
 
 		const user = await getUserByPk((decodedToken as JwtPayload).userId);
 		if (!user) return res.status(401).json('User not found');
@@ -36,8 +30,8 @@ authRoutes.route('/user/login').post(async (req: Request, res: Response) => {
 	if (!email || !password) return res.status(400).json('Bad Request');
 
 	try {
-		if (email === 'admin@admin.admin' && password === process.env.SYSADMIN_KEY) {
-			return res.status(200).json({ token: generateAdminToken() });
+		if (email === 'admin' && password === process.env.SYSADMIN_KEY) {
+			return res.status(200).json({ id: 0, email: 'admin', token: generateAdminToken() });
 		}
 
 		const user = await loginUser(email, password);
