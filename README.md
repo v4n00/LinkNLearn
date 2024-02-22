@@ -4,11 +4,11 @@ Bachelor Thesis project
 
 # TODO frontend
 
--   [ ] Flashcard search functionality
 -   [ ] Flashcard sysadmin page
 -   [ ] Quiz sysadmin page
 -   [ ] General: Home page
 -   [ ] General: Data structure page
+-   [x] ~~Flashcard search functionality~~
 -   [x] ~~General: Quiz page~~
 -   [x] ~~Quiz refresh keeps data~~
 -   [x] ~~Quiz show past attempts~~
