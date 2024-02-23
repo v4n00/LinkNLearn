@@ -65,7 +65,7 @@ const QuizzesTaker = () => {
 					const questions = data.questions.filter((question) => !savedAnswers.some((answer) => answer.questionId === question.id));
 					data.questions = questions;
 					setQuestionIndexOffset(savedAnswers.length);
-					successToast('Answers successfully restored, the progress bar may be innacurate.');
+					successToast('Answers successfully restored');
 				} else {
 					clearAnswersFromLocalStorage();
 				}

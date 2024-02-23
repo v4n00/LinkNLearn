@@ -34,7 +34,7 @@ export default function Component() {
 
 	const HomeCard = ({ title, description, icon }: { title: string; description: string; icon: JSX.Element }) => {
 		return (
-			<Card className="flex flex-col items-center p-6 space-y-4 shadow-lg rounded-lg h-[200px] w-[400px]">
+			<Card className="flex flex-col items-center p-6 space-y-4 shadow-lg rounded-lg h-[200px] w-[280px]">
 				{icon}
 				<CardTitle className="text-2xl font-semibold text-center">{title}</CardTitle>
 				<CardDescription className="text-center">{description}</CardDescription>
@@ -46,14 +46,14 @@ export default function Component() {
 		<main>
 			<h1>Welcome to LinkNLearn</h1>
 			<h2>Your one-stop solution for learning and data structures concepts</h2>
-			<div className="flex flex-wrap justify-center gap-4">
+			<div className="flex flex-wrap justify-center gap-4 mt-20">
 				{cards.map((card) =>
 					card.href !== '/data-structures' ? (
 						<Link key={card.title} to={card.href}>
 							<HomeCard title={card.title} description={card.description} icon={card.icon} />
 						</Link>
 					) : (
-						<Drawer>
+						<Drawer key={card.title}>
 							<DrawerTrigger>
 								<HomeCard title={card.title} description={card.description} icon={card.icon} />
 							</DrawerTrigger>

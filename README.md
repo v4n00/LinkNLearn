@@ -2,7 +2,7 @@
 
 Bachelor Thesis Project
 
-# TODO frontend
+# TODO frontend - 65%
 
 -   [ ] Quiz sysadmin page
 -   [ ] General: Data structure page
@@ -29,7 +29,7 @@ Bachelor Thesis Project
 -   [x] ~~Account functionality~~
 -   [x] ~~Navbar~~
 
-# TODO backend
+# TODO backend - 100%
 
 -   [x] ~~Update database design image~~
 -   [x] ~~Add flashcard sysadmin routes~~
@@ -37,7 +37,7 @@ Bachelor Thesis Project
 -   [x] ~~Add quiz sysadmin routes~~
 -   [x] ~~Rewrite question model & controller~~
 
-# EXTRAS
+# EXTRAS - 0%
 
 -   [ ] forgot password
 -   [ ] email verification
