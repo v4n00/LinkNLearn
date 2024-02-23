@@ -10,9 +10,6 @@ import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const QuizzesManager = () => {
-	useEffect(() => {
-		document.title = 'LinkNLearn - Quizzes';
-	}, []);
 	const [filter, setFilter] = useState('');
 	const [onChange, setOnChange] = useState(false);
 
@@ -47,7 +44,7 @@ const QuizzesManager = () => {
 
 	return (
 		<main>
-			<h1>Manage Quizzes</h1>
+			<h1>Manage quizzes</h1>
 			<div className="flex flex-col justify-between items-center gap-5">
 				<QuizEditor setOnChange={setOnChange} />
 				<Input

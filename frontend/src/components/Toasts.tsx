@@ -23,6 +23,10 @@ const ErrorToastAction = ({ children }: { children: React.ReactNode }) => {
 };
 
 const NormalToastAction = ({ children }: { children: React.ReactNode }) => {
+	return <div className="w-full flex">{children}</div>;
+};
+
+const WarningToastAction = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div className="w-full flex">
 			<AlertTriangle className="mr-2" />
@@ -51,6 +55,14 @@ export const normalToast = (message: string) => {
 	toast({
 		variant: 'default',
 		action: <NormalToastAction>{message}</NormalToastAction>,
+		duration: toastDuration,
+	});
+};
+
+export const warningToast = (message: string) => {
+	toast({
+		variant: 'warning',
+		action: <WarningToastAction>{message}</WarningToastAction>,
 		duration: toastDuration,
 	});
 };

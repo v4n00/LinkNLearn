@@ -36,6 +36,13 @@ export interface QuestionType {
 	options: string[];
 }
 
+export interface QuestionEditType {
+	id?: number;
+	quizId: number;
+	text: string;
+	options: string[];
+}
+
 export interface QuizResultType {
 	score: number;
 	maxScore: number;

@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { Lock } from 'lucide-react';
 import { ComponentPropsWithoutRef } from 'react';
 import { Link } from 'react-router-dom';
-import { normalToast } from './Toasts';
+import { warningToast } from './Toasts';
 import { Card } from './ui/card';
 
 type DisableCardProps = {
@@ -16,7 +16,7 @@ const DisableCard = ({ className, children, href, disabled = true, ...rest }: Di
 		<Link to={(!disabled && href) || ''}>
 			<Card {...rest} className={disabled ? cn(className, 'bg-muted cursor-not-allowed relative') : className}>
 				<div>
-					<Lock className={disabled ? lockStyle : cn(lockStyle, 'hidden')} onClick={() => normalToast('Log in to use this feature')} />
+					<Lock className={disabled ? lockStyle : cn(lockStyle, 'hidden')} onClick={() => warningToast('Log in to use this feature')} />
 				</div>
 				{children}
 			</Card>

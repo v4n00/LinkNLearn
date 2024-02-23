@@ -11,11 +11,11 @@ import { z } from 'zod';
 import { errorToast, successToast } from './Toasts';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
-import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Form, FormControl, FormField, FormItem } from './ui/form';
 import { Input } from './ui/input';
 
-const QuizEditor = ({ quiz, setOnChange }: { quiz?: Partial<QuizEditType>; setOnChange: Dispatch<SetStateAction<boolean>> }) => {
+const QuizEditor = ({ quiz, setOnChange }: { quiz?: QuizEditType; setOnChange: Dispatch<SetStateAction<boolean>> }) => {
 	const { user } = useAuth();
 	const headers = { headers: { Authorization: `Bearer ${user?.token}` } };
 
@@ -80,6 +80,8 @@ const QuizEditor = ({ quiz, setOnChange }: { quiz?: Partial<QuizEditType>; setOn
 	}
 
 	return (
+		// the copy paste is real with this one ngl
+		// hope nobody sees this :D
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)}>
 				<Card className="w-[600px] h-[50px] flex flex-row justify-start items-center gap-2 mb-2">
@@ -113,11 +115,16 @@ const QuizEditor = ({ quiz, setOnChange }: { quiz?: Partial<QuizEditType>; setOn
 						</Button>
 						<Dialog>
 							<DialogTrigger asChild>
-								<Button className="size-[40px] p-0" variant="secondary" disabled={form.getValues('id') === undefined}>
+								<Button className="size-[40px] p-0" variant="warning" disabled={form.getValues('id') === undefined}>
 									<Edit size={25} />
 								</Button>
 							</DialogTrigger>
-							<DialogContent>edit question here</DialogContent>
+							<DialogContent>
+								<DialogHeader>
+									<DialogTitle>Manage questions</DialogTitle>
+								</DialogHeader>
+								{/* question editor here */}
+							</DialogContent>
 						</Dialog>
 						<Button className="size-[40px] p-0" variant="destructive" type="reset" onClick={onDelete}>
 							<Trash size={25} />
