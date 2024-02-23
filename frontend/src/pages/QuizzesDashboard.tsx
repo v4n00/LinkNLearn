@@ -14,12 +14,14 @@ import axios, { AxiosError } from 'axios';
 import { Check, Loader2, ShieldQuestion } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import QuizzesManager from './QuizzesManager';
 
 export default function QuizzesDashboard() {
 	useEffect(() => {
 		document.title = 'LinkNLearn - Quizzes';
 	}, []);
 	const { user } = useAuth();
+
 	const headers = { headers: { Authorization: `Bearer ${user?.token}` } };
 
 	const quizQuery = useQuery({
@@ -48,6 +50,10 @@ export default function QuizzesDashboard() {
 				}),
 		enabled: user !== undefined,
 	});
+
+	if (user && user.id === 0) {
+		return <QuizzesManager quizzes={quizQuery.data} />;
+	}
 
 	const QuizCarouselItem = ({ quiz, quizProgress }: { quiz: QuizType; quizProgress: QuizProgressType[] }) => {
 		const navigate = useNavigate();

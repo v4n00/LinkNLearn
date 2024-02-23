@@ -5,8 +5,8 @@ Bachelor Thesis Project
 # TODO frontend
 
 -   [ ] Quiz sysadmin page
--   [ ] Remake Home page
 -   [ ] General: Data structure page
+-   [x] ~~Remake Home page~~
 -   [x] ~~Flashcard sysadmin page~~
 -   [x] ~~Flashcard search functionality~~
 -   [x] ~~General: Quiz page~~
