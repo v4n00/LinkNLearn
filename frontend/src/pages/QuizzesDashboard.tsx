@@ -14,7 +14,7 @@ import axios, { AxiosError } from 'axios';
 import { Check, Loader2, ShieldQuestion } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import QuizzesManager from './QuizzesManager';
+import QuizzesManager from '../components/QuizzesManager';
 
 export default function QuizzesDashboard() {
 	useEffect(() => {
@@ -48,11 +48,11 @@ export default function QuizzesDashboard() {
 					if ((e as AxiosError).response?.status === 404) return [] as QuizProgressType[];
 					else errorToast(`Error: ${(e as AxiosError).response?.data}`);
 				}),
-		enabled: user !== undefined,
+		enabled: user !== undefined && user.id !== 0,
 	});
 
 	if (user && user.id === 0) {
-		return <QuizzesManager quizzes={quizQuery.data} />;
+		return <QuizzesManager />;
 	}
 
 	const QuizCarouselItem = ({ quiz, quizProgress }: { quiz: QuizType; quizProgress: QuizProgressType[] }) => {

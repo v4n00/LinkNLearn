@@ -10,6 +10,11 @@ export interface QuizType {
 	questions: QuestionType[];
 }
 
+export interface QuizEditType {
+	id?: number;
+	title: string;
+}
+
 export interface QuizProgressType {
 	id: number;
 	userId: number;
