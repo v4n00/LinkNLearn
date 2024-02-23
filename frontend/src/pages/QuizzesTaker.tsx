@@ -19,6 +19,10 @@ const QuizzesTaker = () => {
 	const { user } = useAuth();
 	const headers = { headers: { Authorization: `Bearer ${user?.token}` } };
 
+	useEffect(() => {
+		document.title = 'LinkNLearn - Quiz';
+	}, []);
+
 	const { data } = useQuery({
 		queryKey: ['quiz', quizId],
 		queryFn: (): Promise<QuizType> =>

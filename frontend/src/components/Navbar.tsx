@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { DS_LINKS } from '@/constants/const';
 import useAuth from '@/hooks/useAuth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AxiosError } from 'axios';
@@ -25,25 +26,6 @@ export default function Navbar() {
 	const { user } = useAuth();
 	const { setTheme } = useTheme();
 
-	const links: { title: string; href: string }[] = [
-		{
-			title: 'Simple Linked List',
-			href: '/data-structures/simple-linked-list',
-		},
-		{
-			title: 'Double Linked List',
-			href: '/data-structures/double-linked-list',
-		},
-		{
-			title: 'Hash Table',
-			href: '/data-structures/hash-table',
-		},
-		{
-			title: 'Binary Search Tree',
-			href: '/data-structures/binary-search-tree',
-		},
-	];
-
 	return (
 		<header className="bg-background sticky z-20 flex h-20 items-center px-6 border-b-2">
 			<div className="flex w-full">
@@ -58,7 +40,7 @@ export default function Navbar() {
 							<NavigationMenuTrigger>Data Structures</NavigationMenuTrigger>
 							<NavigationMenuContent>
 								<ul className="grid gap-3 p-4 md:grid-cols-2 md:w-[400px] grid-cols-1 w-[200px] text-center">
-									{links.map((component) => (
+									{DS_LINKS.map((component) => (
 										<ListItem key={component.title} href={component.href}>
 											{component.title}
 										</ListItem>

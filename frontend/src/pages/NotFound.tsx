@@ -1,7 +1,12 @@
 import { Button } from '@/components/ui/button';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const NotFound = () => {
+	useEffect(() => {
+		document.title = 'LinkNLearn - Not Found';
+	}, []);
+
 	const navigate = useNavigate();
 	return (
 		<div className="flex flex-col items-center justify-center space-y-6">
