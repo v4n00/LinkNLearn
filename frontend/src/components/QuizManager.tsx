@@ -9,7 +9,7 @@ import axios, { AxiosError } from 'axios';
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-const QuizzesManager = () => {
+const QuizManager = () => {
 	const [filter, setFilter] = useState('');
 	const [onChange, setOnChange] = useState(false);
 
@@ -59,7 +59,7 @@ const QuizzesManager = () => {
 					{data 
 						? filterQuizzes().length > 0
 							? filterQuizzes().map((quiz) => <QuizEditor key={quiz.id} quiz={quiz} setOnChange={setOnChange} />)
-							: <p className="w-[600px] text-center mt-10">No flashcards found</p>
+							: <p className="w-[600px] text-center mt-10">No quizzes found</p>
 						: <Loader2 className="w-[600px] animate-spin mt-10" />}
 				</ScrollArea>
 			</div>
@@ -67,4 +67,4 @@ const QuizzesManager = () => {
 	);
 };
 
-export default QuizzesManager;
+export default QuizManager;

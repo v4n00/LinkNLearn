@@ -14,9 +14,9 @@ import axios, { AxiosError } from 'axios';
 import { Check, Loader2, ShieldQuestion } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import QuizzesManager from '../components/QuizzesManager';
+import QuizManager from '../components/QuizManager';
 
-export default function QuizzesDashboard() {
+export default function QuizDashboard() {
 	useEffect(() => {
 		document.title = 'LinkNLearn - Quizzes';
 	}, []);
@@ -52,7 +52,7 @@ export default function QuizzesDashboard() {
 	});
 
 	if (user && user.id === 0) {
-		return <QuizzesManager />;
+		return <QuizManager />;
 	}
 
 	const QuizCarouselItem = ({ quiz, quizProgress }: { quiz: QuizType; quizProgress: QuizProgressType[] }) => {

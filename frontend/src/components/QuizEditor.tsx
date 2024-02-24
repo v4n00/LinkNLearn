@@ -7,17 +7,18 @@ import axios, { AxiosError } from 'axios';
 import { Edit, Save, Trash } from 'lucide-react';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { errorToast, successToast } from './Toasts';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Form, FormControl, FormField, FormItem } from './ui/form';
 import { Input } from './ui/input';
 
 const QuizEditor = ({ quiz, setOnChange }: { quiz?: QuizEditType; setOnChange: Dispatch<SetStateAction<boolean>> }) => {
 	const { user } = useAuth();
 	const headers = { headers: { Authorization: `Bearer ${user?.token}` } };
+	const navigate = useNavigate();
 
 	const deleteQuiz = useMutation({
 		mutationFn: (id: number) => {
@@ -57,10 +58,9 @@ const QuizEditor = ({ quiz, setOnChange }: { quiz?: QuizEditType; setOnChange: D
 	});
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
-		const id = form.getValues('id');
-		if (id) {
+		if (values.id) {
 			if (quiz?.title === values.title) {
-				errorToast('No changes made');
+				errorToast('Error: No changes made');
 				return;
 			}
 			updateQuiz.mutate(values, { onSuccess: () => setOnChange(true) });
@@ -113,19 +113,17 @@ const QuizEditor = ({ quiz, setOnChange }: { quiz?: QuizEditType; setOnChange: D
 						<Button className="size-[40px] p-0" variant="success" type="submit">
 							<Save size={25} />
 						</Button>
-						<Dialog>
-							<DialogTrigger asChild>
-								<Button className="size-[40px] p-0" variant="warning" disabled={form.getValues('id') === undefined}>
-									<Edit size={25} />
-								</Button>
-							</DialogTrigger>
-							<DialogContent>
-								<DialogHeader>
-									<DialogTitle>Manage questions</DialogTitle>
-								</DialogHeader>
-								{/* question editor here */}
-							</DialogContent>
-						</Dialog>
+						<Button
+							className="size-[40px] p-0"
+							variant="warning"
+							disabled={form.getValues('id') === undefined}
+							onClick={(e) => {
+								e.preventDefault();
+								navigate(`/questions/${quiz?.id}`);
+							}}
+						>
+							<Edit size={25} />
+						</Button>
 						<Button className="size-[40px] p-0" variant="destructive" type="reset" onClick={onDelete}>
 							<Trash size={25} />
 						</Button>

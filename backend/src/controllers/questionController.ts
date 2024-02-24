@@ -25,7 +25,6 @@ export async function getQuestions(quizId: number, hasAnswer: boolean): Promise<
 
 export async function updateQuestion(id: number, data: Partial<Question>): Promise<void> {
 	try {
-		if (data.quizId) throw new Error('Cannot change ownership of question');
 		if (data.options) data.options = JSON.stringify(data.options);
 		await question.update(data, { where: { id } });
 	} catch (e) {

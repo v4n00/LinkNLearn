@@ -12,8 +12,9 @@ import FlashcardsManager from './pages/FlashcardsManager';
 import FlashcardsViewer from './pages/FlashcardsViewer';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import QuizzesDashboard from './pages/QuizzesDashboard';
-import QuizzesTaker from './pages/QuizzesTaker';
+import QuestionManager from './pages/QuestionManager';
+import QuizDashboard from './pages/QuizDashboard';
+import QuizTaker from './pages/QuizTaker';
 
 const queryClient = new QueryClient();
 
@@ -28,8 +29,16 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 							<Route path="/" element={<Home />} />
 
 							{/* Quizzes routes */}
-							<Route path="/quizzes" element={<QuizzesDashboard />} />
-							<Route path="/quizzes/:quizId" element={<QuizzesTaker />} />
+							<Route path="/quizzes" element={<QuizDashboard />} />
+							<Route path="/quizzes/:quizId" element={<QuizTaker />} />
+							<Route
+								path="/questions/:quizId"
+								element={
+									<ProtectedRoute>
+										<QuestionManager />
+									</ProtectedRoute>
+								}
+							/>
 
 							{/* Flashcard routes */}
 							<Route path="/flashcards" element={<FlashcardsDashboard />} />

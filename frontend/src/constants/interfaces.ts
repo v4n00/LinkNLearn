@@ -41,6 +41,7 @@ export interface QuestionEditType {
 	quizId: number;
 	text: string;
 	options: string[];
+	answer: string;
 }
 
 export interface QuizResultType {

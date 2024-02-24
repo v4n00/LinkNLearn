@@ -77,6 +77,6 @@
 		@apply text-3xl text-center;
 	}
 	h1 {
-		@apply whitespace-pre-wrap text-7xl font-extrabold text-center my-16;
+		@apply whitespace-pre-wrap text-7xl font-extrabold text-center my-10;
 	}
 }

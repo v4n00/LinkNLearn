@@ -8,7 +8,7 @@ export default function initFK() {
 	user.hasMany(flashcard, { foreignKey: 'userId' });
 	flashcard.belongsTo(user, { foreignKey: 'userId' });
 
-	user.hasMany(quizProgress, { foreignKey: 'quizId' });
+	user.hasMany(quizProgress, { foreignKey: 'userId' });
 	quizProgress.belongsTo(user, { foreignKey: 'userId' });
 
 	quiz.hasMany(quizProgress, { foreignKey: 'quizId' });

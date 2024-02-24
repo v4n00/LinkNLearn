@@ -2,10 +2,14 @@
 
 Bachelor Thesis Project
 
-# TODO frontend - 65%
+# TODO frontend - 70%
 
--   [ ] Quiz sysadmin page
+-   [ ] Single linked list
+-   [ ] Double linked list
+-   [ ] Hash Table
+-   [ ] BST
 -   [ ] General: Data structure page
+-   [x] ~~Quiz sysadmin page~~
 -   [x] ~~Remake Home page~~
 -   [x] ~~Flashcard sysadmin page~~
 -   [x] ~~Flashcard search functionality~~

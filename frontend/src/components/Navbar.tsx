@@ -244,7 +244,7 @@ const LogInComponent = () => {
 
 	const logInFormSchema = z.object({
 		email: z.string().email().or(z.literal('admin')),
-		password: z.string().min(8, 'Password must contain at least 8 characters').max(32, 'Password must contain at most 32 characters'),
+		password: z.string(),
 	});
 
 	const form = useForm<z.infer<typeof logInFormSchema>>({

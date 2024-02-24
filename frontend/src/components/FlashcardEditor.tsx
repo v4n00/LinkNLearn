@@ -58,10 +58,9 @@ const FlashcardEditor = ({ flashcard, setOnChange }: { flashcard?: FlashcardType
 	});
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
-		const id = form.getValues('id');
-		if (id) {
+		if (values.id) {
 			if (flashcard?.frontSide === values.frontSide && flashcard?.backSide === values.backSide) {
-				errorToast('No changes made');
+				errorToast('Error: No changes made');
 				return;
 			}
 			updateFlashcard.mutate(values, { onSuccess: () => setOnChange(true) });

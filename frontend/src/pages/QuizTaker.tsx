@@ -12,7 +12,7 @@ import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const QuizzesTaker = () => {
+const QuizTaker = () => {
 	const { quizId } = useParams();
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
 	const [questionIndexOffset, setQuestionIndexOffset] = useState<number>(0);
@@ -47,7 +47,7 @@ const QuizzesTaker = () => {
 	const submitAnswersToServer = useMutation({
 		mutationFn: (answers: AnswerType[]): Promise<QuizResultType> =>
 			axios
-				.post(`${APIURL}/quiz/${quizId}/verify`, { answers }, headers)
+				.post(`${APIURL}/quiz/${quizId}/verify`, { answers }, user?.token ? headers : undefined)
 				.then((res) => res.data)
 				.catch((e) => {
 					errorToast(`Error: ${(e as AxiosError).response?.data}`);
@@ -124,4 +124,4 @@ const QuizzesTaker = () => {
 	);
 };
 
-export default QuizzesTaker;
+export default QuizTaker;
