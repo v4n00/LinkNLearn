@@ -8,6 +8,7 @@ Bachelor Thesis Project
 -   [ ] Double linked list
 -   [ ] Hash Table
 -   [ ] BST
+-   [ ] Snippets of code for content
 -   [ ] General: Data structure page
 -   [x] ~~Quiz sysadmin page~~
 -   [x] ~~Remake Home page~~
@@ -47,6 +48,8 @@ Bachelor Thesis Project
 -   [ ] email verification
 -   [ ] reset password
 -   [ ] responsive design (use drawer for log in/sheet for menu)
+-   [ ] favorite flashcards
+-   [ ] study reminder email
 
 # Database design
 
