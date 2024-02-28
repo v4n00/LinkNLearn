@@ -6,7 +6,7 @@ import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 
-const FlashcardsNavigator = ({ flashcards }: { flashcards?: FlashcardType[] }) => {
+const FlashcardNavigator = ({ flashcards }: { flashcards?: FlashcardType[] }) => {
 	const [flashcardsArray, setFlashcardsArray] = useState<FlashcardType[] | undefined>(flashcards);
 	const [loading, setLoading] = useState(false);
 
@@ -65,4 +65,4 @@ const FlashcardsNavigator = ({ flashcards }: { flashcards?: FlashcardType[] }) =
 	);
 };
 
-export default FlashcardsNavigator;
+export default FlashcardNavigator;

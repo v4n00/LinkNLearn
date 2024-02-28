@@ -1,4 +1,4 @@
-import FlashcardsNavigator from '@/components/FlashcardsNavigator';
+import FlashcardNavigator from '@/components/FlashcardNavigator';
 import { errorToast } from '@/components/Toasts';
 import { APIURL } from '@/constants/const';
 import { FlashcardType } from '@/constants/interfaces';
@@ -43,7 +43,7 @@ const FlashcardsViewer = ({ type }: FlashcardViewerType) => {
 	return (
 		<main>
 			<h1>{type} flashcards</h1>
-			<FlashcardsNavigator flashcards={data} />
+			<FlashcardNavigator flashcards={data} />
 		</main>
 	);
 };

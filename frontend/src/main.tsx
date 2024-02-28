@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { ThemeProvider } from './components/ThemeProvider';
 import { AuthProvider } from './contexts/AuthContext';
 import './index.css';
+import DataStructureContainer from './pages/DataStructureContainer';
 import FlashcardsDashboard from './pages/FlashcardsDashboard';
 import FlashcardsManager from './pages/FlashcardsManager';
 import FlashcardsViewer from './pages/FlashcardsViewer';
@@ -27,6 +28,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 					<div className="flex justify-center" style={{ height: 'calc(100vh - 5rem)' }}>
 						<Routes>
 							<Route path="/" element={<Home />} />
+
+							{/* Data structures routes */}
+							<Route path="/data-structures/simple-linked-list" element={<DataStructureContainer type="Simple Linked List" />} />
+							<Route path="/data-structures/double-linked-list" element={<DataStructureContainer type="Double Linked List" />} />
+							<Route path="/data-structures/hash-table" element={<DataStructureContainer type="Hash Table" />} />
+							<Route path="/data-structures/binary-search-tree" element={<DataStructureContainer type="Binary Search Tree" />} />
 
 							{/* Quizzes routes */}
 							<Route path="/quizzes" element={<QuizDashboard />} />
@@ -68,6 +75,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 								}
 							/>
 
+							{/* 404 */}
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					</div>

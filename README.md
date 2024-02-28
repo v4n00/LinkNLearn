@@ -2,14 +2,15 @@
 
 Bachelor Thesis Project
 
-# TODO frontend - 70%
+# TODO frontend - 75%
 
 -   [ ] Single linked list
 -   [ ] Double linked list
 -   [ ] Hash Table
 -   [ ] BST
--   [ ] Snippets of code for content
+-   [ ] Sandbox tab
 -   [ ] General: Data structure page
+-   [x] ~~Learn tab~~
 -   [x] ~~Quiz sysadmin page~~
 -   [x] ~~Remake Home page~~
 -   [x] ~~Flashcard sysadmin page~~
@@ -44,12 +45,15 @@ Bachelor Thesis Project
 
 # EXTRAS - 0%
 
+-   [ ] fill flashcards
+-   [ ] fill quizzes
+-   [ ] fill data structures lectures
+-   [ ] snippets of code for content
 -   [ ] forgot password
 -   [ ] email verification
 -   [ ] reset password
--   [ ] responsive design (use drawer for log in/sheet for menu)
 -   [ ] favorite flashcards
--   [ ] study reminder email
+-   [ ] responsive design (use drawer for log in/sheet for menu)
 
 # Database design
 
