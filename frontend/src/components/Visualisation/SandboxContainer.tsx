@@ -10,8 +10,8 @@ import SandboxControls from './SandboxControls';
 const SandboxContainer = ({ type }: DSTypes) => {
 	return (
 		<TabsContent value="Sandbox" className="h-full">
-			<div className="h-full flex flex-col justify-between gap-2 text-2xl font-bold">
-				<Card className="">
+			<div className="h-full flex flex-col justify-around gap-2 text-2xl font-bold">
+				<Card>
 					<p>{type}</p>
 				</Card>
 				<SandboxControls />

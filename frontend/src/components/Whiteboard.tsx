@@ -35,9 +35,9 @@ const Whiteboard = forwardRef(({ children }: { children: ReactNode }, ref) => {
 
 	const handleWheel = useCallback(
 		(e: { preventDefault: () => void; deltaY: number }) => {
-			const scaleAdjustment = e.deltaY * -0.01;
+			const scaleAdjustment = (e.deltaY * -0.01) / 2;
 			const newScale = scale + scaleAdjustment;
-			setScale(Math.min(Math.max(0.5, newScale), 2));
+			setScale(Math.min(Math.max(0.5, newScale), 1.5));
 		},
 		[scale]
 	);

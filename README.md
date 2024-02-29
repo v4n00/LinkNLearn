@@ -4,11 +4,11 @@ Bachelor Thesis Project
 
 # TODO frontend - 75%
 
--   [ ] Single linked list
--   [ ] Double linked list
--   [ ] Hash Table
--   [ ] BST
--   [ ] Sandbox tab
+-   [ ] Single linked list viz
+-   [ ] Double linked list viz
+-   [ ] Hash Table viz
+-   [ ] BST viz
+-   [ ] Sandbox data link
 -   [ ] General: Data structure page
 -   [x] ~~Learn tab~~
 -   [x] ~~Quiz sysadmin page~~

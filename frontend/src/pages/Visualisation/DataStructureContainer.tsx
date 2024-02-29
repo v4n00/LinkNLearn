@@ -1,3 +1,6 @@
+import BSTviz from '@/components/Visualisation/BSTviz';
+import DLLviz from '@/components/Visualisation/DLLviz';
+import HTviz from '@/components/Visualisation/HTviz';
 import LearnContainer from '@/components/Visualisation/LearnContainer';
 import SLLviz from '@/components/Visualisation/SLLviz';
 import SandboxContainer from '@/components/Visualisation/SandboxContainer';
@@ -7,15 +10,18 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DSTypes } from '@/constants/interfaces';
 import { WhiteboardProvider } from '@/contexts/WhiteboardContext';
 import { BookText, Box } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const DataStructureContainer = ({ type }: DSTypes) => {
 	const whiteboardRef = useRef<WhiteboardHandles>(null);
+	const [data, setData] = useState<Array<number>>([1, 2, 3, 4, 5]);
+
+	const CompViz = type === 'Simple Linked List' ? SLLviz : type === 'Double Linked List' ? DLLviz : type === 'Hash Table' ? HTviz : BSTviz;
 
 	return (
 		<WhiteboardProvider innerRef={whiteboardRef}>
 			<ResizablePanelGroup direction="horizontal">
-				<ResizablePanel defaultSize={33} minSize={33} maxSize={66}>
+				<ResizablePanel defaultSize={33} minSize={33} maxSize={40}>
 					<Tabs defaultValue="Learn" className="h-full p-3 flex flex-col">
 						<TabsList className="grid w-full grid-cols-2">
 							<TabsTrigger value="Learn" className="tracking-widest">
@@ -34,7 +40,7 @@ const DataStructureContainer = ({ type }: DSTypes) => {
 				<ResizableHandle withHandle />
 				<ResizablePanel>
 					<Whiteboard ref={whiteboardRef}>
-						<SLLviz />
+						<CompViz data={data} />
 					</Whiteboard>
 				</ResizablePanel>
 			</ResizablePanelGroup>
