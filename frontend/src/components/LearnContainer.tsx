@@ -1,3 +1,6 @@
+import BST from '@/assets/lectures/BST/BST';
+import DLL from '@/assets/lectures/DLL/DLL';
+import HT from '@/assets/lectures/HT/HT';
 import SLL from '@/assets/lectures/SLL/SLL';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
@@ -23,7 +26,7 @@ const LearnContainer = ({ type }: LearnContainerProps) => {
 		}
 	};
 
-	const pages = type === 'Simple Linked List' ? SLL : type === 'Double Linked List' ? [] : type === 'Hash Table' ? [] : type === 'Binary Search Tree' ? [] : [];
+	const pages = type === 'Simple Linked List' ? SLL : type === 'Double Linked List' ? DLL : type === 'Hash Table' ? HT : type === 'Binary Search Tree' ? BST : [];
 
 	return (
 		<TabsContent value="Learn" className="h-full flex flex-col content-between gap-2">

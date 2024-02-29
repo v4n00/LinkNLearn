@@ -1,4 +1,4 @@
-import QuizEditor from '@/components/QuizEditor';
+import QuizEditor from '@/components/Quiz/QuizEditor';
 import { errorToast } from '@/components/Toasts';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';

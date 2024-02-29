@@ -8,11 +8,11 @@ import { Save, Trash } from 'lucide-react';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { errorToast, successToast } from './Toasts';
-import { Button } from './ui/button';
-import { Card } from './ui/card';
-import { Form, FormControl, FormField, FormItem } from './ui/form';
-import { Input } from './ui/input';
+import { errorToast, successToast } from '../Toasts';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Form, FormControl, FormField, FormItem } from '../ui/form';
+import { Input } from '../ui/input';
 
 const FlashcardEditor = ({ flashcard, setOnChange }: { flashcard?: FlashcardType; setOnChange: Dispatch<SetStateAction<boolean>> }) => {
 	const { user } = useAuth();

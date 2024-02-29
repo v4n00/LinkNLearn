@@ -1,4 +1,4 @@
-import FlashcardNavigator from '@/components/FlashcardNavigator';
+import FlashcardNavigator from '@/components/Flashcard/FlashcardNavigator';
 import { errorToast } from '@/components/Toasts';
 import { APIURL } from '@/constants/const';
 import { FlashcardType } from '@/constants/interfaces';

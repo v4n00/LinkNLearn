@@ -1,4 +1,5 @@
 import LearnContainer from '@/components/LearnContainer';
+import SLLviz from '@/components/Visualisation/SLLviz';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BookText, Box } from 'lucide-react';
@@ -27,7 +28,9 @@ const DataStructureContainer = ({ type }: DataStructureContainerProps) => {
 				</Tabs>
 			</ResizablePanel>
 			<ResizableHandle withHandle />
-			<ResizablePanel>{type}</ResizablePanel>
+			<ResizablePanel>
+				<SLLviz />
+			</ResizablePanel>
 		</ResizablePanelGroup>
 	);
 };

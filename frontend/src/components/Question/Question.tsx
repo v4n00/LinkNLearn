@@ -3,8 +3,8 @@ import { AnswerType, QuestionType } from '@/constants/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Button } from './ui/button';
-import { Card, CardContent, CardHeader } from './ui/card';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader } from '../ui/card';
 
 interface QuestionProps {
 	question: QuestionType;

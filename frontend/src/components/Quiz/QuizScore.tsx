@@ -1,8 +1,8 @@
 import useAuth from '@/hooks/useAuth';
 import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from './ui/button';
-import { Card } from './ui/card';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
 
 const QuizScores = ({ score, maxScore }: { score?: number; maxScore?: number }) => {
 	const { user } = useAuth();

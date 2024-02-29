@@ -1,4 +1,4 @@
-import FlashcardEditor from '@/components/FlashcardEditor';
+import FlashcardEditor from '@/components/Flashcard/FlashcardEditor';
 import { errorToast } from '@/components/Toasts';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';

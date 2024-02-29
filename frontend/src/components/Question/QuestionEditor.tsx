@@ -8,12 +8,12 @@ import { Save, Trash } from 'lucide-react';
 import { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { errorToast, successToast } from './Toasts';
-import { Button } from './ui/button';
-import { Card } from './ui/card';
-import { Form, FormControl, FormField, FormItem } from './ui/form';
-import { Input } from './ui/input';
-import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import { errorToast, successToast } from '../Toasts';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Form, FormControl, FormField, FormItem } from '../ui/form';
+import { Input } from '../ui/input';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 
 const QuestionEditor = ({ question, setOnChange, quizId }: { question: QuestionEditType; setOnChange: Dispatch<SetStateAction<boolean>>; quizId: number }) => {
 	// im tying a fucking rope with this one

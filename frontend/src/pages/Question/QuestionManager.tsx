@@ -9,7 +9,7 @@ import axios, { AxiosError } from 'axios';
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import QuestionEditor from '../components/QuestionEditor';
+import QuestionEditor from '../../components/Question/QuestionEditor';
 
 const QuestionManager = () => {
 	const { user } = useAuth();

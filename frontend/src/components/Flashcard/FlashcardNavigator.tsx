@@ -1,10 +1,10 @@
 import { FlashcardType } from '@/constants/interfaces';
 import { Loader2, Shuffle } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
 import Flashcard from './Flashcard';
-import { Button } from './ui/button';
-import { Card } from './ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 
 const FlashcardNavigator = ({ flashcards }: { flashcards?: FlashcardType[] }) => {
 	const [flashcardsArray, setFlashcardsArray] = useState<FlashcardType[] | undefined>(flashcards);

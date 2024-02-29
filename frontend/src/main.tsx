@@ -7,15 +7,15 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { ThemeProvider } from './components/ThemeProvider';
 import { AuthProvider } from './contexts/AuthContext';
 import './index.css';
-import DataStructureContainer from './pages/DataStructureContainer';
-import FlashcardsDashboard from './pages/FlashcardsDashboard';
-import FlashcardsManager from './pages/FlashcardsManager';
-import FlashcardsViewer from './pages/FlashcardsViewer';
+import FlashcardsDashboard from './pages/Flashcard/FlashcardsDashboard';
+import FlashcardsManager from './pages/Flashcard/FlashcardsManager';
+import FlashcardsViewer from './pages/Flashcard/FlashcardsViewer';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import QuestionManager from './pages/QuestionManager';
-import QuizDashboard from './pages/QuizDashboard';
-import QuizTaker from './pages/QuizTaker';
+import QuestionManager from './pages/Question/QuestionManager';
+import QuizDashboard from './pages/Quiz/QuizDashboard';
+import QuizTaker from './pages/Quiz/QuizTaker';
+import DataStructureContainer from './pages/Visualisation/DataStructureContainer';
 
 const queryClient = new QueryClient();
 

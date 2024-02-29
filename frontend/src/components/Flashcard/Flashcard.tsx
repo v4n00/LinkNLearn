@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { useRef, useState } from 'react';
-import { Card, CardHeader } from './ui/card';
-import { ScrollArea } from './ui/scroll-area';
+import { Card, CardHeader } from '../ui/card';
+import { ScrollArea } from '../ui/scroll-area';
 
 const Flashcard = ({ frontSide, backSide }: { frontSide: string; backSide: string }) => {
 	const ref = useRef<HTMLDivElement>(null);

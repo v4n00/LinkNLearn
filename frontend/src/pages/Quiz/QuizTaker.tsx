@@ -1,5 +1,5 @@
-import Question from '@/components/Question';
-import QuizScores from '@/components/QuizScore';
+import Question from '@/components/Question/Question';
+import QuizScores from '@/components/Quiz/QuizScore';
 import { errorToast, successToast } from '@/components/Toasts';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';

@@ -14,7 +14,7 @@ import axios, { AxiosError } from 'axios';
 import { Check, Loader2, ShieldQuestion } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import QuizManager from '../components/QuizManager';
+import QuizManager from '../../components/Quiz/QuizManager';
 
 export default function QuizDashboard() {
 	useEffect(() => {
