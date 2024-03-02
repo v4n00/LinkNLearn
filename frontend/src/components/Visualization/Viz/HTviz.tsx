@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import { useEffect, useRef } from 'react';
 
-const HTviz = ({ data }) => {
+const HTviz = () => {
 	const ref = useRef(null);
 
 	useEffect(() => {

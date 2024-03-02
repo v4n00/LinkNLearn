@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import { useEffect, useRef } from 'react';
 
-const SLLviz = ({ data }) => {
+const BSTviz = () => {
 	const ref = useRef(null);
 
 	useEffect(() => {
@@ -59,4 +59,4 @@ const SLLviz = ({ data }) => {
 	return <svg ref={ref}></svg>;
 };
 
-export default SLLviz;
+export default BSTviz;

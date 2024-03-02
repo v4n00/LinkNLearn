@@ -55,7 +55,3 @@ export interface FlashcardType {
 	frontSide: string;
 	backSide: string;
 }
-
-export interface DSTypes {
-	type: 'Simple Linked List' | 'Double Linked List' | 'Hash Table' | 'Binary Search Tree';
-}

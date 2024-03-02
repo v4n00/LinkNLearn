@@ -2,11 +2,13 @@ import { Toaster } from '@/components/ui/toaster';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { DataStructureTypes } from './assets/data structures/types';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import { ThemeProvider } from './components/ThemeProvider';
 import { AuthProvider } from './contexts/AuthContext';
 import './index.css';
+import DataStructureContainer from './pages/DataStructureContainer';
 import FlashcardsDashboard from './pages/Flashcard/FlashcardsDashboard';
 import FlashcardsManager from './pages/Flashcard/FlashcardsManager';
 import FlashcardsViewer from './pages/Flashcard/FlashcardsViewer';
@@ -15,7 +17,6 @@ import NotFound from './pages/NotFound';
 import QuestionManager from './pages/Question/QuestionManager';
 import QuizDashboard from './pages/Quiz/QuizDashboard';
 import QuizTaker from './pages/Quiz/QuizTaker';
-import DataStructureContainer from './pages/Visualisation/DataStructureContainer';
 
 const queryClient = new QueryClient();
 
@@ -30,10 +31,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 							<Route path="/" element={<Home />} />
 
 							{/* Data structures routes */}
-							<Route path="/data-structures/simple-linked-list" element={<DataStructureContainer type="Simple Linked List" />} />
-							<Route path="/data-structures/double-linked-list" element={<DataStructureContainer type="Double Linked List" />} />
-							<Route path="/data-structures/hash-table" element={<DataStructureContainer type="Hash Table" />} />
-							<Route path="/data-structures/binary-search-tree" element={<DataStructureContainer type="Binary Search Tree" />} />
+							<Route path="/data-structures/simple-linked-list" element={<DataStructureContainer type={DataStructureTypes.SLL} />} />
+							<Route path="/data-structures/double-linked-list" element={<DataStructureContainer type={DataStructureTypes.DLL} />} />
+							<Route path="/data-structures/hash-table" element={<DataStructureContainer type={DataStructureTypes.HT} />} />
+							<Route path="/data-structures/binary-search-tree" element={<DataStructureContainer type={DataStructureTypes.BST} />} />
 
 							{/* Quizzes routes */}
 							<Route path="/quizzes" element={<QuizDashboard />} />

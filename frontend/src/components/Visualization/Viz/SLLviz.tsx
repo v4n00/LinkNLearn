@@ -1,7 +1,11 @@
+import useDS from '@/hooks/useDS';
 import * as d3 from 'd3';
 import { useEffect, useRef } from 'react';
 
-const BSTviz = ({ data }) => {
+const SLLviz = () => {
+	const { data } = useDS();
+	const ds = data.toArray();
+
 	const ref = useRef(null);
 
 	useEffect(() => {
@@ -16,7 +20,7 @@ const BSTviz = ({ data }) => {
 
 		const svg = d3
 			.select(ref.current)
-			.attr('width', data.length * (boxWidth + boxSpacing) + pointerSize + 60)
+			.attr('width', ds.length * (boxWidth + boxSpacing) + pointerSize + 60)
 			.attr('height', 200);
 
 		svg.append('rect')
@@ -27,7 +31,7 @@ const BSTviz = ({ data }) => {
 			.attr('rx', 20)
 			.attr('fill', 'blue');
 
-		data.forEach((d, i) => {
+		ds.forEach((d, i) => {
 			const x = startX + i * (boxWidth + boxSpacing);
 
 			svg.append('line')
@@ -54,9 +58,9 @@ const BSTviz = ({ data }) => {
 				.attr('font-size', '20px')
 				.text(d);
 		});
-	}, [data]);
+	}, [ds]);
 
 	return <svg ref={ref}></svg>;
 };
 
-export default BSTviz;
+export default SLLviz;
