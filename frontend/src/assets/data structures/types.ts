@@ -14,7 +14,10 @@ type ActionMap<M extends { [index: string]: unknown }> = {
 
 export type DSAction = SinglyLinkedListActions | DoublyLinkedListActions;
 
-export type DataStructure = SinglyLinkedList<number> | DoublyLinkedList<number>;
+export type DataStructure = {
+	dataStructure: SinglyLinkedList<number> | DoublyLinkedList<number>;
+	version: number;
+};
 
 export type DSContextType<T extends DataStructure> = {
 	data: T;
@@ -54,22 +57,6 @@ export type SinglyLinkedListPayload = {
 		value: number;
 	};
 };
-
-// export type SinglyLinkedListPayload = {
-// 	[DataStructureActionTypes.INITIALIZE]: {
-// 		array: number[];
-// 	};
-// 	[DataStructureActionTypes.ADD]: {
-// 		value: number;
-// 	};
-// 	[DataStructureActionTypes.INSERT]: {
-// 		index: number;
-// 		value: number;
-// 	};
-// 	[DataStructureActionTypes.DELETE]: {
-// 		value: number;
-// 	};
-// };
 
 export type DoublyLinkedListPayload = {
 	[DataStructureActionTypes.INITIALIZE]: {

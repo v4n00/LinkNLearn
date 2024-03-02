@@ -7,12 +7,17 @@ import { ReactNode, createContext, useReducer } from 'react';
 export const DSContext = createContext<DSContextType<DataStructure>>({} as DSContextType<DataStructure>);
 
 const mainReducer = (state: DataStructure, action: DSAction) => {
-	if (state instanceof SinglyLinkedList) {
-		return singlyLinkedListReducer(state, action as SinglyLinkedListActions);
-	} else if (state instanceof DoublyLinkedList) {
-		return doublyLinkestListReducer(state, action as DoublyLinkedListActions);
+	let result;
+
+	if (state.dataStructure instanceof SinglyLinkedList) {
+		result = singlyLinkedListReducer(state.dataStructure, action as SinglyLinkedListActions);
+	} else if (state.dataStructure instanceof DoublyLinkedList) {
+		result = doublyLinkestListReducer(state.dataStructure, action as DoublyLinkedListActions);
+	} else {
+		throw new Error('Invalid data structure type');
 	}
-	return state;
+
+	return { dataStructure: result, version: state.version + 1 };
 };
 
 export const DSProvider = ({ children, initialData }: { children: ReactNode; initialData: DataStructure }) => {

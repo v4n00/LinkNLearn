@@ -1,6 +1,6 @@
 import DoublyLinkedList from '@/assets/data structures/DoublyLinkedList';
 import SinglyLinkedList from '@/assets/data structures/SinglyLinkedList';
-import { DataStructureTypes } from '@/assets/data structures/types';
+import { DataStructure, DataStructureTypes } from '@/assets/data structures/types';
 import LearnContainer from '@/components/Visualization/LearnContainer';
 import SandboxContainer from '@/components/Visualization/SandboxContainer';
 import BSTviz from '@/components/Visualization/Viz/BSTviz';
@@ -16,15 +16,19 @@ import { BookText, Box } from 'lucide-react';
 import { useRef, useState } from 'react';
 
 const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
-	const initializeData = (type: DataStructureTypes): SinglyLinkedList<number> | DoublyLinkedList<number> => {
+	const initializeData = (type: DataStructureTypes) => {
+		let result;
 		switch (type) {
 			case DataStructureTypes.SLL:
-				return new SinglyLinkedList<number>().fromArray([1, 2, 3, 4, 5]);
+				result = new SinglyLinkedList<number>().fromArray([1, 2, 3, 4, 5]);
+				break;
 			case DataStructureTypes.DLL:
-				return new DoublyLinkedList<number>().fromArray([1, 2, 3, 4, 5]);
+				result = new DoublyLinkedList<number>().fromArray([1, 2, 3, 4, 5]);
+				break;
 			default:
 				throw new Error('Invalid data structure type');
 		}
+		return { dataStructure: result, version: 0 } as DataStructure;
 	};
 
 	const [initialData] = useState(() => initializeData(type));

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 
 const SLLviz = () => {
 	const { data } = useDS();
-	const ds = data.toArray();
+	const ds = data.dataStructure.toArray();
 
 	const ref = useRef(null);
 
