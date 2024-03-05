@@ -1,5 +1,6 @@
 import DoublyLinkedList from '@/assets/data structures/DoublyLinkedList';
 import SinglyLinkedList from '@/assets/data structures/SinglyLinkedList';
+import HashTable from './HashTable';
 
 type ActionMap<M extends { [index: string]: unknown }> = {
 	[Key in keyof M]: M[Key] extends undefined
@@ -12,10 +13,10 @@ type ActionMap<M extends { [index: string]: unknown }> = {
 		  };
 };
 
-export type DSAction = SinglyLinkedListActions | DoublyLinkedListActions;
+export type DSAction = SinglyLinkedListActions | DoublyLinkedListActions | HashTableActions;
 
 export type DataStructure = {
-	dataStructure: SinglyLinkedList<number> | DoublyLinkedList<number>;
+	dataStructure: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable;
 	version: number;
 };
 
@@ -37,6 +38,8 @@ export enum DataStructureActionTypes {
 	INSERT = 'INSERT',
 	DELETE = 'DELETE',
 }
+
+export type HashTableActions = ActionMap<HashTablePayload>[keyof ActionMap<HashTablePayload>];
 
 export type SinglyLinkedListActions = ActionMap<SinglyLinkedListPayload>[keyof ActionMap<SinglyLinkedListPayload>];
 
@@ -71,5 +74,18 @@ export type DoublyLinkedListPayload = {
 	};
 	[DataStructureActionTypes.DELETE]: {
 		value: number;
+	};
+};
+
+export type HashTablePayload = {
+	[DataStructureActionTypes.INITIALIZE]: {
+		array: Array<{ key: string; value: number }>;
+	};
+	[DataStructureActionTypes.ADD]: {
+		key: string;
+		value: number;
+	};
+	[DataStructureActionTypes.DELETE]: {
+		key: string;
 	};
 };

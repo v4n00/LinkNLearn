@@ -1,4 +1,5 @@
 import DoublyLinkedList from '@/assets/data structures/DoublyLinkedList';
+import HashTable from '@/assets/data structures/HashTable';
 import SinglyLinkedList from '@/assets/data structures/SinglyLinkedList';
 import { DataStructure, DataStructureTypes } from '@/assets/data structures/types';
 import LearnContainer from '@/components/Visualization/LearnContainer';
@@ -16,6 +17,7 @@ import { BookText, Box } from 'lucide-react';
 import { useRef, useState } from 'react';
 
 const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
+	// TODO: initialize random data for each data structure
 	const initializeData = (type: DataStructureTypes) => {
 		let result;
 		switch (type) {
@@ -24,6 +26,12 @@ const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 				break;
 			case DataStructureTypes.DLL:
 				result = new DoublyLinkedList<number>().fromArray([1, 2, 3, 4, 5]);
+				break;
+			case DataStructureTypes.HT:
+				result = new HashTable();
+				result.set('a', 1);
+				result.set('b', 2);
+				result.set('a', 3);
 				break;
 			default:
 				throw new Error('Invalid data structure type');

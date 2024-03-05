@@ -1,6 +1,7 @@
 import DoublyLinkedList from './DoublyLinkedList';
+import HashTable from './HashTable';
 import SinglyLinkedList from './SinglyLinkedList';
-import { DoublyLinkedListActions, SinglyLinkedListActions } from './types';
+import { DoublyLinkedListActions, HashTableActions, SinglyLinkedListActions } from './types';
 
 export const singlyLinkedListReducer = (state: SinglyLinkedList<number>, action: SinglyLinkedListActions) => {
 	switch (action.type) {
@@ -32,6 +33,23 @@ export const doublyLinkestListReducer = (state: DoublyLinkedList<number>, action
 			return state;
 		case 'DELETE':
 			state.delete(action.payload.value);
+			return state;
+		default:
+			return state;
+	}
+};
+
+export const hashTableReducer = (state: HashTable, action: HashTableActions) => {
+	switch (action.type) {
+		case 'INITIALIZE':
+			state = new HashTable();
+			action.payload.array.forEach((element) => state.set(element.key, element.value));
+			return state;
+		case 'ADD':
+			state.set(action.payload.key, action.payload.value);
+			return state;
+		case 'DELETE':
+			state.delete(action.payload.key);
 			return state;
 		default:
 			return state;

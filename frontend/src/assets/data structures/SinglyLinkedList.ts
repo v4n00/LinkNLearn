@@ -106,6 +106,28 @@ export default class SinglyLinkedList<T> {
 		return deletedNode;
 	}
 
+	find({ value = undefined, callback = undefined }: { value?: T; callback?: (value: T) => boolean }): SinglyLinkedListNode<T> | null {
+		if (!this.head) {
+			return null;
+		}
+
+		let currentNode: SinglyLinkedListNode<T> | null = this.head;
+
+		while (currentNode) {
+			if (callback && callback(currentNode.value)) {
+				return currentNode;
+			}
+
+			if (value !== undefined && currentNode.value === value) {
+				return currentNode;
+			}
+
+			currentNode = currentNode.next;
+		}
+
+		return null;
+	}
+
 	fromArray(values: T[]): SinglyLinkedList<T> {
 		values.forEach((value) => this.append(value));
 		return this;
