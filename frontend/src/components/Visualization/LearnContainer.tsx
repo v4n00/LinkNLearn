@@ -1,8 +1,8 @@
+import { DataStructureTypes } from '@/assets/data structures/types';
 import BST from '@/assets/lectures/BST/BST';
 import DLL from '@/assets/lectures/DLL/DLL';
 import HT from '@/assets/lectures/HT/HT';
 import SLL from '@/assets/lectures/SLL/SLL';
-import { DSTypes } from '@/constants/interfaces';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import CollapsibleText from '../CollapsibleText';
@@ -11,7 +11,7 @@ import { Card } from '../ui/card';
 import { ScrollArea } from '../ui/scroll-area';
 import { TabsContent } from '../ui/tabs';
 
-const LearnContainer = ({ type }: DSTypes) => {
+const LearnContainer = ({ type }: { type: DataStructureTypes }) => {
 	const [currentPage, setCurrentPage] = useState(0);
 	const nextPage = () => {
 		if (currentPage < pages.length - 1) {
@@ -24,7 +24,7 @@ const LearnContainer = ({ type }: DSTypes) => {
 		}
 	};
 
-	const pages = type === 'Simple Linked List' ? SLL : type === 'Double Linked List' ? DLL : type === 'Hash Table' ? HT : type === 'Binary Search Tree' ? BST : [];
+	const pages = type === 'SLL' ? SLL : type === 'DLL' ? DLL : type === 'HT' ? HT : type === 'BST' ? BST : [];
 
 	return (
 		<TabsContent value="Learn" className="h-full">

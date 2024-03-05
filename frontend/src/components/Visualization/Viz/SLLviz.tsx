@@ -1,11 +1,11 @@
+import SinglyLinkedList from '@/assets/data structures/SinglyLinkedList';
 import useDS from '@/hooks/useDS';
 import * as d3 from 'd3';
 import { useEffect, useRef } from 'react';
 
 const SLLviz = () => {
 	const { data } = useDS();
-	const ds = data.dataStructure.toArray();
-
+	const ds = (data.dataStructure as SinglyLinkedList<number>).toArray();
 	const ref = useRef(null);
 
 	useEffect(() => {
