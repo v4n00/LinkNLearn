@@ -50,7 +50,7 @@ export class BSTNode {
 		const nodeToRemove = this.find(value);
 
 		if (!nodeToRemove) {
-			throw new Error('Item not found in the tree');
+			return false;
 		}
 
 		const { parent } = nodeToRemove;

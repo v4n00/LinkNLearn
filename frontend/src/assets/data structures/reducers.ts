@@ -2,17 +2,18 @@ import BinarySearchTree from './BinarySearchTree';
 import DoublyLinkedList from './DoublyLinkedList';
 import HashTable from './HashTable';
 import SinglyLinkedList from './SinglyLinkedList';
-import { BinarySearchTreeActions, DoublyLinkedListActions, HashTableActions, SinglyLinkedListActions } from './types';
+import { getNewDS } from './initializeData';
+import { BinarySearchTreeActions, DataStructureTypes, DoublyLinkedListActions, HashTableActions, SinglyLinkedListActions } from './types';
 
 export const singlyLinkedListReducer = (state: SinglyLinkedList<number>, action: SinglyLinkedListActions) => {
 	switch (action.type) {
 		case 'INITIALIZE':
-			return new SinglyLinkedList<number>().fromArray(action.payload.array);
+			return getNewDS(DataStructureTypes.SLL);
 		case 'ADD':
 			state.append(action.payload.value);
 			return state;
 		case 'INSERT':
-			state.insert(action.payload.index, action.payload.value);
+			state.insert(action.payload.value, action.payload.index);
 			return state;
 		case 'DELETE':
 			state.delete(action.payload.value);
@@ -25,12 +26,12 @@ export const singlyLinkedListReducer = (state: SinglyLinkedList<number>, action:
 export const doublyLinkestListReducer = (state: DoublyLinkedList<number>, action: DoublyLinkedListActions) => {
 	switch (action.type) {
 		case 'INITIALIZE':
-			return new DoublyLinkedList<number>().fromArray(action.payload.array);
+			return getNewDS(DataStructureTypes.DLL);
 		case 'ADD':
 			state.append(action.payload.value);
 			return state;
 		case 'INSERT':
-			state.insert(action.payload.index, action.payload.value);
+			state.insert(action.payload.value, action.payload.index);
 			return state;
 		case 'DELETE':
 			state.delete(action.payload.value);
@@ -43,9 +44,7 @@ export const doublyLinkestListReducer = (state: DoublyLinkedList<number>, action
 export const hashTableReducer = (state: HashTable, action: HashTableActions) => {
 	switch (action.type) {
 		case 'INITIALIZE':
-			state = new HashTable();
-			action.payload.array.forEach((element) => state.set(element.key, element.value));
-			return state;
+			return getNewDS(DataStructureTypes.HT);
 		case 'ADD':
 			state.set(action.payload.key, action.payload.value);
 			return state;
@@ -60,7 +59,7 @@ export const hashTableReducer = (state: HashTable, action: HashTableActions) => 
 export const bstReducer = (state: BinarySearchTree, action: BinarySearchTreeActions) => {
 	switch (action.type) {
 		case 'INITIALIZE':
-			return new BinarySearchTree(action.payload.array[0]).fromArray(action.payload.array.slice(1));
+			return getNewDS(DataStructureTypes.BST);
 		case 'ADD':
 			state.insert(action.payload.value);
 			return state;

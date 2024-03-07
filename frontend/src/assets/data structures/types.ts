@@ -50,7 +50,7 @@ export type DoublyLinkedListActions = ActionMap<DoublyLinkedListPayload>[keyof A
 
 export type SinglyLinkedListPayload = {
 	[DataStructureActionTypes.INITIALIZE]: {
-		array: number[];
+		type: DataStructureTypes;
 	};
 	[DataStructureActionTypes.ADD]: {
 		value: number;
@@ -66,7 +66,7 @@ export type SinglyLinkedListPayload = {
 
 export type DoublyLinkedListPayload = {
 	[DataStructureActionTypes.INITIALIZE]: {
-		array: number[];
+		type: DataStructureTypes;
 	};
 	[DataStructureActionTypes.ADD]: {
 		value: number;
@@ -82,7 +82,7 @@ export type DoublyLinkedListPayload = {
 
 export type HashTablePayload = {
 	[DataStructureActionTypes.INITIALIZE]: {
-		array: Array<{ key: string; value: number }>;
+		type: DataStructureTypes;
 	};
 	[DataStructureActionTypes.ADD]: {
 		key: string;
@@ -95,7 +95,7 @@ export type HashTablePayload = {
 
 export type BinarySearchTreePayload = {
 	[DataStructureActionTypes.INITIALIZE]: {
-		array: number[];
+		type: DataStructureTypes;
 	};
 	[DataStructureActionTypes.ADD]: {
 		value: number;

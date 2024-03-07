@@ -6,7 +6,6 @@ const BSTviz = () => {
 	const { data } = useDS();
 	const ds = (data.dataStructure as BinarySearchTree).toArray();
 	const ref = useRef(null);
-	console.log(ds);
 
 	return (
 		<svg ref={ref}>

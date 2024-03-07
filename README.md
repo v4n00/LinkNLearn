@@ -2,14 +2,19 @@
 
 Bachelor Thesis Project
 
-# TODO frontend - 75%
+# TODO frontend - 78%
 
--   [ ] Single linked list viz
--   [ ] Double linked list viz
--   [ ] Hash Table viz
+-   [ ] fill flashcards
+-   [ ] fill quizzes
+-   [ ] fill data structures lectures
+-   [ ] SLL viz
+-   [ ] DLL viz
+-   [ ] HT viz
 -   [ ] BST viz
--   [ ] Sandbox data link
+-   [ ] Sandbox controls
 -   [ ] General: Data structure page
+-   [x] ~~Sandbox data link~~
+-   [x] ~~Data structures code~~
 -   [x] ~~Learn tab~~
 -   [x] ~~Quiz sysadmin page~~
 -   [x] ~~Remake Home page~~
@@ -45,14 +50,11 @@ Bachelor Thesis Project
 
 # EXTRAS - 0%
 
--   [ ] fill flashcards
--   [ ] fill quizzes
--   [ ] fill data structures lectures
 -   [ ] snippets of code for content
+-   [ ] quiz stats
 -   [ ] forgot password
 -   [ ] email verification
 -   [ ] reset password
--   [ ] favorite flashcards
 -   [ ] responsive design (use drawer for log in/sheet for menu)
 
 # Database design

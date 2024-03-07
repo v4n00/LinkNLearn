@@ -17,7 +17,6 @@ import { useRef, useState } from 'react';
 const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 	const [initialData] = useState(() => initializeData(type));
 	const CompViz = type === DataStructureTypes.SLL ? SLLviz : type === DataStructureTypes.DLL ? DLLviz : type === DataStructureTypes.HT ? HTviz : BSTviz;
-
 	const whiteboardRef = useRef<WhiteboardHandles>(null);
 
 	return (

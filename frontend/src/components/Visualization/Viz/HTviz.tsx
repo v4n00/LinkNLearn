@@ -6,7 +6,6 @@ const HTviz = () => {
 	const { data } = useDS();
 	const ds = data.dataStructure as HashTable;
 	const ref = useRef(null);
-	console.log(ds);
 
 	return (
 		<svg ref={ref}>

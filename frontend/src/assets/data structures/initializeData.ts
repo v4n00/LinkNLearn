@@ -4,17 +4,17 @@ import HashTable from './HashTable';
 import SinglyLinkedList from './SinglyLinkedList';
 import { DataStructure, DataStructureTypes } from './types';
 
-const getRandomArray = () => {
-	const length = Math.floor(Math.random() * 3) + 5;
+export const getRandomArray = () => {
+	const length = Math.floor(Math.random() * 3) + 2;
 	return Array.from({ length }, () => Math.floor(Math.random() * 100));
 };
 
-const getRandomHTSet = () => {
+export const getRandomHTSet = () => {
 	const randomPersonNames = ['John', 'Jane', 'Doe', 'Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Miller', 'Davis', 'Garcia', 'Rodriguez', 'Wilson', 'Martinez', 'Anderson', 'Taylor', 'Thomas', 'Hernandez', 'Moore', 'Martin', 'Jackson', 'Thompson', 'White', 'Lopez', 'Lee', 'Gonzalez', 'Harris'];
 	return Array.from({ length: 5 }, () => ({ key: randomPersonNames[Math.floor(Math.random() * randomPersonNames.length)], value: Math.floor(Math.random() * 100) }));
 };
 
-const initializeData = (type: DataStructureTypes): DataStructure => {
+export const getNewDS = (type: DataStructureTypes) => {
 	let result: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable | BinarySearchTree;
 	switch (type) {
 		case DataStructureTypes.SLL:
@@ -33,7 +33,11 @@ const initializeData = (type: DataStructureTypes): DataStructure => {
 		default:
 			throw new Error('Invalid data structure type');
 	}
-	return { dataStructure: result, version: 0 } as DataStructure;
+	return result;
+};
+
+const initializeData = (type: DataStructureTypes): DataStructure => {
+	return { dataStructure: getNewDS(type), version: 0 } as DataStructure;
 };
 
 export default initializeData;
