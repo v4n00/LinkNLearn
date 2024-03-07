@@ -1,15 +1,151 @@
-export class BinarySearchTreeNode<T> {
-	left: BinarySearchTreeNode<T> | null;
-	right: BinarySearchTreeNode<T> | null;
-	parent: BinarySearchTreeNode<T> | null;
-	value: T;
+export default class BinarySearchTree {
+	root: BSTNode;
 
-	constructor(value: T) {
+	constructor(value: number) {
+		this.root = new BSTNode(value);
+	}
+
+	insert(value: number): BSTNode {
+		return this.root.insert(value);
+	}
+
+	contains(value: number): boolean {
+		return this.root.contains(value);
+	}
+
+	remove(value: number): boolean {
+		return this.root.remove(value);
+	}
+
+	toString(): string {
+		return this.root.toString();
+	}
+
+	toArray(): number[] {
+		return this.root.traverseInOrder();
+	}
+
+	fromArray(array: number[]): BinarySearchTree {
+		array.forEach((value) => this.insert(value));
+		return this;
+	}
+}
+
+export class BSTNode {
+	left: BSTNode | null;
+	right: BSTNode | null;
+	parent: BSTNode | null;
+	value: number;
+
+	constructor(value: number) {
 		this.left = null;
 		this.right = null;
 		this.parent = null;
 		this.value = value;
 	}
+
+	// BST Node Methods
+
+	remove(value: number): boolean {
+		const nodeToRemove = this.find(value);
+
+		if (!nodeToRemove) {
+			throw new Error('Item not found in the tree');
+		}
+
+		const { parent } = nodeToRemove;
+
+		if (!nodeToRemove.left && !nodeToRemove.right) {
+			if (parent) {
+				parent.removeChild(nodeToRemove);
+			} else {
+				nodeToRemove.setValue(99999);
+			}
+		} else if (nodeToRemove.left && nodeToRemove.right) {
+			const nextBiggerNode = nodeToRemove.right.findMin();
+			if (!(nextBiggerNode.value === nodeToRemove.right.value)) {
+				this.remove(nextBiggerNode.value);
+				nodeToRemove.setValue(nextBiggerNode.value);
+			} else {
+				nodeToRemove.setValue(nodeToRemove.right.value);
+				nodeToRemove.setRight(nodeToRemove.right.right);
+			}
+		} else {
+			const childNode = nodeToRemove.left || nodeToRemove.right;
+
+			if (parent) {
+				parent.replaceChild(nodeToRemove, childNode);
+			} else {
+				if (childNode) BSTNode.copyNode(childNode, nodeToRemove);
+			}
+		}
+
+		nodeToRemove.parent = null;
+
+		return true;
+	}
+
+	findMin(): BSTNode {
+		if (!this.left) {
+			return this;
+		}
+
+		return this.left.findMin();
+	}
+
+	contains(value: number): boolean {
+		return !!this.find(value);
+	}
+
+	find(value: number): BSTNode | null {
+		if (this.value === value) {
+			return this;
+		}
+
+		if (value < this.value && this.left) {
+			return this.left.find(value);
+		}
+
+		if (value > this.value && this.right) {
+			return this.right.find(value);
+		}
+
+		return null;
+	}
+
+	insert(value: number): BSTNode {
+		if (this.value === null) {
+			this.value = value;
+
+			return this;
+		}
+
+		if (value < this.value) {
+			if (this.left) {
+				return this.left.insert(value);
+			}
+
+			const newNode = new BSTNode(value);
+			this.setLeft(newNode);
+
+			return newNode;
+		}
+
+		if (value > this.value) {
+			if (this.right) {
+				return this.right.insert(value);
+			}
+
+			const newNode = new BSTNode(value);
+			this.setRight(newNode);
+
+			return newNode;
+		}
+
+		return this;
+	}
+
+	// Tree Node methods
 
 	get leftHeight(): number {
 		if (!this.left) {
@@ -27,7 +163,7 @@ export class BinarySearchTreeNode<T> {
 		return this.right.height + 1;
 	}
 
-	get height(): number {
+	get height() {
 		return Math.max(this.leftHeight, this.rightHeight);
 	}
 
@@ -35,60 +171,13 @@ export class BinarySearchTreeNode<T> {
 		return this.leftHeight - this.rightHeight;
 	}
 
-	insert(value: T): BinarySearchTreeNode<T> {
-		if (value < this.value) {
-			if (this.left) {
-				return this.left.insert(value);
-			}
-
-			const newNode = new BinarySearchTreeNode(value);
-			this.setLeft(newNode);
-
-			return newNode;
-		}
-
-		if (value > this.value) {
-			if (this.right) {
-				return this.right.insert(value);
-			}
-
-			const newNode = new BinarySearchTreeNode(value);
-			this.setRight(newNode);
-
-			return newNode;
-		}
-
-		return this;
-	}
-
-	contains(value: T): boolean {
-		return !!this.find(value);
-	}
-
-	find(value: T): BinarySearchTreeNode<T> | null {
-		if (this.nodeValueComparator.equal(this.value, value)) {
-			return this;
-		}
-
-		if (this.nodeValueComparator.lessThan(value, this.value) && this.left) {
-			// Check left nodes.
-			return this.left.find(value);
-		}
-
-		if (this.nodeValueComparator.greaterThan(value, this.value) && this.right) {
-			// Check right nodes.
-			return this.right.find(value);
-		}
-
-		return null;
-	}
-
-	setValue(value: T) {
+	setValue(value: number): BSTNode {
 		this.value = value;
+
 		return this;
 	}
 
-	setLeft(node: BinarySearchTreeNode<T>) {
+	setLeft(node: BSTNode | null): BSTNode {
 		if (this.left) {
 			this.left.parent = null;
 		}
@@ -102,21 +191,21 @@ export class BinarySearchTreeNode<T> {
 		return this;
 	}
 
-	setRight(node: BinarySearchTreeNode<T>) {
+	setRight(node: BSTNode | null): BSTNode {
 		if (this.right) {
 			this.right.parent = null;
 		}
 
 		this.right = node;
 
-		if (node) {
+		if (this.right) {
 			this.right.parent = this;
 		}
 
 		return this;
 	}
 
-	removeChild(nodeToRemove: BinarySearchTreeNode<T>) {
+	removeChild(nodeToRemove: BSTNode): boolean {
 		if (this.left && this.left.value === nodeToRemove.value) {
 			this.left = null;
 			return true;
@@ -130,19 +219,47 @@ export class BinarySearchTreeNode<T> {
 		return false;
 	}
 
-	toArray() {
-		let traverse: Array<T | null> = [];
+	replaceChild(nodeToReplace: BSTNode | null, replacementNode: BSTNode | null): boolean {
+		if (!nodeToReplace || !replacementNode) {
+			return false;
+		}
+
+		if (this.left && this.left.value === nodeToReplace.value) {
+			this.left = replacementNode;
+			return true;
+		}
+
+		if (this.right && this.right.value === nodeToReplace.value) {
+			this.right = replacementNode;
+			return true;
+		}
+
+		return false;
+	}
+
+	static copyNode(sourceNode: BSTNode, targetNode: BSTNode) {
+		targetNode.setValue(sourceNode.value);
+		targetNode.setLeft(sourceNode.left);
+		targetNode.setRight(sourceNode.right);
+	}
+
+	traverseInOrder() {
+		let traverse: number[] = [];
 
 		if (this.left) {
-			traverse = traverse.concat(this.left.toArray());
+			traverse = traverse.concat(this.left.traverseInOrder());
 		}
 
 		traverse.push(this.value);
 
 		if (this.right) {
-			traverse = traverse.concat(this.right.toArray());
+			traverse = traverse.concat(this.right.traverseInOrder());
 		}
 
 		return traverse;
+	}
+
+	toString() {
+		return this.traverseInOrder().toString();
 	}
 }

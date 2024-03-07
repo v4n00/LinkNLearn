@@ -12,7 +12,6 @@ const SandboxContainer = ({ type }: { type: DataStructureTypes }) => {
 	};
 	const log = () => {
 		console.log(data.dataStructure.toArray());
-		console.log(dispatch);
 	};
 
 	return (

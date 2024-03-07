@@ -60,7 +60,7 @@ export default class HashTable {
 		return Object.keys(this.keys);
 	}
 
-	toArray() {
+	toArray(): number[] {
 		return this.buckets.reduce((values: Array<number>, bucket) => {
 			const bucketValues = bucket.toArray().map((linkedListNode) => linkedListNode.value);
 			return values.concat(bucketValues);

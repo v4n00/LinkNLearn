@@ -1,3 +1,4 @@
+import BinarySearchTree from './BinarySearchTree';
 import DoublyLinkedList from './DoublyLinkedList';
 import HashTable from './HashTable';
 import SinglyLinkedList from './SinglyLinkedList';
@@ -14,7 +15,7 @@ const getRandomHTSet = () => {
 };
 
 const initializeData = (type: DataStructureTypes): DataStructure => {
-	let result: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable;
+	let result: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable | BinarySearchTree;
 	switch (type) {
 		case DataStructureTypes.SLL:
 			result = new SinglyLinkedList<number>().fromArray(getRandomArray());
@@ -25,6 +26,9 @@ const initializeData = (type: DataStructureTypes): DataStructure => {
 		case DataStructureTypes.HT:
 			result = new HashTable();
 			getRandomHTSet().forEach((entry) => (result as HashTable).set(entry.key, entry.value));
+			break;
+		case DataStructureTypes.BST:
+			result = new BinarySearchTree(Math.floor(Math.random() * 100)).fromArray(getRandomArray());
 			break;
 		default:
 			throw new Error('Invalid data structure type');

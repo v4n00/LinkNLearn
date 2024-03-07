@@ -1,7 +1,8 @@
+import BinarySearchTree from './BinarySearchTree';
 import DoublyLinkedList from './DoublyLinkedList';
 import HashTable from './HashTable';
 import SinglyLinkedList from './SinglyLinkedList';
-import { DoublyLinkedListActions, HashTableActions, SinglyLinkedListActions } from './types';
+import { BinarySearchTreeActions, DoublyLinkedListActions, HashTableActions, SinglyLinkedListActions } from './types';
 
 export const singlyLinkedListReducer = (state: SinglyLinkedList<number>, action: SinglyLinkedListActions) => {
 	switch (action.type) {
@@ -50,6 +51,21 @@ export const hashTableReducer = (state: HashTable, action: HashTableActions) => 
 			return state;
 		case 'DELETE':
 			state.delete(action.payload.key);
+			return state;
+		default:
+			return state;
+	}
+};
+
+export const bstReducer = (state: BinarySearchTree, action: BinarySearchTreeActions) => {
+	switch (action.type) {
+		case 'INITIALIZE':
+			return new BinarySearchTree(action.payload.array[0]).fromArray(action.payload.array.slice(1));
+		case 'ADD':
+			state.insert(action.payload.value);
+			return state;
+		case 'DELETE':
+			state.remove(action.payload.value);
 			return state;
 		default:
 			return state;
