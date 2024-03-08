@@ -6,6 +6,8 @@ import { Button } from '../ui/button';
 import { Card } from '../ui/card';
 import { Separator } from '../ui/separator';
 import { TabsContent } from '../ui/tabs';
+import BSTControl from './Controls/BSTControl';
+import HTControl from './Controls/HTControl';
 import LLControl from './Controls/LLControl';
 import SandboxControls from './SandboxControls';
 
@@ -27,7 +29,7 @@ const SandboxContainer = ({ type }: { type: DataStructureTypes }) => {
 		console.log(data.dataStructure.toArray());
 	};
 
-	const DSControl = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? <LLControl /> : type === DataStructureTypes.HT ? <div>HTControl</div> : <div>BSTControl</div>;
+	const DSControl = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? <LLControl /> : type === DataStructureTypes.HT ? <HTControl /> : <BSTControl />;
 
 	return (
 		<TabsContent value="Sandbox" className="h-full">
