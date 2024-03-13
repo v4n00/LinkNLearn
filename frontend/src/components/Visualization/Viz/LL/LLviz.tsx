@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 import { useRef } from 'react';
-import { calculateWidth, calculateY, drawArrow, mainPointerCircleProps, nodeContentProps, nodeProps, pointerCircleProps, svgProps } from './LLutil';
+import { arrowProps, calculateWidth, calculateY, drawArrow, mainPointerCircleProps, nodeContentProps, nodeProps, pointerCircleProps, svgProps } from './LLutil';
 
 type LLvizProps = {
 	ds: number[];
@@ -9,6 +9,7 @@ type LLvizProps = {
 
 const LLviz = ({ ds, type }: LLvizProps) => {
 	const ref = useRef(null);
+	const multiplierDLL = type === 'SLL' ? 1 : 1.5;
 
 	d3.select(ref.current).selectAll('*').remove();
 
@@ -21,7 +22,8 @@ const LLviz = ({ ds, type }: LLvizProps) => {
 
 	// pointer node
 	// prettier-ignore
-	svg.append('rect')
+	const pointerNode = svg.append('rect')
+		.attr('id', 'pointerNode')
 		.attr('x', mainPointerCircleProps.x)
 		.attr('y', calculateY(mainPointerCircleProps.size))
 		.attr('width', mainPointerCircleProps.size)
@@ -47,20 +49,34 @@ const LLviz = ({ ds, type }: LLvizProps) => {
 
 		// nodes
 		// prettier-ignore
+
 		const nodeRect = g
 			.append('rect')
-			.attr('x', mainPointerCircleProps.size + mainPointerCircleProps.x + nodeProps.spacing + i * (nodeProps.width + contentWidth + nodeProps.spacing))
+			.attr('id', `nodeRect`)
+			.attr('x', mainPointerCircleProps.size + mainPointerCircleProps.x + nodeProps.spacing + i * (nodeProps.width + contentWidth + nodeProps.spacing * multiplierDLL ** 2))
 			.attr('y', calculateY(nodeProps.height))
-			.attr('width', contentWidth + nodeProps.width)
+			.attr('width', contentWidth + nodeProps.width * multiplierDLL)
 			.attr('height', nodeProps.height)
 			.attr('rx', nodeProps.radius)
 			.attr('class', nodeProps.fill);
 
 		// pointer circle
 		// prettier-ignore
+		let prevPointerCircle = null;
+		if (type === 'DLL') {
+			prevPointerCircle = g
+				.append('circle')
+				.attr('id', 'pointer1')
+				.attr('cx', +nodeRect.attr('x') + contentWidth - pointerCircleProps.x ** 0.7)
+				.attr('cy', calculateY(0))
+				.attr('r', pointerCircleProps.size)
+				.attr('class', pointerCircleProps.fill);
+		}
+
+		// prettier-ignore
 		g.append('circle')
-			.attr('id', 'pointer')
-			.attr('cx', +nodeRect.attr('x') + contentWidth + pointerCircleProps.x)
+			.attr('id', 'pointer2')
+			.attr('cx', +nodeRect.attr('x') + contentWidth + pointerCircleProps.x * multiplierDLL ** 1.8)
 			.attr('cy', calculateY(0))
 			.attr('r', pointerCircleProps.size)
 			.attr('class', pointerCircleProps.fill);
@@ -69,7 +85,7 @@ const LLviz = ({ ds, type }: LLvizProps) => {
 		// prettier-ignore
 		const contentRect = g
 			.append('rect')
-			.attr('x', +nodeRect.attr('x') + nodeContentProps.x)
+			.attr('x', +nodeRect.attr('x') + nodeContentProps.x * multiplierDLL ** 4.1)
 			.attr('y', calculateY(nodeContentProps.height))
 			.attr('width', contentWidth)
 			.attr('height', nodeContentProps.height)
@@ -91,17 +107,23 @@ const LLviz = ({ ds, type }: LLvizProps) => {
 
 		//arrow
 		if (i !== ds.length) {
-			const prevPointer = d3.select(nodes[i - 1]).selectChild('circle#pointer');
+			const prevPointer = d3.select(nodes[i - 1]).selectChild('circle#pointer2');
 
 			drawArrow({
 				svg: g,
 				startCoords: { x: i !== 0 ? parseInt(prevPointer.attr('cx')) : parseInt(pointerNodeCircle.attr('cx')), y: calculateY(0) },
 				endCoords: { x: parseInt(nodeRect.attr('x')), y: calculateY(0) },
-				arc: 0,
+				arc: type === 'DLL' ? arrowProps.DLLArc : 0,
 			});
 
-			if (type === 'DLL') {
-				// TODO: draw arrow from current to prev
+			if (type === 'DLL' && prevPointerCircle !== null) {
+				const prevNode = d3.select(nodes[i - 1]).selectChild('rect#nodeRect');
+				drawArrow({
+					svg: g,
+					startCoords: { x: parseInt(prevPointerCircle.attr('cx')), y: calculateY(0) },
+					endCoords: { x: i !== 0 ? parseInt(prevNode.attr('x')) + parseInt(prevNode.attr('width')) : parseInt(pointerNode.attr('x')) + parseInt(pointerNode.attr('width')), y: calculateY(0) },
+					arc: type === 'DLL' ? arrowProps.DLLArc : 0,
+				});
 			}
 		}
 	});

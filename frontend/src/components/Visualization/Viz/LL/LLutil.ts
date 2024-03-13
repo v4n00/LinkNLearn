@@ -16,7 +16,7 @@ const radius = 20;
 
 // elements
 
-export const arrowProps = { strokeWidth: 6, arrowSize: 20, fill: colorStyle.arrowFill, arrowHeadFill: colorStyle.arrowHeadFill };
+export const arrowProps = { strokeWidth: 6, arrowSize: 20, fill: colorStyle.arrowFill, arrowHeadFill: colorStyle.arrowHeadFill, DLLArc: 35 };
 
 export const nodeProps = { width: 70, height: 60, spacing: 50, radius, fill: colorStyle.nodeFill, textFill: colorStyle.textFill, textSize: 20 };
 
