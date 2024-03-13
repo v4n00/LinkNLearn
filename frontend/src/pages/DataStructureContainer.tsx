@@ -23,7 +23,7 @@ const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 		<WhiteboardProvider innerRef={whiteboardRef}>
 			<DSProvider initialData={initialData}>
 				<ResizablePanelGroup direction="horizontal">
-					<ResizablePanel defaultSize={25} minSize={25} maxSize={66}>
+					<ResizablePanel defaultSize={33} minSize={33} maxSize={66}>
 						<Tabs defaultValue="Sandbox" className="h-full p-3 flex flex-col">
 							<TabsList className="grid w-full grid-cols-2">
 								<TabsTrigger value="Learn" className="tracking-widest">

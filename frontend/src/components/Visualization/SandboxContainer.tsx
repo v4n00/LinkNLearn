@@ -2,6 +2,7 @@ import { DataStructureActionTypes, DataStructureTypes } from '@/assets/data stru
 import useDS from '@/hooks/useDS';
 import { ChevronRightSquare, ListRestart } from 'lucide-react';
 import { useEffect } from 'react';
+import CollapsibleText from '../CollapsibleText';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
 import { Separator } from '../ui/separator';
@@ -26,7 +27,7 @@ const SandboxContainer = ({ type }: { type: DataStructureTypes }) => {
 	};
 
 	const logDS = () => {
-		console.log(data.dataStructure.toArray());
+		console.log(data.dataStructure);
 	};
 
 	const DSControl = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? <LLControl /> : type === DataStructureTypes.HT ? <HTControl /> : <BSTControl />;
@@ -40,11 +41,11 @@ const SandboxContainer = ({ type }: { type: DataStructureTypes }) => {
 					<div className="flex flex-col gap-2">
 						<Button className="w-full" onClick={reinitializeDS}>
 							<ListRestart className="mx-1" />
-							<p>Reinitialize {dsName}</p>
+							<CollapsibleText>Reinitialize {dsName}</CollapsibleText>
 						</Button>
 						<Button className="w-full" onClick={logDS}>
 							<ChevronRightSquare className="mx-1" />
-							<p>Log {dsName} to console</p>
+							<CollapsibleText>Log {dsName} to console</CollapsibleText>
 						</Button>
 					</div>
 					<Separator />

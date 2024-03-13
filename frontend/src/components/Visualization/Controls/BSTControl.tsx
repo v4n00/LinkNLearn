@@ -1,4 +1,5 @@
 import { DataStructureActionTypes } from '@/assets/data structures/types';
+import CollapsibleText from '@/components/CollapsibleText';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useDS from '@/hooks/useDS';
@@ -24,14 +25,14 @@ const BSTControl = () => {
 			<div className="flex gap-2 h-[50px]">
 				<Button className="flex-1 grow h-full text-xl" onClick={addNode} disabled={addNodeValue === undefined || isNaN(addNodeValue)}>
 					<PlusCircle className="mx-1" />
-					Add node
+					<CollapsibleText>Add node</CollapsibleText>
 				</Button>
 				<Input id="input1" className="w-[80px] text-center h-full text-xl" placeholder="Value" value={addNodeValue === undefined ? '' : addNodeValue} onChange={(e) => onChangeValueOnly(e, setAddNodeValue)} />
 			</div>
 			<div className="flex gap-2 h-[50px]">
 				<Button className="flex-1 grow h-full text-xl" onClick={removeNode} disabled={removeNodeValue === undefined || isNaN(removeNodeValue)}>
 					<MinusCircle className="mx-1" />
-					Remove node
+					<CollapsibleText>Remove node</CollapsibleText>
 				</Button>
 				<Input id="input2" className="w-[80px] text-center h-full text-xl" placeholder="Value" value={removeNodeValue === undefined ? '' : removeNodeValue} onChange={(e) => onChangeValueOnly(e, setRemoveNodeValue)} />
 			</div>
