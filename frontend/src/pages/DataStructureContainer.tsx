@@ -24,7 +24,7 @@ const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 			<DSProvider initialData={initialData}>
 				<ResizablePanelGroup direction="horizontal">
 					<ResizablePanel defaultSize={33} minSize={33} maxSize={40}>
-						<Tabs defaultValue="Learn" className="h-full p-3 flex flex-col">
+						<Tabs defaultValue="Sandbox" className="h-full p-3 flex flex-col">
 							<TabsList className="grid w-full grid-cols-2">
 								<TabsTrigger value="Learn" className="tracking-widest">
 									<BookText className="size-5 mr-1" />

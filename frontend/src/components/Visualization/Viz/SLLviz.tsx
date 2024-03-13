@@ -1,64 +1,101 @@
 import SinglyLinkedList from '@/assets/data structures/SinglyLinkedList';
 import useDS from '@/hooks/useDS';
 import * as d3 from 'd3';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { calculateWidth, calculateY, drawArrow, mainPointerCircleProps, nodeContentProps, nodeProps, pointerCircleProps, svgProps } from './util';
 
 const SLLviz = () => {
 	const { data } = useDS();
 	const ds = (data.dataStructure as SinglyLinkedList<number>).toArray();
 	const ref = useRef(null);
 
-	useEffect(() => {
-		const boxWidth = 120;
-		const boxHeight = 60;
-		const boxSpacing = 40;
-		const pointerSize = 40;
-		const startX = pointerSize + 20;
-		const startY = 100;
+	d3.select(ref.current).selectAll('*').remove();
 
-		d3.select(ref.current).selectAll('*').remove();
+	// select svg
+	// prettier-ignore
+	const svg = d3
+		.select(ref.current)
+		.attr('width', svgProps.width)
+		.attr('height', svgProps.height);
 
-		const svg = d3
-			.select(ref.current)
-			.attr('width', ds.length * (boxWidth + boxSpacing) + pointerSize + 60)
-			.attr('height', 200);
+	// pointer node
+	// prettier-ignore
+	svg.append('rect')
+		.attr('x', mainPointerCircleProps.x)
+		.attr('y', calculateY(mainPointerCircleProps.size))
+		.attr('width', mainPointerCircleProps.size)
+		.attr('height', mainPointerCircleProps.size)
+		.attr('rx', mainPointerCircleProps.radius)
+		.attr('class', mainPointerCircleProps.fill);
 
-		svg.append('rect')
-			.attr('x', 10)
-			.attr('y', startY - pointerSize / 2)
-			.attr('width', pointerSize)
-			.attr('height', pointerSize)
-			.attr('rx', 20)
-			.attr('fill', 'blue');
+	// pointer circle
+	// prettier-ignore
+	svg.append('circle')
+		.attr('cx', mainPointerCircleProps.x + mainPointerCircleProps.size / 2)
+		.attr('cy', calculateY(0))
+		.attr('r', pointerCircleProps.size)
+		.attr('class', pointerCircleProps.fill);
 
-		ds.forEach((d, i) => {
-			const x = startX + i * (boxWidth + boxSpacing);
+	// nodes
+	const nodes = svg.selectAll('g').data(ds).enter().append('g');
 
-			svg.append('line')
-				.attr('x1', x - boxSpacing)
-				.attr('y1', startY)
-				.attr('x2', x)
-				.attr('y2', startY)
-				.attr('stroke', 'white')
-				.attr('stroke-width', 4);
+	nodes.each((_, i, nodes) => {
+		const g = d3.select(nodes[i]);
+		const contentWidth = calculateWidth(ds[i]);
 
-			svg.append('rect')
-				.attr('x', x)
-				.attr('y', startY - boxHeight / 2)
-				.attr('width', boxWidth)
-				.attr('height', boxHeight)
-				.attr('rx', 30)
-				.attr('fill', 'orange');
+		// nodes
+		// prettier-ignore
+		const nodeRect = g
+			.append('rect')
+			.attr('x', mainPointerCircleProps.size + mainPointerCircleProps.x + nodeProps.spacing + i * (nodeProps.width + contentWidth + nodeProps.spacing))
+			.attr('y', calculateY(nodeProps.height))
+			.attr('width', contentWidth + nodeProps.width)
+			.attr('height', nodeProps.height)
+			.attr('rx', nodeProps.radius)
+			.attr('class', nodeProps.fill);
 
-			svg.append('text')
-				.attr('x', x + boxWidth / 2)
-				.attr('y', startY + 10)
-				.attr('text-anchor', 'middle')
-				.attr('fill', 'black')
-				.attr('font-size', '20px')
-				.text(d);
-		});
-	}, [ds]);
+		// pointer circle
+		// prettier-ignore
+		g.append('circle')
+			.attr('cx', +nodeRect.attr('x') + contentWidth + pointerCircleProps.x)
+			.attr('cy', calculateY(0))
+			.attr('r', pointerCircleProps.size)
+			.attr('class', pointerCircleProps.fill);
+
+		// content box
+		// prettier-ignore
+		const contentRect = g
+			.append('rect')
+			.attr('x', +nodeRect.attr('x') + nodeContentProps.x)
+			.attr('y', calculateY(nodeContentProps.height))
+			.attr('width', contentWidth)
+			.attr('height', nodeContentProps.height)
+			.attr('rx', nodeContentProps.radius)
+			.attr('class', nodeContentProps.fill);
+
+		// data inside the rectangle
+		// prettier-ignore
+		g.append('text')
+			.text(ds[i])
+			.attr('x', +contentRect.attr('x') + contentWidth / 2)
+			.attr('y', calculateY(0))
+			.attr('text-anchor', 'middle')
+			.attr('font-weight', 'bold')
+			.attr('dominant-baseline', 'central')
+			.attr('font-family', 'Consolas')
+			.attr('class', nodeProps.textFill);
+
+		// arrow
+		// prettier-ignore
+		if(i !== ds.length) {
+			drawArrow({
+				svg: g,
+				startCoords: { x: parseInt(nodeRect.attr('x')) - nodeProps.spacing, y: calculateY(0) },
+				endCoords: { x: parseInt(nodeRect.attr('x')), y: calculateY(0) },
+				direction: 'right',
+			});
+		}
+	});
 
 	return <svg ref={ref}></svg>;
 };
