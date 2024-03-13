@@ -1,12 +1,13 @@
-import SinglyLinkedList from '@/assets/data structures/SinglyLinkedList';
-import useDS from '@/hooks/useDS';
 import * as d3 from 'd3';
 import { useRef } from 'react';
-import { calculateWidth, calculateY, drawArrow, mainPointerCircleProps, nodeContentProps, nodeProps, pointerCircleProps, svgProps } from './util';
+import { calculateWidth, calculateY, drawArrow, mainPointerCircleProps, nodeContentProps, nodeProps, pointerCircleProps, svgProps } from './LLutil';
 
-const SLLviz = () => {
-	const { data } = useDS();
-	const ds = (data.dataStructure as SinglyLinkedList<number>).toArray();
+type LLvizProps = {
+	ds: number[];
+	type: 'SLL' | 'DLL';
+};
+
+const LLviz = ({ ds, type }: LLvizProps) => {
 	const ref = useRef(null);
 
 	d3.select(ref.current).selectAll('*').remove();
@@ -30,7 +31,8 @@ const SLLviz = () => {
 
 	// pointer circle
 	// prettier-ignore
-	svg.append('circle')
+	const pointerNodeCircle = svg.append('circle')
+		.attr('id', 'pointer')
 		.attr('cx', mainPointerCircleProps.x + mainPointerCircleProps.size / 2)
 		.attr('cy', calculateY(0))
 		.attr('r', pointerCircleProps.size)
@@ -57,6 +59,7 @@ const SLLviz = () => {
 		// pointer circle
 		// prettier-ignore
 		g.append('circle')
+			.attr('id', 'pointer')
 			.attr('cx', +nodeRect.attr('x') + contentWidth + pointerCircleProps.x)
 			.attr('cy', calculateY(0))
 			.attr('r', pointerCircleProps.size)
@@ -80,24 +83,30 @@ const SLLviz = () => {
 			.attr('x', +contentRect.attr('x') + contentWidth / 2)
 			.attr('y', calculateY(0))
 			.attr('text-anchor', 'middle')
+			.attr('font-size', nodeProps.textSize)
 			.attr('font-weight', 'bold')
 			.attr('dominant-baseline', 'central')
 			.attr('font-family', 'Consolas')
 			.attr('class', nodeProps.textFill);
 
-		// arrow
-		// prettier-ignore
-		if(i !== ds.length) {
+		//arrow
+		if (i !== ds.length) {
+			const prevPointer = d3.select(nodes[i - 1]).selectChild('circle#pointer');
+
 			drawArrow({
 				svg: g,
-				startCoords: { x: parseInt(nodeRect.attr('x')) - nodeProps.spacing, y: calculateY(0) },
+				startCoords: { x: i !== 0 ? parseInt(prevPointer.attr('cx')) : parseInt(pointerNodeCircle.attr('cx')), y: calculateY(0) },
 				endCoords: { x: parseInt(nodeRect.attr('x')), y: calculateY(0) },
-				direction: 'right',
+				arc: 0,
 			});
+
+			if (type === 'DLL') {
+				// TODO: draw arrow from current to prev
+			}
 		}
 	});
 
 	return <svg ref={ref}></svg>;
 };
 
-export default SLLviz;
+export default LLviz;

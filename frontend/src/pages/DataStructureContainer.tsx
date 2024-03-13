@@ -2,10 +2,10 @@ import initializeData from '@/assets/data structures/initializeData';
 import { DataStructureTypes } from '@/assets/data structures/types';
 import LearnContainer from '@/components/Visualization/LearnContainer';
 import SandboxContainer from '@/components/Visualization/SandboxContainer';
-import BSTviz from '@/components/Visualization/Viz/BSTviz';
-import DLLviz from '@/components/Visualization/Viz/DLLviz';
-import HTviz from '@/components/Visualization/Viz/HTviz';
-import SLLviz from '@/components/Visualization/Viz/SLLviz';
+import BSTviz from '@/components/Visualization/Viz/BST/BSTviz';
+import DLLviz from '@/components/Visualization/Viz/DLL/DLLviz';
+import HTviz from '@/components/Visualization/Viz/HT/HTviz';
+import SLLviz from '@/components/Visualization/Viz/SLL/SLLviz';
 import Whiteboard, { WhiteboardHandles } from '@/components/Whiteboard';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -23,7 +23,7 @@ const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 		<WhiteboardProvider innerRef={whiteboardRef}>
 			<DSProvider initialData={initialData}>
 				<ResizablePanelGroup direction="horizontal">
-					<ResizablePanel defaultSize={33} minSize={33} maxSize={40}>
+					<ResizablePanel defaultSize={25} minSize={25} maxSize={66}>
 						<Tabs defaultValue="Sandbox" className="h-full p-3 flex flex-col">
 							<TabsList className="grid w-full grid-cols-2">
 								<TabsTrigger value="Learn" className="tracking-widest">

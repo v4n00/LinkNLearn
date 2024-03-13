@@ -6,6 +6,7 @@ const DLLviz = () => {
 	const { data } = useDS();
 	const ds = (data.dataStructure as DoublyLinkedList<number>).toArray();
 	const ref = useRef(null);
+	console.log(data);
 
 	return (
 		<svg ref={ref}>

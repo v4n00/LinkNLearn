@@ -2,16 +2,16 @@
 
 Bachelor Thesis Project
 
-## TODO frontend - 85%
+## TODO frontend - 87%
 
 - [ ] fill flashcards
 - [ ] fill quizzes
 - [ ] fill data structures lectures
-- [ ] SLL viz
 - [ ] DLL viz
 - [ ] HT viz
 - [ ] BST viz
 - [ ] General: Data structure page
+- [x] ~~SLL viz~~
 - [x] ~~Sandbox controls~~
 - [x] ~~Sandbox data link~~
 - [x] ~~Data structures code~~

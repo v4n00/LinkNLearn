@@ -8,7 +8,7 @@ export interface WhiteboardHandles {
 
 const Whiteboard = forwardRef(({ children }: { children: ReactNode }, ref) => {
 	const [startDragPosition, setStartDragPosition] = useState({ x: 0, y: 0 });
-	const [offset, setOffset] = useState({ x: 100, y: (window.innerHeight - 80) / 2 });
+	const [offset, setOffset] = useState({ x: 100, y: (window.innerHeight - 80) / 3 });
 	const [scale, setScale] = useState(1);
 	const [isDragging, setIsDragging] = useState(false);
 
