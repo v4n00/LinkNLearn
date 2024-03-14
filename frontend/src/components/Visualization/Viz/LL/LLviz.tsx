@@ -1,15 +1,14 @@
 import * as d3 from 'd3';
-import { useRef } from 'react';
 import { arrowProps, calculateWidth, calculateY, drawArrow, mainPointerCircleProps, nodeContentProps, nodeProps, pointerCircleProps, svgProps } from './LLutil';
 
 type LLvizProps = {
+	ref: React.MutableRefObject<null>;
 	data: unknown[];
 	type: 'SLL' | 'DLL';
 	coordinates?: { x: number; y: number };
 };
 
-const LLviz = ({ data, type, coordinates }: LLvizProps) => {
-	const ref = useRef(null);
+const LLviz = ({ ref, data, type, coordinates }: LLvizProps) => {
 	const multiplierDLL = type === 'SLL' ? 1 : 1.5;
 
 	d3.select(ref.current).selectAll('*').remove();
@@ -50,13 +49,19 @@ const LLviz = ({ data, type, coordinates }: LLvizProps) => {
 		const g = d3.select(nodes[i]);
 		const contentWidth = calculateWidth(data[i]);
 
+		// im shooting myself
+		let currentNodeX = mainPointerCircleProps.size + mainPointerCircleProps.x + nodeProps.spacing;
+		if (i !== 0) {
+			const prevNode = d3.select(nodes[i - 1]).selectChild('rect#nodeRect');
+			currentNodeX = parseInt(prevNode.attr('width')) + parseInt(prevNode.attr('x')) + nodeProps.spacing;
+		}
+
 		// nodes
 		// prettier-ignore
-
 		const nodeRect = g
 			.append('rect')
 			.attr('id', `nodeRect`)
-			.attr('x', mainPointerCircleProps.size + mainPointerCircleProps.x + nodeProps.spacing + i * (nodeProps.width + contentWidth + nodeProps.spacing * multiplierDLL ** 2))
+			.attr('x', currentNodeX)
 			.attr('y', calculateY(nodeProps.height))
 			.attr('width', contentWidth + nodeProps.width * multiplierDLL)
 			.attr('height', nodeProps.height)
@@ -130,8 +135,6 @@ const LLviz = ({ data, type, coordinates }: LLvizProps) => {
 			}
 		}
 	});
-
-	return <svg ref={ref}></svg>;
 };
 
 export default LLviz;

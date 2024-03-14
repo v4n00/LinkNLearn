@@ -12,7 +12,7 @@ export const colorStyle = {
 	textFill: 'fill-node-foreground',
 };
 
-const radius = 20;
+export const radius = 20;
 
 // elements
 

@@ -1,6 +1,6 @@
 import SinglyLinkedList, { SinglyLinkedListNode } from './SinglyLinkedList';
 
-export const defaultHashTableSize = 25;
+export const defaultHashTableSize = 26;
 
 export default class HashTable {
 	buckets: SinglyLinkedList<{ key: string; value: number }>[];
@@ -15,19 +15,23 @@ export default class HashTable {
 	}
 
 	hash(key: string): number {
-		return (key.charCodeAt(0) % this.buckets.length) - 1;
+		return (key.toUpperCase().charCodeAt(0) % this.buckets.length) - 1;
 	}
 
 	set(key: string, value: number): void {
-		const keyHash = this.hash(key);
-		this.keys[key] = keyHash;
-		const bucketLinkedList = this.buckets[keyHash];
-		const node = bucketLinkedList.find({ callback: (nodeValue) => nodeValue.key === key });
+		try {
+			const keyHash = this.hash(key);
+			this.keys[key] = keyHash;
+			const bucketLinkedList = this.buckets[keyHash];
+			const node = bucketLinkedList.find({ callback: (nodeValue) => nodeValue.key === key });
 
-		if (!node) {
-			bucketLinkedList.append({ key, value });
-		} else {
-			node.value.value = value;
+			if (!node) {
+				bucketLinkedList.append({ key, value });
+			} else {
+				node.value.value = value;
+			}
+		} catch (e) {
+			// why?
 		}
 	}
 
@@ -35,6 +39,7 @@ export default class HashTable {
 		const keyHash = this.hash(key);
 		delete this.keys[key];
 		const bucketLinkedList = this.buckets[keyHash];
+
 		const node = bucketLinkedList.find({ callback: (nodeValue) => nodeValue.key === key });
 
 		if (node) {
