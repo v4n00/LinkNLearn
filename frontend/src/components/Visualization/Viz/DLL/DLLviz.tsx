@@ -6,7 +6,7 @@ const DLLviz = () => {
 	const { data } = useDS();
 	const ds = (data.dataStructure as DoublyLinkedList<number>).toArray();
 
-	return <LLviz ds={ds} type="DLL" />;
+	return <LLviz data={ds} type="DLL" />;
 };
 
 export default DLLviz;

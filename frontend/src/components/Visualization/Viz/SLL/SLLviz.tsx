@@ -6,7 +6,7 @@ const SLLviz = () => {
 	const { data } = useDS();
 	const ds = (data.dataStructure as SinglyLinkedList<number>).toArray();
 
-	return <LLviz ds={ds} type="SLL" />;
+	return <LLviz data={ds} type="SLL" />;
 };
 
 export default SLLviz;

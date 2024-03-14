@@ -1,3 +1,4 @@
+import { DataStructureTypes } from '@/assets/data structures/types';
 import { MouseEvent, ReactNode, forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 
 export interface WhiteboardHandles {
@@ -6,9 +7,10 @@ export interface WhiteboardHandles {
 	zoomOut: () => void;
 }
 
-const Whiteboard = forwardRef(({ children }: { children: ReactNode }, ref) => {
+const Whiteboard = forwardRef(({ children, type }: { children: ReactNode; type: DataStructureTypes }, ref) => {
+	const offsetY = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? (window.innerHeight - 80) / 2 : DataStructureTypes.HT ? 100 : 0;
 	const [startDragPosition, setStartDragPosition] = useState({ x: 0, y: 0 });
-	const [offset, setOffset] = useState({ x: 100, y: (window.innerHeight - 80) / 3 });
+	const [offset, setOffset] = useState({ x: 100, y: offsetY });
 	const [scale, setScale] = useState(1);
 	const [isDragging, setIsDragging] = useState(false);
 

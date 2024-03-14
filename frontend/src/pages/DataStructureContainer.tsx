@@ -41,7 +41,7 @@ const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 					</ResizablePanel>
 					<ResizableHandle withHandle />
 					<ResizablePanel>
-						<Whiteboard ref={whiteboardRef}>
+						<Whiteboard ref={whiteboardRef} type={type}>
 							<CompViz />
 						</Whiteboard>
 					</ResizablePanel>

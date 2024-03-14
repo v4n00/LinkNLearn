@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-export const svgProps = { height: 200, width: 9999 };
+export const svgProps = { height: 64, width: 9999 };
 
 export const colorStyle = {
 	mainPointerFill: 'fill-primary stroke-secondary-foreground stroke-[2]',
@@ -18,7 +18,7 @@ const radius = 20;
 
 export const arrowProps = { strokeWidth: 6, arrowSize: 20, fill: colorStyle.arrowFill, arrowHeadFill: colorStyle.arrowHeadFill, DLLArc: 35 };
 
-export const nodeProps = { width: 70, height: 60, spacing: 50, radius, fill: colorStyle.nodeFill, textFill: colorStyle.textFill, textSize: 20 };
+export const nodeProps = { width: 70, height: svgProps.height - 4, spacing: 50, radius, fill: colorStyle.nodeFill, textFill: colorStyle.textFill, textSize: 20 };
 
 export const nodeContentProps = { x: 10, height: nodeProps.height - 20, radius, fill: colorStyle.contentFill };
 
@@ -32,9 +32,9 @@ export const calculateY = (height: number) => {
 	return svgProps.height / 2 - height / 2;
 };
 
-export const calculateWidth = (content: string | number) => {
+export const calculateWidth = (content: string | number | unknown) => {
 	const multiplier = 15;
-	const width = typeof content === 'number' ? content.toString().length * multiplier : content.length * multiplier;
+	const width = typeof content === 'number' ? content.toString().length * multiplier : typeof content === 'string' ? content.length * multiplier : 1;
 	return width > 40 ? width : 40;
 };
 

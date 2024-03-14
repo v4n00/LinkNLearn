@@ -9,6 +9,7 @@ Bachelor Thesis Project
 - [ ] fill data structures lectures
 - [ ] HT viz
 - [ ] BST viz
+- [ ] Error handling for vizualisations
 - [ ] General: Data structure page
 - [x] ~~DLL viz~~
 - [x] ~~SLL viz~~

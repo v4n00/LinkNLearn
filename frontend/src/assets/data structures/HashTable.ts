@@ -1,6 +1,6 @@
 import SinglyLinkedList, { SinglyLinkedListNode } from './SinglyLinkedList';
 
-const defaultHashTableSize = 32;
+export const defaultHashTableSize = 25;
 
 export default class HashTable {
 	buckets: SinglyLinkedList<{ key: string; value: number }>[];
@@ -15,8 +15,7 @@ export default class HashTable {
 	}
 
 	hash(key: string): number {
-		const hash = Array.from(key).reduce((hashAccumulator, keySymbol) => hashAccumulator + keySymbol.charCodeAt(0), 0);
-		return hash % this.buckets.length;
+		return (key.charCodeAt(0) % this.buckets.length) - 1;
 	}
 
 	set(key: string, value: number): void {
@@ -60,10 +59,16 @@ export default class HashTable {
 		return Object.keys(this.keys);
 	}
 
-	toArray(): number[] {
-		return this.buckets.reduce((values: Array<number>, bucket) => {
-			const bucketValues = bucket.toArray().map((linkedListNode) => linkedListNode.value);
-			return values.concat(bucketValues);
-		}, []);
+	toArray(): Array<string[]> {
+		const matrix = Array(this.buckets.length).fill(null);
+		this.buckets.forEach((bucket, i) => {
+			let node = bucket.head;
+			matrix[i] = [];
+			while (node) {
+				matrix[i].push(`${node.value.key}: ${node.value.value}`);
+				node = node.next;
+			}
+		});
+		return matrix;
 	}
 }

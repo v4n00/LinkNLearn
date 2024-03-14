@@ -3,11 +3,12 @@ import { useRef } from 'react';
 import { arrowProps, calculateWidth, calculateY, drawArrow, mainPointerCircleProps, nodeContentProps, nodeProps, pointerCircleProps, svgProps } from './LLutil';
 
 type LLvizProps = {
-	ds: number[];
+	data: unknown[];
 	type: 'SLL' | 'DLL';
+	coordinates?: { x: number; y: number };
 };
 
-const LLviz = ({ ds, type }: LLvizProps) => {
+const LLviz = ({ data, type, coordinates }: LLvizProps) => {
 	const ref = useRef(null);
 	const multiplierDLL = type === 'SLL' ? 1 : 1.5;
 
@@ -17,6 +18,8 @@ const LLviz = ({ ds, type }: LLvizProps) => {
 	// prettier-ignore
 	const svg = d3
 		.select(ref.current)
+		.attr('x', coordinates?.x || 0)
+		.attr('y', coordinates?.y || 0)
 		.attr('width', svgProps.width)
 		.attr('height', svgProps.height);
 
@@ -41,11 +44,11 @@ const LLviz = ({ ds, type }: LLvizProps) => {
 		.attr('class', pointerCircleProps.fill);
 
 	// nodes
-	const nodes = svg.selectAll('g').data(ds).enter().append('g');
+	const nodes = svg.selectAll('g').data(data).enter().append('g');
 
 	nodes.each((_, i, nodes) => {
 		const g = d3.select(nodes[i]);
-		const contentWidth = calculateWidth(ds[i]);
+		const contentWidth = calculateWidth(data[i]);
 
 		// nodes
 		// prettier-ignore
@@ -95,7 +98,7 @@ const LLviz = ({ ds, type }: LLvizProps) => {
 		// data inside the rectangle
 		// prettier-ignore
 		g.append('text')
-			.text(ds[i])
+			.text(data[i] as string | number)
 			.attr('x', +contentRect.attr('x') + contentWidth / 2)
 			.attr('y', calculateY(0))
 			.attr('text-anchor', 'middle')
@@ -106,7 +109,7 @@ const LLviz = ({ ds, type }: LLvizProps) => {
 			.attr('class', nodeProps.textFill);
 
 		//arrow
-		if (i !== ds.length) {
+		if (i !== data.length) {
 			const prevPointer = d3.select(nodes[i - 1]).selectChild('circle#pointer2');
 
 			drawArrow({
