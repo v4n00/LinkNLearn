@@ -45,12 +45,11 @@ export class BSTNode {
 	}
 
 	// BST Node Methods
-
 	remove(value: number): boolean {
 		const nodeToRemove = this.find(value);
 
 		if (!nodeToRemove) {
-			return false;
+			throw new Error(`Node with value ${value} not found.`);
 		}
 
 		const { parent } = nodeToRemove;

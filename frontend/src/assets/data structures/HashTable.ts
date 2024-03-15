@@ -31,7 +31,7 @@ export default class HashTable {
 				node.value.value = value;
 			}
 		} catch (e) {
-			// why?
+			//
 		}
 	}
 
@@ -46,7 +46,7 @@ export default class HashTable {
 			return bucketLinkedList.delete(node.value);
 		}
 
-		return null;
+		throw new Error('Key not found.');
 	}
 
 	get(key: string) {

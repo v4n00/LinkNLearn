@@ -19,6 +19,7 @@ export type DSAction = SinglyLinkedListActions | DoublyLinkedListActions | HashT
 export type DataStructure = {
 	dataStructure: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable | BinarySearchTree;
 	version: number;
+	error: string;
 };
 
 export type DSContextType<T extends DataStructure> = {

@@ -74,9 +74,9 @@ export default class SinglyLinkedList<T> {
 		return this;
 	}
 
-	delete(value: T): SinglyLinkedListNode<T> | null {
+	delete(value: T): SinglyLinkedListNode<T> {
 		if (!this.head) {
-			return null;
+			throw new Error('List is empty.');
 		}
 
 		let deletedNode = null;
@@ -101,6 +101,10 @@ export default class SinglyLinkedList<T> {
 
 		if (this.tail && this.tail.value === value) {
 			this.tail = currentNode;
+		}
+
+		if (deletedNode === null) {
+			throw new Error(`Node with value ${value} not found.`);
 		}
 
 		return deletedNode;

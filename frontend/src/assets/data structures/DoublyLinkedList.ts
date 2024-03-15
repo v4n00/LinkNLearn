@@ -92,9 +92,9 @@ export default class DoublyLinkedList<T> {
 		return this;
 	}
 
-	delete(value: T): DoublyLinkedListNode<T> | null {
+	delete(value: T): DoublyLinkedListNode<T> {
 		if (!this.head) {
-			return null;
+			throw new Error('List is empty.');
 		}
 
 		let deletedNode = null;
@@ -128,6 +128,8 @@ export default class DoublyLinkedList<T> {
 
 			if (currentNode.next) currentNode = currentNode.next;
 		}
+
+		if (deletedNode === null) throw new Error(`Node with value ${value} not found.`);
 
 		return deletedNode;
 	}

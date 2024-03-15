@@ -1,5 +1,6 @@
 import initializeData from '@/assets/data structures/initializeData';
 import { DataStructureTypes } from '@/assets/data structures/types';
+import ErrorHandler from '@/components/Visualization/ErrorHandler';
 import LearnContainer from '@/components/Visualization/LearnContainer';
 import SandboxContainer from '@/components/Visualization/SandboxContainer';
 import BSTviz from '@/components/Visualization/Viz/BST/BSTviz';
@@ -44,6 +45,7 @@ const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 						<Whiteboard ref={whiteboardRef} type={type}>
 							<CompViz />
 						</Whiteboard>
+						<ErrorHandler />
 					</ResizablePanel>
 				</ResizablePanelGroup>
 			</DSProvider>

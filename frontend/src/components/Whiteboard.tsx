@@ -35,6 +35,29 @@ const Whiteboard = forwardRef(({ children, type }: { children: ReactNode; type: 
 		setIsDragging(false);
 	};
 
+	const handleTouchStart: React.TouchEventHandler<HTMLDivElement> = (e) => {
+		setIsDragging(true);
+		const touch = e.touches[0];
+		setStartDragPosition({
+			x: touch.clientX - offset.x,
+			y: touch.clientY - offset.y,
+		});
+	};
+
+	const handleTouchMove: React.TouchEventHandler<HTMLDivElement> = (e) => {
+		if (!isDragging) return;
+		const touch = e.touches[0];
+		const newOffset = {
+			x: touch.clientX - startDragPosition.x,
+			y: touch.clientY - startDragPosition.y,
+		};
+		setOffset(newOffset);
+	};
+
+	const handleTouchEnd = () => {
+		setIsDragging(false);
+	};
+
 	const handleWheel = useCallback(
 		(e: { preventDefault: () => void; deltaY: number }) => {
 			const scaleAdjustment = (e.deltaY * -0.01) / 2;
@@ -58,7 +81,7 @@ const Whiteboard = forwardRef(({ children, type }: { children: ReactNode; type: 
 	}));
 
 	return (
-		<div onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} onWheel={handleWheel} className={`w-screen h-screen overflow-hidden relative select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
+		<div onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onWheel={handleWheel} className={`w-screen h-screen overflow-hidden relative select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
 			<div
 				className="absolute"
 				style={{
