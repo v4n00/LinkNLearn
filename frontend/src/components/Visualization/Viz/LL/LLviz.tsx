@@ -81,6 +81,7 @@ const LLviz = ({ ref, data, type, coordinates }: LLvizProps) => {
 				.attr('class', pointerCircleProps.fill);
 		}
 
+		// second pointer circle
 		// prettier-ignore
 		g.append('circle')
 			.attr('id', 'pointer2')

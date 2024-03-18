@@ -39,7 +39,8 @@ export const calculateWidth = (content: string | number | unknown) => {
 };
 
 export type ArrowType = {
-	svg: d3.Selection<SVGGElement, unknown, null, undefined>;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	svg: d3.Selection<any, unknown, null, undefined>;
 	startCoords: { x: number; y: number };
 	endCoords: { x: number; y: number };
 	arc: number;
