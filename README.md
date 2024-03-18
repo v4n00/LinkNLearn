@@ -7,7 +7,7 @@ Bachelor Thesis Project
 - [ ] fill flashcards
 - [ ] fill quizzes
 - [ ] fill data structures lectures
-- [ ] General: Data structure page
+- [x] ~~General: Data structure page~~
 - [x] ~~BST viz~~
 - [x] ~~Error handling for vizualisations~~
 - [x] ~~HT viz~~

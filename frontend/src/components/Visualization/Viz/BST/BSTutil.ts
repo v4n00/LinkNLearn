@@ -1,3 +1,4 @@
+import { BSTNode } from '@/assets/data structures/BinarySearchTree';
 import { calculateWidth, drawArrow, nodeContentProps, nodeProps, pointerCircleProps } from '../LL/LLutil';
 
 type DrawNodeProps = {
@@ -74,4 +75,23 @@ export const drawNode = ({ svg, coordinates, content, arrowStartCoordinates }: D
 	}
 
 	return { leftPointerCoordinates, rightPointerCoordinates };
+};
+
+const offsetY = 120;
+const offsetX = 120;
+
+type RecursiveDrawNodeProps = {
+	svg: d3.Selection<null, unknown, null, undefined>;
+	node: BSTNode | null;
+	coordinates: { x: number; y: number };
+	arrowStartCoordinates?: { x: number; y: number };
+};
+
+export const RecursiveDrawNode = ({ svg, node, coordinates, arrowStartCoordinates }: RecursiveDrawNodeProps) => {
+	if (node === null || node === undefined) return;
+	const newArrowCoords = drawNode({ svg, coordinates, content: node.value, arrowStartCoordinates });
+
+	RecursiveDrawNode({ svg, node: node.left, coordinates: { x: coordinates.x - offsetX, y: coordinates.y + offsetY }, arrowStartCoordinates: newArrowCoords.leftPointerCoordinates });
+
+	RecursiveDrawNode({ svg, node: node.right, coordinates: { x: coordinates.x + offsetX, y: coordinates.y + offsetY }, arrowStartCoordinates: newArrowCoords.rightPointerCoordinates });
 };

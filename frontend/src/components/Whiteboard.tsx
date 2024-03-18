@@ -8,12 +8,13 @@ export interface WhiteboardHandles {
 }
 
 const Whiteboard = forwardRef(({ children, type }: { children: ReactNode; type: DataStructureTypes }, ref) => {
-	const offsetY = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? (window.innerHeight - 80) / 2 : DataStructureTypes.HT ? 100 : 0;
+	const offsetY = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? (window.innerHeight - 80) / 2 : 100;
+	const offsetX = type === DataStructureTypes.BST ? -1500 : 100;
 	useEffect(() => {
-		setOffset({ x: 100, y: offsetY });
-	}, [offsetY, type]);
+		setOffset({ x: offsetX, y: offsetY });
+	}, [offsetX, offsetY, type]);
 	const [startDragPosition, setStartDragPosition] = useState({ x: 0, y: 0 });
-	const [offset, setOffset] = useState({ x: 100, y: offsetY });
+	const [offset, setOffset] = useState({ x: offsetX, y: offsetY });
 	const [scale, setScale] = useState(1);
 	const [isDragging, setIsDragging] = useState(false);
 

@@ -13,10 +13,13 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DSProvider } from '@/contexts/DSContext';
 import { WhiteboardProvider } from '@/contexts/WhiteboardContext';
 import { BookText, Box } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
-	const [initialData] = useState(() => initializeData(type));
+	const [initialData, setInitialData] = useState(() => initializeData(type));
+	useEffect(() => {
+		setInitialData(initializeData(type));
+	}, [type]);
 	const CompViz = type === DataStructureTypes.SLL ? SLLviz : type === DataStructureTypes.DLL ? DLLviz : type === DataStructureTypes.HT ? HTviz : BSTviz;
 	const whiteboardRef = useRef<WhiteboardHandles>(null);
 
@@ -25,7 +28,7 @@ const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 			<DSProvider initialData={initialData}>
 				<ResizablePanelGroup direction="horizontal">
 					<ResizablePanel defaultSize={33} minSize={33} maxSize={66}>
-						<Tabs defaultValue="Sandbox" className="h-full p-3 flex flex-col">
+						<Tabs defaultValue="Learn" className="h-full p-3 flex flex-col">
 							<TabsList className="grid w-full grid-cols-2">
 								<TabsTrigger value="Learn" className="tracking-widest">
 									<BookText className="size-5 mr-1" />

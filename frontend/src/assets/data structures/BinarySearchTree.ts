@@ -113,10 +113,8 @@ export class BSTNode {
 	}
 
 	insert(value: number): BSTNode {
-		if (this.value === null) {
-			this.value = value;
-
-			return this;
+		if (this.value === value) {
+			throw new Error(`Value ${value} already exists in the tree.`);
 		}
 
 		if (value < this.value) {
