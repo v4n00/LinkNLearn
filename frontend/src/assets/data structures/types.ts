@@ -1,6 +1,6 @@
 import DoublyLinkedList from '@/assets/data structures/DoublyLinkedList';
 import SinglyLinkedList from '@/assets/data structures/SinglyLinkedList';
-import BinarySearchTree from './BinarySearchTree';
+import BinarySearchTree from './BST/BinarySearchTree';
 import HashTable from './HashTable';
 
 type ActionMap<M extends { [index: string]: unknown }> = {
@@ -17,7 +17,7 @@ type ActionMap<M extends { [index: string]: unknown }> = {
 export type DSAction = SinglyLinkedListActions | DoublyLinkedListActions | HashTableActions | BinarySearchTreeActions;
 
 export type DataStructure = {
-	dataStructure: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable | BinarySearchTree;
+	dataStructure: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable | BinarySearchTree<number>;
 	version: number;
 	error: string;
 };

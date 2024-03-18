@@ -1,4 +1,4 @@
-import BinarySearchTree from './BinarySearchTree';
+import BinarySearchTree from './BST/BinarySearchTree';
 import DoublyLinkedList from './DoublyLinkedList';
 import HashTable from './HashTable';
 import SinglyLinkedList from './SinglyLinkedList';
@@ -15,7 +15,7 @@ export const getRandomHTSet = () => {
 };
 
 export const getNewDS = (type: DataStructureTypes) => {
-	let result: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable | BinarySearchTree;
+	let result: SinglyLinkedList<number> | DoublyLinkedList<number> | HashTable | BinarySearchTree<number>;
 	switch (type) {
 		case DataStructureTypes.SLL:
 			result = new SinglyLinkedList<number>().fromArray(getRandomArray());

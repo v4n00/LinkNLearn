@@ -1,0 +1,122 @@
+[
+	{
+		"frontSide": "Explain the 'left-right' rotation in an AVL tree.",
+		"backSide": "A 'left-right' rotation in an AVL tree is a double rotation used to rebalance the tree. It is performed when a left child node has a higher right subtree. First, a left rotation on the left child is done, followed by a right rotation on the unbalanced node."
+	},
+	{
+		"frontSide": "Difference between linear probing and quadratic probing in a hash table.",
+		"backSide": "In linear probing, collisions are resolved by moving sequentially through the table to find an empty slot. Quadratic probing also addresses collisions but uses a quadratic function to calculate the distance from the original position, reducing clustering."
+	},
+	{
+		"frontSide": "How does a circular doubly linked list handle insertions differently?",
+		"backSide": "A circular doubly linked list allows for more efficient insertions at both ends. Since it forms a circle with no clear end, we can insert a new node before the head or after the tail without traversing the list, using the tail's next pointer and the head's previous pointer."
+	},
+	{
+		"frontSide": "Why is the height of an AVL tree significant?",
+		"backSide": "The height of an AVL tree is significant because it ensures that the tree remains balanced, with the heights of two child subtrees of any node differing by no more than one. This constraint guarantees O(log n) time complexity for search, insert, and delete operations."
+	},
+	{
+		"frontSide": "Describe the 'enqueue' operation in a circular queue.",
+		"backSide": "In a circular queue, the 'enqueue' operation adds an element to the back of the queue. If the queue is full, it wraps around to the beginning if space is available, utilizing the array space efficiently by treating the queue as circular."
+	},
+	{
+		"frontSide": "What triggers a rebalance in an AVL tree?",
+		"backSide": "A rebalance in an AVL tree is triggered when an insert or delete operation causes the height difference between the left and right subtrees of any node to exceed one, violating the AVL balance condition."
+	},
+	{
+		"frontSide": "How does a stack differ in memory allocation compared to a queue?",
+		"backSide": "A stack typically uses a Last-In-First-Out (LIFO) allocation, where elements are added and removed from the top. A queue uses a First-In-First-Out (FIFO) allocation, adding elements at the rear and removing them from the front. This affects their memory usage patterns and operation costs."
+	},
+	{
+		"frontSide": "Explain the concept of 'load factor' in a hash table.",
+		"backSide": "The 'load factor' of a hash table is a measure that indicates how full the hash table is. It is calculated as the ratio of the number of stored elements to the total number of slots available. A higher load factor can lead to more collisions, affecting performance."
+	},
+	{
+		"frontSide": "What are the consequences of deleting a node in a doubly linked list?",
+		"backSide": "Deleting a node in a doubly linked list requires updating the pointers of its previous and next nodes to bypass the deleted node. This operation is efficient since it doesn't require traversal from the head. However, care must be taken to handle edge cases, such as deleting the head or tail node."
+	},
+	{
+		"frontSide": "What is tree rotation and why is it used in AVL trees?",
+		"backSide": "Tree rotation is a process of reorganizing the structure of a tree, typically used in AVL trees to maintain balance. It involves changing the positions of the nodes in the tree, which helps ensure that the height difference between the left and right subtrees of any node does not exceed one, thereby preserving the AVL property and ensuring efficient operations."
+	},
+	{
+		"frontSide": "How does a circular doubly linked list handle edge cases for insertion?",
+		"backSide": "In a circular doubly linked list, edge cases for insertion at the beginning or end are elegantly handled due to its circular nature, linking the new node to the head and tail appropriately, ensuring a continuous loop without null references."
+	},
+	{
+		"frontSide": "What is the time complexity of accessing an element by value in a hash table?",
+		"backSide": "Accessing an element by value in a hash table ideally has a time complexity of O(1), assuming a perfect hash function with no collisions. However, due to potential collisions and the resulting chaining or open addressing, it may degrade to O(n) in the worst case."
+	},
+	{
+		"frontSide": "How does the 'Deque' operation extend the functionality of a standard queue?",
+		"backSide": "The 'Deque' (Double-Ended Queue) extends the standard queue by allowing insertion and deletion of elements from both the front and the rear ends, supporting a more flexible range of operations compared to the single-ended queue."
+	},
+	{
+		"frontSide": "What is tree balancing and why is it important in AVL trees?",
+		"backSide": "Tree balancing in AVL trees ensures that the height difference (balance factor) between left and right subtrees is no more than 1, maintaining optimal search times and preventing the tree from becoming skewed, which could degrade performance to O(n) in the worst case."
+	},
+	{
+		"frontSide": "Describe a real-world application of using a stack data structure.",
+		"backSide": "A real-world application of using a stack data structure is in web browsers for managing the history of visited web pages. The last page visited is the first to be retrieved when the user clicks the back button, exemplifying the LIFO (Last In, First Out) principle."
+	},
+	{
+		"frontSide": "What is the significance of the 'Golden Ratio' in Fibonacci heap operations?",
+		"backSide": "While not directly related to the mentioned data structures, the 'Golden Ratio' appears in the analysis of Fibonacci heap operations, particularly in the amortized time complexity analysis, ensuring efficient performance in key operations like insert and decrease-key, leveraging the properties of Fibonacci numbers for optimal structure."
+	},
+	{
+		"frontSide": "How do hash tables manage collisions?",
+		"backSide": "Hash tables manage collisions primarily through two methods: chaining, where each bucket contains a linked list of entries that hash to the same bucket, and open addressing, where collisions are resolved by probing for the next available slot according to a predefined sequence."
+	},
+	{
+		"frontSide": "What is a self-adjusting tree and how does it differ from AVL?",
+		"backSide": "A self-adjusting tree, like a Splay Tree, adjusts its structure on every operation (access, insertion, deletion) to move the involved nodes closer to the root, optimizing for recently accessed elements. Unlike AVL trees, which maintain strict balance through rotations to ensure O(log n) operations, Splay Trees do not guarantee perfectly balanced trees but offer amortized time complexity."
+	},
+	{
+		"frontSide": "How does a Binary Search Tree (BST) handle duplicates?",
+		"backSide": "Handling duplicates in a Binary Search Tree (BST) can vary by implementation, but a common method is to either keep a count of identical elements at each node or to define a policy that either all duplicates go to the left or right subtree, maintaining the BST property."
+	},
+	{
+		"frontSide": "What advantage does a circular queue have over a linear queue?",
+		"backSide": "A circular queue efficiently utilizes space by treating the queue as a circular entity, allowing the rear of the queue to connect back to the front. This eliminates the need to shift elements when the front of the queue is dequeued, unlike in a linear queue, making it more space-efficient and reducing processing time for enqueue and dequeue operations."
+	},
+	{
+		"frontSide": "In AVL trees, how are 'Double Rotations' used to maintain balance?",
+		"backSide": "Double rotations in AVL trees are used when a single rotation is insufficient to restore balance after an insertion or deletion. They are performed in two steps, involving a rotation on the child node followed by a rotation on the parent node, addressing cases where the imbalance involves a 'zig-zag' pattern."
+	},
+	{
+		"frontSide": "What strategy ensures efficient resizing of a dynamic hash table?",
+		"backSide": "Efficient resizing of a dynamic hash table involves using a high load factor threshold to trigger resizing and choosing an optimal resizing factor to balance between space efficiency and minimizing rehash operations. Incremental rehashing may also be used to spread the rehash cost over several operations."
+	},
+	{
+		"frontSide": "Explain the concept of 'Lazy Deletion' in data structures.",
+		"backSide": "Lazy deletion in data structures involves marking elements as deleted without immediately removing them from the structure. This approach can simplify deletion operations and improve performance in certain scenarios but requires occasional cleanup or reorganization to reclaim space and maintain efficiency."
+	},
+	{
+		"frontSide": "How do circular singly linked lists benefit from a sentinel node?",
+		"backSide": "Circular singly linked lists benefit from a sentinel node by simplifying the implementation of operations like insertion and deletion. The sentinel node acts as a fixed point of reference, eliminating the need to handle special cases for empty lists or operations at the list's boundaries."
+	},
+	{
+		"frontSide": "Describe the 'Two-Stacks Method' for implementing a queue.",
+		"backSide": "The 'Two-Stacks Method' for implementing a queue uses two stacks to reverse the order of elements twice, thereby achieving FIFO (First In, First Out) behavior. One stack is used for enqueue operations, and the other for dequeue operations, with elements transferred between the stacks as necessary."
+	},
+	{
+		"frontSide": "What role does the 'Height Factor' play in AVL tree operations?",
+		"backSide": "The 'Height Factor' in AVL tree operations, also known as the balance factor, is crucial for maintaining the tree's balance. It is calculated as the height difference between the left and right subtrees of a node. AVL trees require this factor to be -1, 0, or 1 for every node to ensure balanced tree structure and optimized search operations."
+	},
+	{
+		"frontSide": "Why are hash tables considered inefficient for range queries?",
+		"backSide": "Hash tables are considered inefficient for range queries because their structure is designed for fast access to individual elements based on keys, not for maintaining elements in a sorted order. This makes it difficult to efficiently retrieve all elements within a specific range without examining potentially every element in the table."
+	},
+	{
+		"frontSide": "What mechanism allows stacks to support 'Undo' functionality in software applications?",
+		"backSide": "Stacks support 'Undo' functionality in software applications through their LIFO (Last In, First Out) nature, allowing operations or changes to be reversed in the exact opposite order they were applied. By pushing operations onto a stack, the most recent action can be undone by simply popping it from the stack and reversing its effect."
+	},
+	{
+		"frontSide": "How does a 'Skip List' enhance the performance of linked lists?",
+		"backSide": "A 'Skip List' enhances the performance of linked lists by adding multiple layers of forward pointers at various levels, allowing for fast search, insertion, and deletion operations similar to balanced trees. This structure enables skip lists to achieve average case time complexities comparable to those of balanced binary search trees."
+	},
+	{
+		"frontSide": "What is the primary advantage of using a circular buffer in queue implementations?",
+		"backSide": "The primary advantage of using a circular buffer in queue implementations is its efficient use of memory and constant-time operations for enqueue and dequeue actions. By treating the buffer as circular, it avoids the need for data shifting, thus optimizing space utilization and operational efficiency."
+	}
+]

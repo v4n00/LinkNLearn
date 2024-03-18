@@ -1,4 +1,4 @@
-import BinarySearchTree from '@/assets/data structures/BinarySearchTree';
+import BinarySearchTree from '@/assets/data structures/BST/BinarySearchTree';
 import DoublyLinkedList from '@/assets/data structures/DoublyLinkedList';
 import HashTable from '@/assets/data structures/HashTable';
 import SinglyLinkedList from '@/assets/data structures/SinglyLinkedList';
@@ -20,7 +20,7 @@ const mainReducer = (state: DataStructure, action: DSAction) => {
 			} else if (action.payload.type === 'HT') {
 				result = hashTableReducer({} as HashTable, action as HashTableActions);
 			} else if (action.payload.type === 'BST') {
-				result = bstReducer({} as BinarySearchTree, action as BinarySearchTreeActions);
+				result = bstReducer({} as BinarySearchTree<number>, action as BinarySearchTreeActions);
 			} else {
 				throw new Error('Invalid data structure type');
 			}

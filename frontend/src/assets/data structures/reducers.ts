@@ -1,4 +1,4 @@
-import BinarySearchTree from './BinarySearchTree';
+import BinarySearchTree from './BST/BinarySearchTree';
 import DoublyLinkedList from './DoublyLinkedList';
 import HashTable from './HashTable';
 import SinglyLinkedList from './SinglyLinkedList';
@@ -56,7 +56,7 @@ export const hashTableReducer = (state: HashTable, action: HashTableActions) => 
 	}
 };
 
-export const bstReducer = (state: BinarySearchTree, action: BinarySearchTreeActions) => {
+export const bstReducer = (state: BinarySearchTree<number>, action: BinarySearchTreeActions) => {
 	switch (action.type) {
 		case 'INITIALIZE':
 			return getNewDS(DataStructureTypes.BST);
