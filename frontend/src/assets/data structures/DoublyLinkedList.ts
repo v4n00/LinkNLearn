@@ -98,38 +98,32 @@ export default class DoublyLinkedList<T> {
 		}
 
 		let deletedNode = null;
-		let currentNode = this.head;
 
-		while (currentNode) {
-			if (currentNode.value === value) {
-				deletedNode = currentNode;
-
-				if (deletedNode === this.head) {
-					this.head = deletedNode.next;
-
-					if (this.head) {
-						this.head.previous = null;
-					}
-
-					if (deletedNode === this.tail) {
-						this.tail = null;
-					}
-				} else if (deletedNode === this.tail) {
-					this.tail = deletedNode.previous;
-					if (this.tail) this.tail.next = null;
-				} else {
-					const previousNode = deletedNode.previous;
-					const nextNode = deletedNode.next;
-
-					if (previousNode) previousNode.next = nextNode;
-					if (nextNode) nextNode.previous = previousNode;
-				}
-			}
-
-			if (currentNode.next) currentNode = currentNode.next;
+		while (this.head && this.head.value === value) {
+			deletedNode = this.head;
+			this.head = this.head.next;
 		}
 
-		if (deletedNode === null) throw new Error(`Node with value ${value} not found.`);
+		let currentNode = this.head;
+
+		if (currentNode !== null) {
+			while (currentNode.next) {
+				if (currentNode.next.value === value) {
+					deletedNode = currentNode.next;
+					currentNode.next = currentNode.next.next;
+				} else {
+					currentNode = currentNode.next;
+				}
+			}
+		}
+
+		if (this.tail && this.tail.value === value) {
+			this.tail = currentNode;
+		}
+
+		if (deletedNode === null) {
+			throw new Error(`Node with value ${value} not found.`);
+		}
 
 		return deletedNode;
 	}

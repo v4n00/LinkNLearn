@@ -6,7 +6,7 @@ const ErrorHandler = () => {
 	const { data } = useDS();
 
 	useEffect(() => {
-		if (data.error !== '') {
+		if (data.error !== '' && data.error !== undefined) {
 			errorToast(`Error: ${data.error}`);
 		}
 	}, [data]);
