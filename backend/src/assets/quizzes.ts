@@ -1,7 +1,7 @@
 export const quizzes = [
 	{
 		id: 1,
-		title: 'C Language Recap',
+		title: 'Reading files in C',
 	},
 	{
 		id: 2,
