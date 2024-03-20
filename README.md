@@ -2,10 +2,10 @@
 
 Bachelor Thesis Project
 
-## TODO frontend - 96%
+## TODO frontend - 97%
 
-- [ ] fill quizzes
 - [ ] fill data structures lectures
+- [x] ~~fill quizzes~~
 - [x] ~~fill flashcards~~
 - [x] ~~General: Data structure page~~
 - [x] ~~BST viz~~
@@ -51,7 +51,6 @@ Bachelor Thesis Project
 
 ## EXTRAS - 0%
 
-- [ ] snippets of code for content
 - [ ] quiz stats
 - [ ] forgot password
 - [ ] email verification

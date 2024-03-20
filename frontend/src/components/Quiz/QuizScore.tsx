@@ -22,7 +22,7 @@ const QuizScores = ({ score, maxScore }: { score?: number; maxScore?: number }) 
 						</div>
 						<div className="text-l text-muted-foreground/70">You scored {((score / maxScore) * 100).toFixed(1)}%</div>
 					</div>
-					<div className="text-md italic">{user ? 'The result has been saved to your account.' : 'Log in in order to save your result.'}</div>
+					<div className="text-md italic">{user ? 'The result has been saved to your account.' : 'Log in to save your result.'}</div>
 				</>
 			) : (
 				<div className="flex justify-center items-center h-[180px] w-[366px]">

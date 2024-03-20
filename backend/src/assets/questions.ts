@@ -1,4 +1,4 @@
-export const filesInCQuestions = [
+const filesInCQuestions = [
 	{
 		quizId: 1,
 		text: 'Which function is used to read a line from a file in C?',
@@ -28,18 +28,6 @@ export const filesInCQuestions = [
 		text: "What is the purpose of using 'strcpy' in C?",
 		options: JSON.stringify(['To compare two strings', 'To concatenate two strings', 'To copy a string to another', 'To split a string into tokens']),
 		answer: 'To copy a string to another',
-	},
-	{
-		quizId: 1,
-		text: "Which of the following is a common delimiter used with 'strtok'?",
-		options: JSON.stringify([',', ';', "Both ',' and ';'", ':']),
-		answer: "Both ',' and ';'",
-	},
-	{
-		quizId: 1,
-		text: "How can you read multiple lines from a file until EOF is reached using 'fgets'?",
-		options: JSON.stringify(['Using a while loop with fgets() != EOF', 'Using a do-while loop until fgets() returns NULL', 'Using an if statement', 'Using a for loop with a fixed number of iterations']),
-		answer: 'Using a do-while loop until fgets() returns NULL',
 	},
 	{
 		quizId: 1,
@@ -103,7 +91,7 @@ export const filesInCQuestions = [
 	},
 ];
 
-export const pointersInCQuestions = [
+const pointersInCQuestions = [
 	{
 		quizId: 2,
 		text: 'What is a pointer in C?',
@@ -202,7 +190,7 @@ export const pointersInCQuestions = [
 	},
 ];
 
-export const singlyLinkedListQuestions = [
+const singlyLinkedListQuestions = [
 	{
 		quizId: 3,
 		text: 'What is a singly linked list?',
@@ -242,8 +230,8 @@ export const singlyLinkedListQuestions = [
 	{
 		quizId: 3,
 		text: 'How can you reverse a singly linked list?',
-		options: JSON.stringify(['By swapping the head and tail', 'By iterating through the list and reversing the direction of the next pointers', 'By using a stack', 'Both B and C are correct']),
-		answer: 'Both B and C are correct',
+		options: JSON.stringify(['By swapping the head and tail', 'By iterating through the list and reversing the direction of the next pointers', 'By using a stack', 'Both swapping a tail and reversing the direction of the next pointers']),
+		answer: 'Both swapping a tail and reversing the direction of the next pointers',
 	},
 	{
 		quizId: 3,
@@ -277,12 +265,6 @@ export const singlyLinkedListQuestions = [
 	},
 	{
 		quizId: 3,
-		text: "What does the 'tail' node in a non-circular singly linked list point to?",
-		options: JSON.stringify(['The head node', 'The second to last node', 'Null', 'Itself']),
-		answer: 'Null',
-	},
-	{
-		quizId: 3,
 		text: "In the context of a singly linked list, what is a 'node'?",
 		options: JSON.stringify(['A function that adds elements to the list', 'A variable that stores the length of the list', 'A structure containing a data part and a link part', 'The process of linking two lists together']),
 		answer: 'A structure containing a data part and a link part',
@@ -313,18 +295,6 @@ export const singlyLinkedListQuestions = [
 	},
 	{
 		quizId: 3,
-		text: 'How is a singly linked list typically represented in memory?',
-		options: JSON.stringify(['A series of contiguous memory blocks', 'A collection of nodes where each node has a data part and a pointer to the next node', 'A fixed-size array', 'A hash table for direct access']),
-		answer: 'A collection of nodes where each node has a data part and a pointer to the next node',
-	},
-	{
-		quizId: 3,
-		text: 'Which of the following is not a characteristic of a circular singly linked list?',
-		options: JSON.stringify(['It has a tail node that points to null', 'Traversal can be infinite if not careful', 'Can be used to implement queues and stacks', 'The last node points to the first node']),
-		answer: 'It has a tail node that points to null',
-	},
-	{
-		quizId: 3,
 		text: 'What is the time complexity of adding a new node to the beginning of a singly linked list?',
 		options: JSON.stringify(['O(1)', 'O(n)', 'O(log n)', 'O(n^2)']),
 		answer: 'O(1)',
@@ -343,7 +313,7 @@ export const singlyLinkedListQuestions = [
 	},
 ];
 
-export const doublyLinkedListQuestions = [
+const doublyLinkedListQuestions = [
 	{
 		quizId: 4,
 		text: 'What is a doubly linked list?',
@@ -364,12 +334,6 @@ export const doublyLinkedListQuestions = [
 	},
 	{
 		quizId: 4,
-		text: 'In a doubly linked list, how is the tail node defined?',
-		options: JSON.stringify(['As the node with no previous node', 'As the node with no next node', 'As the node pointing to the head in a circular list', 'As the node located at the center of the list']),
-		answer: 'As the node with no next node',
-	},
-	{
-		quizId: 4,
 		text: 'What advantage does a doubly linked list have over a singly linked list?',
 		options: JSON.stringify(['It requires less memory', 'It allows traversal in both directions', 'It has faster access times', 'It can only store unique elements']),
 		answer: 'It allows traversal in both directions',
@@ -383,14 +347,14 @@ export const doublyLinkedListQuestions = [
 	{
 		quizId: 4,
 		text: 'How do you delete a node from the middle of a doubly linked list?',
-		options: JSON.stringify(["By setting the previous node's next pointer to the node after the one to be deleted", "By setting the next node's previous pointer to the node before the one to be deleted", 'By freeing the memory allocated for the node', 'All of the above']),
-		answer: 'All of the above',
+		options: JSON.stringify(["By setting the previous node's next pointer to the node after the one to be deleted", "By setting the next node's previous pointer to the node before the one to be deleted", 'By freeing the memory allocated for the node', 'All of the variants']),
+		answer: 'All of the variants',
 	},
 	{
 		quizId: 4,
 		text: 'What must be updated when adding a node to the end of a non-empty circular doubly linked list?',
-		options: JSON.stringify(["The new node's next pointer must point to the head", "The tail node's next pointer must point to the new node", "The head node's previous pointer must point to the new node", 'All of the above']),
-		answer: 'All of the above',
+		options: JSON.stringify(["The new node's next pointer must point to the head", "The tail node's next pointer must point to the new node", "The head node's previous pointer must point to the new node", 'All of the variants']),
+		answer: 'All of the variants',
 	},
 	{
 		quizId: 4,
@@ -431,12 +395,12 @@ export const doublyLinkedListQuestions = [
 	{
 		quizId: 4,
 		text: 'How can you efficiently search for an element in a doubly linked list?',
-		options: JSON.stringify(['Starting from the head, traverse one node at a time until the element is found', 'Starting from the tail, traverse one node at a time until the element is found', 'Either A or B, depending on which end is closer to the desired element', 'You cannot search in a doubly linked list']),
-		answer: 'Either A or B, depending on which end is closer to the desired element',
+		options: JSON.stringify(['Starting from the head, traverse one node at a time until the element is found', 'Starting from the tail, traverse one node at a time until the element is found', 'Either way, depending on which end is closer to the desired element', 'You cannot search in a doubly linked list']),
+		answer: 'Either way, depending on which end is closer to the desired element',
 	},
 ];
 
-export const stackAndQueueQuestions = [
+const stackAndQueueQuestions = [
 	{
 		quizId: 5,
 		text: 'What is a stack?',
@@ -466,12 +430,6 @@ export const stackAndQueueQuestions = [
 		text: "In a stack, what does the 'pop' operation do?",
 		options: JSON.stringify(['Adds a new element to the stack', 'Removes and returns the top element of the stack', 'Returns the top element without removing it', 'Removes all elements from the stack']),
 		answer: 'Removes and returns the top element of the stack',
-	},
-	{
-		quizId: 5,
-		text: 'How can you implement a queue using two stacks?',
-		options: JSON.stringify(['By pushing elements onto one stack and popping them off to another', 'By interleaving the elements of the two stacks', 'By keeping one stack empty at all times', "It's not possible to implement a queue using stacks"]),
-		answer: 'By pushing elements onto one stack and popping them off to another',
 	},
 	{
 		quizId: 5,
@@ -547,12 +505,6 @@ export const stackAndQueueQuestions = [
 	},
 	{
 		quizId: 5,
-		text: 'How can you simulate a queue using only one stack?',
-		options: JSON.stringify(['By reversing the order of elements with each enqueue operation', 'It is not possible to simulate a queue using only one stack', 'By using dynamic arrays', 'By periodically reversing the stack']),
-		answer: 'It is not possible to simulate a queue using only one stack',
-	},
-	{
-		quizId: 5,
 		text: 'What is the result of attempting to pop an element from an empty stack?',
 		options: JSON.stringify(['Underflow', 'Overflow', 'Null', 'Undefined behavior']),
 		answer: 'Underflow',
@@ -576,126 +528,376 @@ export const stackAndQueueQuestions = [
 		answer: 'A queue that allows insertion and deletion at both ends',
 	},
 ];
-export const heapAndPrioQueueQuestions = 
-[
-    {
-        "quizId": 6,
-        "text": "What is a heap?",
-        "options": [
-            "A type of sorting algorithm",
-            "A balanced binary tree",
-            "A complete binary tree where each node is greater than or equal to its children",
-            "An array that stores elements in random order"
-        ],
-        "answer": "A complete binary tree where each node is greater than or equal to its children"
-    },
-    {
-        "quizId": 6,
-        "text": "Which operation is typically used to add an element to a heap?",
-        "options": [
-            "insert",
-            "push",
-            "enqueue",
-            "add"
-        ],
-        "answer": "insert"
-    },
-    {
-        "quizId": 6,
-        "text": "What is the time complexity of inserting an element into a binary heap?",
-        "options": [
-            "O(1)",
-            "O(log n)",
-            "O(n)",
-            "O(n log n)"
-        ],
-        "answer": "O(log n)"
-    },
-    {
-        "quizId": 6,
-        "text": "In a max heap, where is the largest element found?",
-        "options": [
-            "At the root of the heap",
-            "At the last node of the heap",
-            "At any leaf node",
-            "In the middle of the heap"
-        ],
-        "answer": "At the root of the heap"
-    },
-    {
-        "quizId": 6,
-        "text": "What is a priority queue?",
-        "options": [
-            "A queue where elements are ordered by insertion time",
-            "A data structure where each element has a priority and the element with the highest priority is served first",
-            "A FIFO data structure",
-            "A LIFO data structure"
-        ],
-        "answer": "A data structure where each element has a priority and the element with the highest priority is served first"
-    },
-    {
-        "quizId": 6,
-        "text": "Which of the following is not a characteristic of a min heap?",
-        "options": [
-            "The root is the smallest element in the heap",
-            "Each node is smaller than its parent",
-            "It can be used to implement a priority queue",
-            "Each node is greater than or equal to its children"
-        ],
-        "answer": "Each node is smaller than its parent"
-    },
-    {
-        "quizId": 6,
-        "text": "How is a heap typically represented in memory?",
-        "options": [
-            "Linked list",
-            "Array",
-            "Graph",
-            "Stack"
-        ],
-        "answer": "Array"
-    },
-    {
-        "quizId": 6,
-        "text": "What is heapify?",
-        "options": [
-            "A process to convert a binary tree into a balanced binary tree",
-            "A process to convert an unordered array into a sorted array",
-            "A process to create a heap out of a given array of elements",
-            "A process to increase the value of all elements in a heap"
-        ],
-        "answer": "A process to create a heap out of a given array of elements"
-    },
-    {
-        "quizId": 6,
-        "text": "What is the time complexity of building a heap from an unsorted array?",
-        "options": [
-            "O(1)",
-            "O(log n)",
-            "O(n)",
-            "O(n log n)"
-        ],
-        "answer": "O(n)"
-    },
-    {
-        "quizId": 6,
-        "text": "Which operation removes the element with the highest priority from a priority queue?",
-        "options": [
-            "deleteMax",
-            "pop",
-            "dequeue",
-            "remove"
-        ],
-        "answer": "deleteMax"
-    },
-    {
-        "quizId": 6,
-        "text": "How do you find the kth largest element using a heap?",
-        "options": [
-            "By inserting all elements into a min heap and performing k extract-min operations",
-            "By inserting all elements into a max heap and performing k extract-max operations",
-            "By sorting the heap and accessing the kth index",
-            "By performing a binary search on the heap"
-        ],
-        "answer": "By inserting all elements into a max heap and performing k extract-max operations"
-    },
+
+const heapAndPrioQueueQuestions = [
+	{
+		quizId: 6,
+		text: 'What is a heap?',
+		options: JSON.stringify(['A type of sorting algorithm', 'A balanced binary tree', 'A complete binary tree where each node is greater than or equal to its children', 'An array that stores elements in random order']),
+		answer: 'A complete binary tree where each node is greater than or equal to its children',
+	},
+	{
+		quizId: 6,
+		text: 'Which operation is typically used to add an element to a heap?',
+		options: JSON.stringify(['insert', 'push', 'enqueue', 'add']),
+		answer: 'insert',
+	},
+	{
+		quizId: 6,
+		text: 'What is the time complexity of inserting an element into a binary heap?',
+		options: JSON.stringify(['O(1)', 'O(log n)', 'O(n)', 'O(n log n)']),
+		answer: 'O(log n)',
+	},
+	{
+		quizId: 6,
+		text: 'In a max heap, where is the largest element found?',
+		options: JSON.stringify(['At the root of the heap', 'At the last node of the heap', 'At any leaf node', 'In the middle of the heap']),
+		answer: 'At the root of the heap',
+	},
+	{
+		quizId: 6,
+		text: 'What is a priority queue?',
+		options: JSON.stringify(['A queue where elements are ordered by insertion time', 'A data structure where each element has a priority and the element with the highest priority is served first', 'A FIFO data structure', 'A LIFO data structure']),
+		answer: 'A data structure where each element has a priority and the element with the highest priority is served first',
+	},
+	{
+		quizId: 6,
+		text: 'Which of the following is not a characteristic of a min heap?',
+		options: JSON.stringify(['The root is the smallest element in the heap', 'Each node is smaller than its parent', 'It can be used to implement a priority queue', 'Each node is greater than or equal to its children']),
+		answer: 'Each node is smaller than its parent',
+	},
+	{
+		quizId: 6,
+		text: 'How is a heap typically represented in memory?',
+		options: JSON.stringify(['Linked list', 'Array', 'Graph', 'Stack']),
+		answer: 'Array',
+	},
+	{
+		quizId: 6,
+		text: 'What is heapify?',
+		options: JSON.stringify(['A process to convert a binary tree into a balanced binary tree', 'A process to convert an unordered array into a sorted array', 'A process to create a heap out of a given array of elements', 'A process to increase the value of all elements in a heap']),
+		answer: 'A process to create a heap out of a given array of elements',
+	},
+	{
+		quizId: 6,
+		text: 'What is the time complexity of building a heap from an unsorted array?',
+		options: JSON.stringify(['O(1)', 'O(log n)', 'O(n)', 'O(n log n)']),
+		answer: 'O(n)',
+	},
+	{
+		quizId: 6,
+		text: 'Which operation removes the element with the highest priority from a priority queue?',
+		options: JSON.stringify(['deleteMax', 'pop', 'dequeue', 'remove']),
+		answer: 'deleteMax',
+	},
+	{
+		quizId: 6,
+		text: 'How do you find the kth largest element using a heap?',
+		options: JSON.stringify(['By inserting all elements into a min heap and performing k extract-min operations', 'By inserting all elements into a max heap and performing k extract-max operations', 'By sorting the heap and accessing the kth index', 'By performing a binary search on the heap']),
+		answer: 'By inserting all elements into a max heap and performing k extract-max operations',
+	},
+	{
+		quizId: 6,
+		text: "What is the result of performing a 'heapify' operation on a single node in a heap?",
+		options: JSON.stringify(["The heap's structure is balanced", 'The node is swapped with the root node', 'The subtree rooted at the given node is adjusted to maintain the heap property', 'All nodes in the heap are re-arranged']),
+		answer: 'The subtree rooted at the given node is adjusted to maintain the heap property',
+	},
+	{
+		quizId: 6,
+		text: 'What is the main advantage of using a heap over a sorted array to implement a priority queue?',
+		options: JSON.stringify(['Heaps provide better memory usage', 'Heaps allow for faster search operations', 'Heaps provide faster insertion and removal operations', 'Heaps are easier to implement']),
+		answer: 'Heaps provide faster insertion and removal operations',
+	},
+	{
+		quizId: 6,
+		text: 'Which of the following statements is true regarding the deletion of the root node in a heap?',
+		options: JSON.stringify(['It can be done in constant time', 'It requires rearranging the heap to maintain the heap property', "It does not affect the heap's structure", 'It is not allowed in heap data structures']),
+		answer: 'It requires rearranging the heap to maintain the heap property',
+	},
+	{
+		quizId: 6,
+		text: 'In heap sort algorithm, what is the first step?',
+		options: JSON.stringify(['Sort the heap using bubble sort', 'Build a max heap from the unsorted array', 'Extract the maximum element from the heap', 'Swap the first and last elements of the array']),
+		answer: 'Build a max heap from the unsorted array',
+	},
+	{
+		quizId: 6,
+		text: 'What is the worst-case time complexity of the heap sort algorithm?',
+		options: JSON.stringify(['O(n)', 'O(n log n)', 'O(log n)', 'O(n^2)']),
+		answer: 'O(n log n)',
+	},
+	{
+		quizId: 6,
+		text: 'What differentiates a min heap from a max heap?',
+		options: JSON.stringify(["In a min heap, the value of parent nodes is less than that of their children, while in a max heap, it's greater", "In a min heap, the value of parent nodes is greater than that of their children, while in a max heap, it's less", 'Min heaps are used only in sorting algorithms, while max heaps are used only in priority queues', 'Min heaps can only contain integers, while max heaps can contain any type of data']),
+		answer: "In a min heap, the value of parent nodes is less than that of their children, while in a max heap, it's greater",
+	},
+	{
+		quizId: 6,
+		text: 'How can a priority queue be implemented?',
+		options: JSON.stringify(['Using arrays', 'Using linked lists', 'Using heaps', 'All of these']),
+		answer: 'All of these',
+	},
+	{
+		quizId: 6,
+		text: 'What is the time complexity of finding the minimum element in a min heap?',
+		options: JSON.stringify(['O(1)', 'O(log n)', 'O(n)', 'O(n log n)']),
+		answer: 'O(1)',
+	},
+	{
+		quizId: 6,
+		text: 'Which property is crucial for the efficient implementation of a priority queue?',
+		options: JSON.stringify(['The queue being unsorted', 'The queue being sorted in ascending order', 'The queue allowing random access', 'The queue maintaining elements in a hierarchical order based on their priority']),
+		answer: 'The queue maintaining elements in a hierarchical order based on their priority',
+	},
+	{
+		quizId: 6,
+		text: "What happens during the 'extract-min' operation in a min heap?",
+		options: JSON.stringify(['The smallest element is returned and removed from the heap', 'The heap is sorted in ascending order', 'A new minimum element is added to the heap', "The heap's structure is converted to a max heap"]),
+		answer: 'The smallest element is returned and removed from the heap',
+	},
+];
+
+const binarySearchTreeQuestions = [
+	{
+		quizId: 7,
+		text: 'What property must all Binary Search Trees (BSTs) satisfy?',
+		options: JSON.stringify(["The left subtree of a node contains only nodes with keys greater than the node's key.", 'Each node can have at most one child.', "The left subtree of a node contains only nodes with keys less than the node's key, and the right subtree only nodes with keys greater than the node's key.", 'A BST has no duplicate elements.']),
+		answer: "The left subtree of a node contains only nodes with keys less than the node's key, and the right subtree only nodes with keys greater than the node's key.",
+	},
+	{
+		quizId: 7,
+		text: 'What is the time complexity of searching for a value in a balanced BST?',
+		options: JSON.stringify(['O(1)', 'O(log n)', 'O(n)', 'O(n log n)']),
+		answer: 'O(log n)',
+	},
+	{
+		quizId: 7,
+		text: 'Which of the following operations can be performed on a BST?',
+		options: JSON.stringify(['Insertion', 'Deletion', 'Searching', 'All of the these']),
+		answer: 'All of the these',
+	},
+	{
+		quizId: 7,
+		text: 'What does an inorder traversal of a BST produce?',
+		options: JSON.stringify(['A list of the node values in decreasing order', 'A list of the node values in the order they were inserted', 'A list of the node values in ascending order', 'A random order of node values']),
+		answer: 'A list of the node values in ascending order',
+	},
+	{
+		quizId: 7,
+		text: 'What is the maximum number of nodes in a BST of height h?',
+		options: JSON.stringify(['2^h - 1', '2^(h+1) - 1', 'h^2', 'log h']),
+		answer: '2^(h+1) - 1',
+	},
+	{
+		quizId: 7,
+		text: 'How do you delete a node with two children in a BST?',
+		options: JSON.stringify(['Replace the node with its right child', 'Replace the node with its left child', 'Replace the node with the smallest value in its right subtree or the largest value in its left subtree', 'Remove the node and connect its parent directly to its children']),
+		answer: 'Replace the node with the smallest value in its right subtree or the largest value in its left subtree',
+	},
+	{
+		quizId: 7,
+		text: 'What is the minimum height of a BST with n nodes?',
+		options: JSON.stringify(['log n', 'n', 'n/2', 'log(n+1) - 1']),
+		answer: 'log(n+1) - 1',
+	},
+	{
+		quizId: 7,
+		text: "In a BST, what does the 'successor' of a node refer to?",
+		options: JSON.stringify(['The node with the next higher key value in the tree', "The node's right child", "The node's parent", "The node's left child"]),
+		answer: 'The node with the next higher key value in the tree',
+	},
+	{
+		quizId: 7,
+		text: 'Which BST property aids in efficiently finding the minimum and maximum elements?',
+		options: JSON.stringify(['The deepest node is always the maximum or minimum.', 'The root node is the minimum for left subtrees and the maximum for right subtrees.', 'The leftmost node is the minimum, and the rightmost node is the maximum.', 'BSTs are always balanced.']),
+		answer: 'The leftmost node is the minimum, and the rightmost node is the maximum.',
+	},
+	{
+		quizId: 7,
+		text: 'What is a self-balancing BST?',
+		options: JSON.stringify(['A BST that requires manual rebalancing after every insertion or deletion', 'A BST where nodes are added in a specific order to minimize height', 'A type of BST that automatically maintains its height to be log n for efficient operations', 'A BST where each node knows its own balance factor']),
+		answer: 'A type of BST that automatically maintains its height to be log n for efficient operations',
+	},
+	{
+		quizId: 7,
+		text: 'Why is it important for a BST to be balanced?',
+		options: JSON.stringify(['To ensure the depth of the tree is minimized, improving the efficiency of search, insert, and delete operations', 'To make sure that the tree looks aesthetically pleasing', 'To use less memory for storing nodes', 'Balancing a BST is not important']),
+		answer: 'To ensure the depth of the tree is minimized, improving the efficiency of search, insert, and delete operations',
+	},
+	{
+		quizId: 7,
+		text: 'How does the deletion of a leaf node affect the structure of a BST?',
+		options: JSON.stringify(['It does not affect the structure, as leaf nodes have no children', 'The tree becomes unbalanced and needs to be rebalanced', 'The height of the tree is reduced by one', 'All nodes must be reinserted to maintain the BST properties']),
+		answer: 'It does not affect the structure, as leaf nodes have no children',
+	},
+	{
+		quizId: 7,
+		text: 'What is the worst-case time complexity of searching for an element in an unbalanced BST?',
+		options: JSON.stringify(['O(1)', 'O(log n)', 'O(n)', 'O(n log n)']),
+		answer: 'O(n)',
+	},
+	{
+		quizId: 7,
+		text: "What does a 'rotation' in a BST context mean?",
+		options: JSON.stringify(['Swapping the values of two nodes', 'Moving a subtree down and another subtree up to balance the tree', 'Cycling through the nodes in a level-order traversal', 'Rotating the tree visualization by 90 degrees']),
+		answer: 'Moving a subtree down and another subtree up to balance the tree',
+	},
+	{
+		quizId: 7,
+		text: 'What property does the inorder predecessor of a node in a BST have?',
+		options: JSON.stringify(['It is the node with the smallest key in the right subtree', 'It is the root node of the BST', 'It is the node with the largest key in the left subtree', 'It is the node with the maximum key value in the tree']),
+		answer: 'It is the node with the largest key in the left subtree',
+	},
+	{
+		quizId: 7,
+		text: 'In which scenario would you use a BST over a hash table?',
+		options: JSON.stringify(['When fast retrieval of data in a sorted order is required', 'When you need to handle collisions in data', 'When the insertion order of elements must be preserved', 'When memory usage is the primary concern']),
+		answer: 'When fast retrieval of data in a sorted order is required',
+	},
+	{
+		quizId: 7,
+		text: 'How do you find the closest value to a given target in a BST?',
+		options: JSON.stringify(['By performing a binary search and keeping track of the closest value found so far', 'By traversing every node and comparing its value with the target', "By selecting the root node's value as the closest", 'By sorting the tree and selecting the median value']),
+		answer: 'By performing a binary search and keeping track of the closest value found so far',
+	},
+	{
+		quizId: 7,
+		text: 'What is the effect of repeatedly inserting sorted data into a BST?',
+		options: JSON.stringify(['The tree becomes perfectly balanced', 'The tree degenerates into a linked list, leading to inefficient operations', 'The height of the tree is automatically reduced to log n', 'The tree remains unchanged']),
+		answer: 'The tree degenerates into a linked list, leading to inefficient operations',
+	},
+];
+
+const avlQuestions = [
+	{
+		quizId: 8,
+		text: 'What is an AVL tree?',
+		options: JSON.stringify(['A binary tree where the difference between heights of left and right subtrees cannot be more than one for all nodes.', 'A binary tree that is completely filled, except possibly for the bottom level.', 'A binary tree where each node has a unique color assigned, either red or black.', 'A binary tree where nodes are arranged in ascending order.']),
+		answer: 'A binary tree where the difference between heights of left and right subtrees cannot be more than one for all nodes.',
+	},
+	{
+		quizId: 8,
+		text: 'What is the time complexity of search operations in an AVL tree?',
+		options: JSON.stringify(['O(1)', 'O(log n)', 'O(n)', 'O(n log n)']),
+		answer: 'O(log n)',
+	},
+	{
+		quizId: 8,
+		text: 'Which operation is required to maintain the AVL property after insertion or deletion?',
+		options: JSON.stringify(['Rotation', 'Recoloring', 'Resizing', 'Rebalancing']),
+		answer: 'Rotation',
+	},
+	{
+		quizId: 8,
+		text: "What is a 'left rotation' in the context of an AVL tree?",
+		options: JSON.stringify(['A rotation that moves nodes to the left to increase the height of the left subtree.', 'A rotation that preserves the binary search tree property by making the right child of a node the new root of the subtree.', "A counter-clockwise rotation around a node's left child.", "A clockwise rotation around a node's right child."]),
+		answer: 'A rotation that preserves the binary search tree property by making the right child of a node the new root of the subtree.',
+	},
+	{
+		quizId: 8,
+		text: 'How does an AVL tree ensure that operations such as insertion, deletion, and lookup remain efficient?',
+		options: JSON.stringify(['By keeping the tree perfectly balanced at all times.', 'By allowing a maximum height difference of 1 between the left and right subtrees of any node.', 'By using a hash function to distribute nodes evenly.', 'By rotating the tree after every operation.']),
+		answer: 'By allowing a maximum height difference of 1 between the left and right subtrees of any node.',
+	},
+	{
+		quizId: 8,
+		text: 'What is the balance factor of a node in an AVL tree?',
+		options: JSON.stringify(['The difference between the number of nodes in the left subtree and the number of nodes in the right subtree.', 'The difference in height between the left and right subtrees.', 'The total number of nodes in the tree.', 'The depth of the node in the tree.']),
+		answer: 'The difference in height between the left and right subtrees.',
+	},
+	{
+		quizId: 8,
+		text: 'What kind of rotation is applied when inserting a node in the left subtree of the left child of a node causes an imbalance?',
+		options: JSON.stringify(['Single left rotation', 'Single right rotation', 'Left-right rotation', 'Right-left rotation']),
+		answer: 'Single right rotation',
+	},
+	{
+		quizId: 8,
+		text: "Which scenario requires a 'double rotation' to restore AVL tree properties?",
+		options: JSON.stringify(['When an imbalance occurs due to an insertion in the right subtree of the right child of a node.', "When an imbalance occurs due to an insertion in the left subtree of a node's left child.", "When an imbalance occurs due to an insertion in the right subtree of a node's left child.", 'No scenario requires a double rotation.']),
+		answer: "When an imbalance occurs due to an insertion in the right subtree of a node's left child.",
+	},
+	{
+		quizId: 8,
+		text: 'What is the maximum number of rotations needed to rebalance an AVL tree after an insertion?',
+		options: JSON.stringify(['1', '2', '3', 'It depends on the size of the tree.']),
+		answer: '2',
+	},
+	{
+		quizId: 8,
+		text: "In AVL trees, what is the effect of a 'right rotation'?",
+		options: JSON.stringify(['It decreases the height of the right subtree.', 'It increases the height of the left subtree.', 'It makes the left child of a node the new root of the subtree to decrease its height.', 'It reassigns parent-child relationships to balance the subtree.']),
+		answer: 'It makes the left child of a node the new root of the subtree to decrease its height.',
+	},
+	{
+		quizId: 8,
+		text: 'Why is maintaining balance important in an AVL tree?',
+		options: JSON.stringify(['To ensure that the tree remains a valid binary search tree.', 'To optimize memory usage by the tree.', 'To ensure operations such as search, insert, and delete have O(log n) time complexity.', 'To simplify the tree traversal algorithms.']),
+		answer: 'To ensure operations such as search, insert, and delete have O(log n) time complexity.',
+	},
+	{
+		quizId: 8,
+		text: 'How do you calculate the balance factor of a node in an AVL tree?',
+		options: JSON.stringify(['Subtract the height of the right subtree from the left subtree.', 'Add the heights of the left and right subtrees.', 'Multiply the heights of the left and right subtrees.', 'Divide the height of the left subtree by the right subtree.']),
+		answer: 'Subtract the height of the right subtree from the left subtree.',
+	},
+	{
+		quizId: 8,
+		text: 'What is the time complexity for deleting an element in an AVL tree?',
+		options: JSON.stringify(['O(1)', 'O(log n)', 'O(n)', 'O(n log n)']),
+		answer: 'O(log n)',
+	},
+	{
+		quizId: 8,
+		text: 'What characteristic does an AVL tree share with a regular binary search tree?',
+		options: JSON.stringify(['All nodes are of equal height.', 'It does not allow duplicate values.', 'Left child nodes are always greater than the parent node.', 'Right child nodes are always lesser than the parent node.']),
+		answer: 'It does not allow duplicate values.',
+	},
+	{
+		quizId: 8,
+		text: 'Which types of rotations can be used to rebalance an AVL tree?',
+		options: JSON.stringify(['Left rotation only', 'Right rotation only', 'Left and Right rotations', 'Circular rotations']),
+		answer: 'Left and Right rotations',
+	},
+	{
+		quizId: 8,
+		text: 'How do AVL trees handle duplicate values?',
+		options: JSON.stringify(['All duplicate values are allowed and placed in the left subtree.', 'Duplicates are not allowed; each value must be unique.', 'Duplicates are allowed; a counter is used to track the number of occurrences.', 'Duplicates are stored in a separate data structure linked to the node.']),
+		answer: 'Duplicates are not allowed; each value must be unique.',
+	},
+	{
+		quizId: 8,
+		text: "What does the term 'balancing' refer to in AVL trees?",
+		options: JSON.stringify(['Ensuring that the tree is always a complete binary tree.', 'Maintaining the height difference between left and right subtrees within a specific range.', 'Keeping the tree fully binary with all leaf nodes at the same depth.', 'Distributing nodes evenly across all levels of the tree.']),
+		answer: 'Maintaining the height difference between left and right subtrees within a specific range.',
+	},
+	{
+		quizId: 8,
+		text: 'What is the balance factor for a perfectly balanced AVL tree?',
+		options: JSON.stringify(['0', '1', '-1', 'It can be either -1, 0, or 1.']),
+		answer: 'It can be either -1, 0, or 1.',
+	},
+	{
+		quizId: 8,
+		text: "In the context of AVL trees, what is a 'single rotation'?",
+		options: JSON.stringify(['A rotation involving two nodes to correct a single imbalance.', 'A rotation that occurs only on one side of the tree.', 'A corrective operation that involves rotating a node and its child.', 'The process of rotating all nodes in a single level of the tree.']),
+		answer: 'A corrective operation that involves rotating a node and its child.',
+	},
+	{
+		quizId: 8,
+		text: 'Which statement best describes the deletion process in an AVL tree?',
+		options: JSON.stringify(['It is simpler than insertion because no rebalancing is required.', 'It can potentially require rebalancing up to the root of the tree.', 'A deleted node is replaced by a placeholder to maintain balance.', 'Deletion is not allowed in AVL trees.']),
+		answer: 'It can potentially require rebalancing up to the root of the tree.',
+	},
+	{
+		quizId: 8,
+		text: 'What is the primary disadvantage of using AVL trees?',
+		options: JSON.stringify(['They require additional memory for storing balance factors.', 'Their balancing operations can be computationally expensive, especially for large datasets.', 'They do not support duplicate values.', 'They cannot be used to implement associative arrays.']),
+		answer: 'Their balancing operations can be computationally expensive, especially for large datasets.',
+	},
+];
+
+const questionsArray = [filesInCQuestions, pointersInCQuestions, singlyLinkedListQuestions, doublyLinkedListQuestions, stackAndQueueQuestions, heapAndPrioQueueQuestions, binarySearchTreeQuestions, avlQuestions];
+
+export default questionsArray;
