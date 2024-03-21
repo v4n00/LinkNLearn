@@ -52,7 +52,7 @@ const FlashcardsManager = () => {
 
 	return (
 		<main>
-			<h1>Manage flashcards</h1>
+			<p className="page-title">Manage flashcards</p>
 			<div className="flex flex-col justify-between items-center gap-5">
 				<FlashcardEditor setOnChange={setOnChange} />
 				<Input

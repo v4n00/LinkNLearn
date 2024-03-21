@@ -42,7 +42,7 @@ const FlashcardsViewer = ({ type }: FlashcardViewerType) => {
 
 	return (
 		<main>
-			<h1>{type} flashcards</h1>
+			<p className="page-title">{type} flashcards</p>
 			<FlashcardNavigator flashcards={data} />
 		</main>
 	);

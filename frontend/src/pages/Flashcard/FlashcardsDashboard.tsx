@@ -16,7 +16,7 @@ const FlashcardsDashboard = () => {
 
 	return (
 		<main>
-			<h1>Flashcards</h1>
+			<p className="page-title">Flashcards</p>
 			<div className="grid gap-6 text-center">
 				<div className="grid md:grid-cols-2 grid-cols-1 gap-6 md:w-[600px] w-full">
 					<DisableCard disabled={false} href="/flashcards/default">

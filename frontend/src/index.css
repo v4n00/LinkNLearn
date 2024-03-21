@@ -67,6 +67,12 @@
 	.rotate-x-180 {
 		transform: translate(-50%, -50%) rotateX(180deg);
 	}
+	.page-title {
+		@apply whitespace-pre-wrap text-7xl font-extrabold text-center my-10;
+	}
+	.page-subtitle {
+		@apply text-3xl text-center;
+	}
 }
 
 @layer base {
@@ -78,11 +84,5 @@
 	}
 	body {
 		@apply bg-background text-foreground h-full;
-	}
-	h2 {
-		@apply text-3xl text-center;
-	}
-	h1 {
-		@apply whitespace-pre-wrap text-7xl font-extrabold text-center my-10;
 	}
 }

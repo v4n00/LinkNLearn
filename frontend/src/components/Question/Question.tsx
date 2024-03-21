@@ -34,7 +34,7 @@ const Question = ({ question, doOnSubmit, buttonText }: QuestionProps) => {
 	return (
 		<Card className="max-w-[700px] max-h-[550px] min-w-[500px]">
 			<CardHeader className="text-center p-6">
-				<h2>{question.text}</h2>
+				<p className="page-subtitle">{question.text}</p>
 			</CardHeader>
 			<CardContent>
 				<Form {...form}>

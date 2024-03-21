@@ -5,7 +5,7 @@ const Unauthorized = () => {
 	const navigate = useNavigate();
 	return (
 		<div className="flex flex-col items-center justify-center space-y-6">
-			<h1>401</h1>
+			<p className="page-title">401</p>
 			<p>Unauthorized</p>
 			<div className="space-x-3">
 				<Button variant="outline" onClick={() => navigate(-1)}>

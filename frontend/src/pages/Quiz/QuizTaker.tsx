@@ -99,7 +99,7 @@ const QuizTaker = () => {
 
 	return (
 		<div>
-			<h1>{data?.title ?? ' '}</h1>
+			<p className="page-title">{data?.title ?? ' '}</p>
 			<div>
 				{data !== undefined ? (
 					data.questions.length > 0 ? (

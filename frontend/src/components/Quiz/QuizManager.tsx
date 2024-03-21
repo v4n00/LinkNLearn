@@ -44,7 +44,7 @@ const QuizManager = () => {
 
 	return (
 		<main>
-			<h1>Manage quizzes</h1>
+			<p className="page-title">Manage quizzes</p>
 			<div className="flex flex-col justify-between items-center gap-5">
 				<QuizEditor setOnChange={setOnChange} />
 				<Input

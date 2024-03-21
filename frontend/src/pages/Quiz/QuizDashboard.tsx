@@ -150,7 +150,7 @@ export default function QuizDashboard() {
 
 	return (
 		<main>
-			<h1>Quizzes</h1>
+			<p className="page-title">Quizzes</p>
 			<div>
 				<Carousel className="2xl:w-[1400px] xl:w-[1100px] lg:w-[900px] md:w-[600px] w-[400px] border shadow-sm rounded-lg p-2">
 					<CarouselContent>
