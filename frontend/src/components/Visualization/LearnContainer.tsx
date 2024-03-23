@@ -4,7 +4,7 @@ import DLL from '@/assets/lectures/DLL/DLL';
 import HT from '@/assets/lectures/HT/HT';
 import SLL from '@/assets/lectures/SLL/SLL';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CollapsibleText from '../CollapsibleText';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
@@ -13,6 +13,10 @@ import { TabsContent } from '../ui/tabs';
 
 const LearnContainer = ({ type }: { type: DataStructureTypes }) => {
 	const [currentPage, setCurrentPage] = useState(0);
+	useEffect(() => {
+		setCurrentPage(0);
+	}, [type]);
+
 	const nextPage = () => {
 		if (currentPage < pages.length - 1) {
 			setCurrentPage(currentPage + 1);

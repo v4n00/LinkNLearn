@@ -1,11 +1,37 @@
+import CSyntax from '@/components/Lecture/CSyntax';
+import InlineCode from '@/components/Lecture/InlineCode';
+
 const DLLp3 = (
 	<>
+		<h1>Creating a Double Linked List</h1>
+		<p>Now that you're familiar with what a double linked list is and its basic structure, let's dive into how to create one from scratch and add its very first node.</p>
+
+		<h2>Initializing a Double Linked List</h2>
 		<p>
-			Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, pariatur enim? Saepe tenetur dignissimos, a vel inventore autem voluptatem porro numquam quod, perferendis nulla quae dolorum perspiciatis voluptatum? Eveniet mollitia error cumque quidem, sit similique porro alias consequuntur placeat, officia perferendis laborum inventore fuga aliquam delectus laudantium dignissimos quisquam! Error! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum a consequatur, earum iure laudantium tenetur maxime beatae illo ad est. Ullam tempore expedita dolores nulla iste
-			veniam, voluptates natus ratione quam libero rerum ad! Temporibus aperiam, magni illo quas quo repudiandae, commodi harum sunt laudantium numquam quia exercitationem ullam odio saepe. Magni et sequi, debitis, consequuntur sed commodi distinctio cupiditate tempora exercitationem excepturi autem voluptatem nesciunt architecto suscipit atque doloribus deleniti harum non esse? Minima doloremque delectus ea hic ullam id consequuntur ab eum, aliquam laboriosam quae impedit repudiandae repellat sed deleniti pariatur dolorum neque fugit tempora doloribus deserunt provident labore laborum
-			illo. Ex ullam quis similique libero ipsa temporibus sint velit saepe incidunt corrupti natus quia, placeat debitis commodi aliquam aliquid sapiente illo explicabo. Mollitia quisquam, harum cupiditate ducimus quas consequuntur expedita sapiente et nihil consequatur eveniet perspiciatis dolores eos autem perferendis voluptatem enim soluta aspernatur ad laborum quos nesciunt recusandae veniam non. Est sapiente rem voluptates maxime, recusandae praesentium eaque inventore neque aut. Laboriosam ratione voluptas velit eos at veritatis voluptatum provident odit dicta facere eum placeat,
-			ipsum autem, id ut accusamus et qui, quod possimus incidunt earum distinctio architecto a? Ex cum neque accusamus doloribus laboriosam at?
+			To start, we need to create an empty list. In the context of a double linked list, this means setting our list's head pointer to <InlineCode>NULL</InlineCode>, indicating that the list has no nodes.
 		</p>
+
+		<CSyntax>{`Node* head = NULL;`}</CSyntax>
+
+		<h2>Adding the First Node</h2>
+		<p>Adding the first node to an empty double linked list is a crucial step. This operation lays the foundation for subsequent nodes. Here's how you can do it:</p>
+
+		<CSyntax>
+			{`void addFirstNode(Node** head, int data) {
+    // creating a new node
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    
+    // assigning data and setting previous and next pointers
+    newNode->data = data;
+    newNode->prev = NULL; // since it's the first node, prev is NULL
+    newNode->next = NULL; // since there's no next node yet, next is also NULL
+    
+    // pointing head to the new node
+    *head = newNode;
+}`}
+		</CSyntax>
+
+		<p>This function takes a pointer to the head pointer of the list and the data for the first node. It creates a new node, initializes it, and sets it as the head of the list.</p>
 	</>
 );
 

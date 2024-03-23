@@ -73,6 +73,9 @@
 	.page-subtitle {
 		@apply text-3xl text-center;
 	}
+	.inline-code {
+		@apply bg-card px-1 rounded-sm;
+	}
 }
 
 @layer base {
@@ -84,5 +87,17 @@
 	}
 	body {
 		@apply bg-background text-foreground h-full;
+	}
+	h1 {
+		@apply text-4xl font-bold text-center mb-10 mt-3;
+	}
+	h2 {
+		@apply text-2xl font-bold my-5;
+	}
+	pre {
+		@apply rounded-md mt-2 mb-2;
+	}
+	ol {
+		@apply list-decimal ml-7 mb-2;
 	}
 }

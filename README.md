@@ -2,7 +2,7 @@
 
 Bachelor Thesis Project
 
-## TODO frontend - 97%
+## TODO frontend - 98%
 
 - [ ] fill data structures lectures
 - [x] ~~fill quizzes~~
