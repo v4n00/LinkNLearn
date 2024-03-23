@@ -5,8 +5,12 @@ import SinglyLinkedList from './SinglyLinkedList';
 import { DataStructure, DataStructureTypes } from './types';
 
 export const getRandomArray = () => {
-	const length = Math.floor(Math.random() * 3) + 2;
-	return Array.from({ length }, () => Math.floor(Math.random() * 100));
+	const arr = [];
+	while (arr.length < 3) {
+		const r = Math.floor(Math.random() * 100);
+		if (arr.indexOf(r) === -1) arr.push(r);
+	}
+	return arr;
 };
 
 export const getRandomHTSet = () => {

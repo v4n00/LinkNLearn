@@ -1,14 +1,50 @@
+import CSyntax from '@/components/Lecture/CSyntax';
+import InlineCode from '@/components/Lecture/InlineCode';
+
 const BSTp1 = (
 	<>
+		<h1>Introduction to Binary Search Trees</h1>
+		<p>Binary Search Trees (BSTs) are a fundamental data structure in computer science, offering efficient operations for data storage, retrieval, and manipulation. A BST is a binary tree where each node has up to two children, referred to as the left child and the right child. The key property that distinguishes BSTs is that, for any given node, all the elements in the left subtree are less than the node, and all the elements in the right subtree are greater than the node. This property enables efficient search, insertion, and deletion operations.</p>
+
+		<h2>Key Properties of BSTs</h2>
+		<ol>
+			<li>
+				<strong>Ordered structure:</strong> Enables efficient search, insertion, and deletion operations.
+			</li>
+			<li>
+				<strong>Dynamic size:</strong> Easily grows or shrinks to accommodate more or fewer elements.
+			</li>
+			<li>
+				<strong>Flexible traversal:</strong> Supports in-order, pre-order, post-order, and level-order traversals, allowing for flexible data access patterns.
+			</li>
+		</ol>
+
+		<h2>Binary Search Tree Node Structure in C</h2>
+		<p>The basic building block of a BST is the node. Each node contains data and pointers to its left and right children. Here's a simple representation in C:</p>
+		<CSyntax>
+			{`typedef struct node {
+    int data;
+    struct node* left;
+    struct node* right;
+} Node;
+
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        fprintf(stderr, "Allocation error");
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}`}
+		</CSyntax>
 		<p>
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab distinctio repudiandae sunt dolores animi illo delectus autem ad? Reiciendis sint vitae incidunt veniam molestias ea modi saepe illum, veritatis exercitationem? Beatae est cupiditate aliquam, minus, perferendis nihil consequuntur cum magnam sed eligendi officiis facere iste dolorum animi, vitae eveniet molestiae itaque explicabo a? Voluptate quod perspiciatis ipsum in assumenda quidem nam alias vel consectetur sint voluptatum doloremque, modi eligendi harum. Eveniet, minima repellendus? Ab ad reiciendis dolorem tenetur!
-			Unde quidem, id omnis vitae deserunt fugit aliquam at possimus quibusdam minima officia quos maiores illum ut, illo magni saepe. Facilis ex consequuntur doloremque accusantium eius! Veniam laudantium quod pariatur nihil repellendus commodi sint repellat cum similique molestiae inventore delectus excepturi, debitis nisi neque? Est animi ad ratione similique quas quae corrupti repellat provident dolore asperiores possimus odit, velit, neque autem, quam enim. Repudiandae aut atque perferendis corrupti ipsam mollitia consequuntur unde aliquam minus alias nobis voluptas, consectetur
-			velit eligendi reiciendis similique vel voluptate in. Doloremque hic culpa ipsum voluptas aut iusto ea? Quod praesentium commodi laudantium harum repellendus itaque sed dignissimos et vel quis minima fuga dolore odio quae quam porro beatae, autem veritatis animi, ullam necessitatibus. Architecto iste, nihil tempora facere optio perferendis distinctio. Doloremque exercitationem quod voluptatibus distinctio repudiandae corporis cum mollitia, repellat sit esse expedita nemo, eveniet minima ducimus nihil ipsam corrupti quisquam iste dolor possimus obcaecati placeat minus laboriosam. Ex
-			obcaecati labore ipsum, error ratione nemo totam! Id architecto quas iure laboriosam? Deserunt, in? Laboriosam laborum culpa voluptatum vel, soluta illum, voluptate accusamus officia animi quia rerum? Neque possimus, quasi culpa debitis numquam consectetur obcaecati molestiae earum non sed impedit esse unde perferendis ipsum? Error tempore iure eligendi explicabo assumenda, repudiandae voluptas? Quae beatae harum nam consequuntur placeat odio amet dolore quibusdam illum doloremque similique voluptatem aliquam ab esse eveniet earum reiciendis suscipit sit aliquid assumenda, autem
-			rerum nesciunt debitis. Quia expedita nobis, esse sed atque suscipit necessitatibus natus? Enim esse adipisci possimus, repellendus molestiae voluptas. Fugiat vel praesentium, iure quos esse soluta quasi ipsam perspiciatis, ut fugit commodi quae provident labore ab vero? Magnam fugiat odio temporibus aut labore totam architecto placeat maxime velit, ipsam nostrum. Dolores voluptatibus totam laboriosam consequatur at porro tenetur sapiente eveniet ad enim quasi, facilis aliquam sint consequuntur asperiores velit et, eligendi id temporibus. Accusamus dignissimos itaque ad placeat
-			voluptatum suscipit, est magni molestiae, maxime odit hic fugit corrupti pariatur. Est voluptas mollitia, earum corrupti eius nisi eveniet eaque excepturi, ipsa, maiores voluptatem dolorem sit nemo? Hic nihil quasi provident optio vitae magnam placeat nisi, enim earum iusto praesentium totam illo animi natus atque fugiat laborum consectetur beatae harum ea illum tempora commodi qui. Porro numquam aliquid quos laudantium, ab mollitia quisquam officia voluptatem animi modi magni dicta nostrum repellendus amet at quas nobis consequuntur dolorem. Corporis nulla fugiat assumenda fuga
-			sed dolor et quas ea, molestiae incidunt. Facilis et incidunt odio. Dolor, laboriosam quasi consequuntur, sint earum aspernatur eveniet illum, officiis tenetur expedita itaque accusamus facilis eum eos laborum est!
+			This snippet defines a <InlineCode>node</InlineCode> structure with <InlineCode>data</InlineCode>, <InlineCode>left</InlineCode>, and <InlineCode>right</InlineCode> pointers and a <InlineCode>createNode</InlineCode> function to initialize new nodes.
 		</p>
+
+		<p>Understanding the structure and properties of Binary Search Trees is crucial for mastering data management and manipulation techniques in computer science, especially in the C programming language where manual memory management is a key skill.</p>
 	</>
 );
 

@@ -1,11 +1,50 @@
+import CSyntax from '@/components/Lecture/CSyntax';
+
 const HTp2 = (
 	<>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ratione sunt architecto itaque. Error a ipsam doloribus nostrum nisi asperiores harum exercitationem corrupti, quo sapiente, eveniet quasi perferendis distinctio iste dolores fugit, amet nihil cum necessitatibus architecto possimus aut. Animi voluptatem maxime perferendis fuga odit suscipit labore facere temporibus eveniet repudiandae quae recusandae adipisci veniam, veritatis reiciendis nulla accusamus dolorum voluptates consequuntur dolore expedita cum? Dicta ullam sit soluta deserunt non, expedita odio
-			necessitatibus harum iusto sed eius error ipsum asperiores. Sequi eos suscipit cum error, distinctio excepturi inventore deserunt impedit reprehenderit quaerat obcaecati nostrum, doloribus molestiae, maiores delectus ab perferendis quasi libero optio eum quae laudantium repellendus? Reiciendis ut corrupti itaque possimus quaerat accusamus ab eius nemo. Similique quis quos consequuntur deserunt molestias sunt, excepturi repellendus iste consectetur eum soluta illo delectus? Ea libero, aliquid sapiente dignissimos consectetur unde maiores id a nostrum voluptates, laudantium vel non
-			quos pariatur. Veniam aliquid culpa saepe autem, iste tempore esse. Perspiciatis dolorem possimus obcaecati quisquam dignissimos non itaque? Aliquam quis adipisci, architecto aspernatur a quas quae maiores fugiat eum culpa facere hic! Dolorem, distinctio veniam. Ducimus molestiae cum necessitatibus fugit sit itaque, perspiciatis velit rerum. Aliquid esse maxime, id nemo nostrum vel tenetur magnam laudantium illo quis similique? Quas architecto id repellat nulla. Minima, error consectetur itaque, quas corporis delectus quo non est eos magni dicta dignissimos quos ipsam sit? Ut, esse
-			sed non suscipit iste ex voluptas aliquam praesentium. Maiores consectetur quia tempora architecto sed quas, nesciunt, est doloremque corporis deleniti quos hic sint repudiandae. Inventore tenetur facere temporibus ex veritatis ratione, numquam eum odit officia officiis nihil totam, adipisci quia sequi? Quam adipisci at officia nesciunt ipsum deserunt atque. Saepe accusantium, odio exercitationem amet iure harum? Et illo, omnis nobis laboriosam a alias molestiae unde voluptates, perferendis est ab eum.
-		</p>
+		<h1>Components of a Hash Table</h1>
+		<p>A Hash Table consists of several core components that work together to store and manage data efficiently. Understanding these components is crucial to grasp how Hash Tables operate.</p>
+
+		<h2>Hash Function</h2>
+		<p>The hash function is at the heart of a Hash Table's functionality. It computes an index based on the key's value, where the corresponding value should be stored or retrieved from.</p>
+		<p>A simple hash function example in C could look like this:</p>
+		<CSyntax>
+			{`unsigned int hashFunction(char *key, int tableSize) {
+    unsigned int hash = 0;
+    for (int i = 0; key[i] != '\\0'; i++) {
+        hash = 31 * hash + key[i];
+    }
+    return hash % tableSize;
+}`}
+		</CSyntax>
+
+		<h2>Array of Buckets or Slots</h2>
+		<p>The array serves as the foundational structure holding the data within a Hash Table. Each element of the array is often referred to as a "bucket" or "slot," which can hold one or more key-value pairs.</p>
+		<p>Here is how you might define an array of buckets in C:</p>
+		<CSyntax>
+			{`typedef struct {
+    KeyValuePair *items;
+    int size;
+    int capacity;
+} Bucket;
+
+typedef struct {
+    Bucket *buckets;
+    int capacity;
+} HashTable;`}
+		</CSyntax>
+
+		<h2>Collision Resolution Strategy</h2>
+		<p>Collisions occur when two keys hash to the same index. To manage this, Hash Tables implement collision resolution strategies such as chaining or open addressing.</p>
+		<p>In the case of chaining, each bucket can hold multiple items. Here's a simplified structure:</p>
+		<CSyntax>
+			{`typedef struct KeyValuePair {
+    char *key;
+    int value;
+    struct KeyValuePair *next;
+} KeyValuePair;`}
+		</CSyntax>
+		<p>By understanding these components, you can begin to appreciate the complexity and efficiency of Hash Tables. These structures are pivotal in creating fast and responsive applications.</p>
 	</>
 );
 

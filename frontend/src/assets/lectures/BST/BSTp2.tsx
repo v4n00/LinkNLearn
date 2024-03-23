@@ -1,11 +1,44 @@
+import CSyntax from '@/components/Lecture/CSyntax';
+
 const BSTp2 = (
 	<>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ratione sunt architecto itaque. Error a ipsam doloribus nostrum nisi asperiores harum exercitationem corrupti, quo sapiente, eveniet quasi perferendis distinctio iste dolores fugit, amet nihil cum necessitatibus architecto possimus aut. Animi voluptatem maxime perferendis fuga odit suscipit labore facere temporibus eveniet repudiandae quae recusandae adipisci veniam, veritatis reiciendis nulla accusamus dolorum voluptates consequuntur dolore expedita cum? Dicta ullam sit soluta deserunt non, expedita odio
-			necessitatibus harum iusto sed eius error ipsum asperiores. Sequi eos suscipit cum error, distinctio excepturi inventore deserunt impedit reprehenderit quaerat obcaecati nostrum, doloribus molestiae, maiores delectus ab perferendis quasi libero optio eum quae laudantium repellendus? Reiciendis ut corrupti itaque possimus quaerat accusamus ab eius nemo. Similique quis quos consequuntur deserunt molestias sunt, excepturi repellendus iste consectetur eum soluta illo delectus? Ea libero, aliquid sapiente dignissimos consectetur unde maiores id a nostrum voluptates, laudantium vel non
-			quos pariatur. Veniam aliquid culpa saepe autem, iste tempore esse. Perspiciatis dolorem possimus obcaecati quisquam dignissimos non itaque? Aliquam quis adipisci, architecto aspernatur a quas quae maiores fugiat eum culpa facere hic! Dolorem, distinctio veniam. Ducimus molestiae cum necessitatibus fugit sit itaque, perspiciatis velit rerum. Aliquid esse maxime, id nemo nostrum vel tenetur magnam laudantium illo quis similique? Quas architecto id repellat nulla. Minima, error consectetur itaque, quas corporis delectus quo non est eos magni dicta dignissimos quos ipsam sit? Ut, esse
-			sed non suscipit iste ex voluptas aliquam praesentium. Maiores consectetur quia tempora architecto sed quas, nesciunt, est doloremque corporis deleniti quos hic sint repudiandae. Inventore tenetur facere temporibus ex veritatis ratione, numquam eum odit officia officiis nihil totam, adipisci quia sequi? Quam adipisci at officia nesciunt ipsum deserunt atque. Saepe accusantium, odio exercitationem amet iure harum? Et illo, omnis nobis laboriosam a alias molestiae unde voluptates, perferendis est ab eum.
-		</p>
+		<h1>Operations in a Binary Search Tree</h1>
+		<p>Binary Search Trees (BSTs) support several fundamental operations that enable efficient data management and retrieval. Understanding these operations is crucial for leveraging the full potential of BSTs in applications. In this section, we'll provide an overview of the primary operations: Insertion, Deletion, Search, and Traversal.</p>
+
+		<h2>Insertion</h2>
+		<p>Inserting a new node into a BST involves placing the node so that the BST property is maintained. The process starts at the root and traverses the tree to find the correct location for the new node.</p>
+		<CSyntax>
+			{`void insert(Node** root, int data) {
+    if (*root == NULL) {
+        *root = createNode(data);
+    } else if (data < (*root)->data) {
+        insert(&(*root)->left, data);
+    } else {
+        insert(&(*root)->right, data);
+    }
+}`}
+		</CSyntax>
+
+		<h2>Deletion</h2>
+		<p>Deleting a node from a BST is more complex and involves three possible scenarios: deleting a leaf node, a node with one child, and a node with two children. Each scenario requires a different approach to maintain the BST property.</p>
+
+		<h2>Search</h2>
+		<p>Searching for a value in a BST begins at the root and recursively or iteratively compares the target with the current node's value to decide the direction of the search (left or right).</p>
+		<CSyntax>
+			{`Node* search(Node* root, int data) {
+    if (root == NULL || root->data == data)
+        return root;
+    if (data < root->data)
+        return search(root->left, data);
+    else
+        return search(root->right, data);
+}`}
+		</CSyntax>
+
+		<h2>Traversal</h2>
+		<p>Traversing a BST means visiting all the nodes in a specific order. There are several ways to traverse a BST, including in-order, pre-order, post-order, and level-order traversal, each serving different purposes.</p>
+
+		<p>In the coming sections, we'll dive deeper into each of these operations, exploring their algorithms and implementations in C. Through detailed examples and explanations, you'll gain a comprehensive understanding of how BST operations work and how to implement them effectively.</p>
 	</>
 );
 
