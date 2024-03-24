@@ -19,7 +19,6 @@ const SLLp9 = (
         printf("%d ", current->data);
         current = current->next;
     }
-    printf("\\n"); // move to the next line after printing all node data
 }`}
 			</CSyntax>
 			<p>

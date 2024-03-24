@@ -1,4 +1,5 @@
 import CSyntax from '@/components/Lecture/CSyntax';
+import InlineCode from '@/components/Lecture/InlineCode';
 
 const BSTp4 = (
 	<>
@@ -18,7 +19,9 @@ const BSTp4 = (
 				</ol>
 			</li>
 			<li>Repeat the process with the new current node.</li>
-			<li>If you reach a `NULL` pointer (i.e., the subtree is empty), the value does not exist in the tree, and the search is unsuccessful.</li>
+			<li>
+				If you reach a <InlineCode>NULL</InlineCode> pointer (i.e., the subtree is empty), the value does not exist in the tree, and the search is unsuccessful.
+			</li>
 		</ol>
 
 		<h2>Example: Search Function in C</h2>
@@ -26,7 +29,8 @@ const BSTp4 = (
 		<CSyntax>
 			{`Node* search(Node* root, int data) {
     if (root == NULL || root->data == data) {
-        return root; // Found the value or reached the end of the tree
+		// Found the value or reached the end of the tree
+        return root;
     }
     if (data < root->data) {
         return search(root->left, data); // Search left
@@ -36,6 +40,7 @@ const BSTp4 = (
 }`}
 		</CSyntax>
 		<p>This recursive function starts at the root and narrows down the search area by choosing the appropriate subtree based on the value being searched. This method ensures that each step either finds the node, discards half of the remaining tree from consideration, or confirms that the value is not present.</p>
+		<br />
 		<p>The efficiency of the search operation in a BST highlights the importance of maintaining the tree's balance, as an unbalanced tree can degrade search times to linear complexity, similar to searching through a linked list.</p>
 	</>
 );

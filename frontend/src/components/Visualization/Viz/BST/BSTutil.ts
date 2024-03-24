@@ -78,20 +78,22 @@ export const drawNode = ({ svg, coordinates, content, arrowStartCoordinates }: D
 };
 
 const offsetY = 120;
-const offsetX = 120;
+const offsetX = 360;
+const secondOffset = 1.75;
 
 type RecursiveDrawNodeProps = {
 	svg: d3.Selection<null, unknown, null, undefined>;
 	node: BinarySearchTreeNode<number> | null;
 	coordinates: { x: number; y: number };
 	arrowStartCoordinates?: { x: number; y: number };
+	level: number;
 };
 
-export const RecursiveDrawNode = ({ svg, node, coordinates, arrowStartCoordinates }: RecursiveDrawNodeProps) => {
+export const RecursiveDrawNode = ({ svg, node, coordinates, arrowStartCoordinates, level }: RecursiveDrawNodeProps) => {
 	if (node === null || node === undefined) return;
 	const newArrowCoords = drawNode({ svg, coordinates, content: node.value, arrowStartCoordinates });
 
-	RecursiveDrawNode({ svg, node: node.left as BinarySearchTreeNode<number>, coordinates: { x: coordinates.x - offsetX, y: coordinates.y + offsetY }, arrowStartCoordinates: newArrowCoords.leftPointerCoordinates });
+	RecursiveDrawNode({ svg, node: node.left as BinarySearchTreeNode<number>, coordinates: { x: coordinates.x - offsetX / level, y: coordinates.y + offsetY }, arrowStartCoordinates: newArrowCoords.leftPointerCoordinates, level: level + secondOffset });
 
-	RecursiveDrawNode({ svg, node: node.right as BinarySearchTreeNode<number>, coordinates: { x: coordinates.x + offsetX, y: coordinates.y + offsetY }, arrowStartCoordinates: newArrowCoords.rightPointerCoordinates });
+	RecursiveDrawNode({ svg, node: node.right as BinarySearchTreeNode<number>, coordinates: { x: coordinates.x + offsetX / level, y: coordinates.y + offsetY }, arrowStartCoordinates: newArrowCoords.rightPointerCoordinates, level: level + secondOffset });
 };

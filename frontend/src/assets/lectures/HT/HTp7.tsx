@@ -24,9 +24,10 @@ const HTp7 = (
     unsigned int originalIndex = index;
     unsigned int i = 0;
     while (ht->buckets[index].used && i < ht->capacity) {
-        index = (originalIndex + ++i) % ht->capacity; // Linear probing
+        // Linear probing
+        index = (originalIndex + ++i) % ht->capacity;
         if (i == ht->capacity) { // Table is full
-            printf("Hash table is full. Unable to insert more items\\n");
+            printf("Hash table is full.\\n");
             return;
         }
     }

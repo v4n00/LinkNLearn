@@ -7,7 +7,7 @@ const HTp2 = (
 
 		<h2>Hash Function</h2>
 		<p>The hash function is at the heart of a Hash Table's functionality. It computes an index based on the key's value, where the corresponding value should be stored or retrieved from.</p>
-		<p>A simple hash function example in C could look like this:</p>
+		<p>Another hash function example in C could look like this:</p>
 		<CSyntax>
 			{`unsigned int hashFunction(char *key, int tableSize) {
     unsigned int hash = 0;
@@ -44,7 +44,6 @@ typedef struct {
     struct KeyValuePair *next;
 } KeyValuePair;`}
 		</CSyntax>
-		<p>By understanding these components, you can begin to appreciate the complexity and efficiency of Hash Tables. These structures are pivotal in creating fast and responsive applications.</p>
 	</>
 );
 

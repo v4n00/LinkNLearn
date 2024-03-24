@@ -24,11 +24,13 @@ const HTp9 = (
             ht->buckets[index].key = NULL;
             ht->buckets[index].value = 0;
             ht->buckets[index].used = 0;
-            ht->buckets[index].deleted = 1; // Mark as deleted
+            // Mark as deleted
+            ht->buckets[index].deleted = 1;
             printf("Key '%s' has been deleted.\\n", key);
             return;
         }
-        index = (originalIndex + ++i) % ht->capacity; // Linear probing
+        // Linear probing
+        index = (originalIndex + ++i) % ht->capacity;
         if (i == ht->capacity) break; // Key not found
     }
     printf("Key '%s' not found.\\n", key);

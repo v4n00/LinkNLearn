@@ -14,17 +14,16 @@ const DLLp3 = (
 		<CSyntax>{`Node* head = NULL;`}</CSyntax>
 
 		<h2>Adding the First Node</h2>
-		<p>Adding the first node to an empty double linked list is a crucial step. This operation lays the foundation for subsequent nodes. Here's how you can do it:</p>
+		<p>To add a node in a Doubly Linked List, you can follow the same instructions from the Singly Linked List module. The following code is another example on how you could theoretically add a first node inside of a list. Keep in my you should probably separate these 2 operations into different functions:</p>
 
 		<CSyntax>
 			{`void addFirstNode(Node** head, int data) {
-    // creating a new node
     Node* newNode = (Node*)malloc(sizeof(Node));
     
     // assigning data and setting previous and next pointers
     newNode->data = data;
-    newNode->prev = NULL; // since it's the first node, prev is NULL
-    newNode->next = NULL; // since there's no next node yet, next is also NULL
+    newNode->prev = NULL;
+    newNode->next = NULL;
     
     // pointing head to the new node
     *head = newNode;

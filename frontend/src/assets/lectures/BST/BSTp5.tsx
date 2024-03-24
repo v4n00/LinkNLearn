@@ -32,13 +32,13 @@ const BSTp5 = (
     else {
         // Node with only one child or no child
         if (root->left == NULL) {
-          Node *temp = root->right;
-          free(root);
-          return temp;
+            Node *temp = root->right;
+            free(root);
+            return temp;
         } else if (root->right == NULL) {
-          Node *temp = root->left;
-          free(root);
-          return temp;
+            Node *temp = root->left;
+            free(root);
+            return temp;
         }
     
         // Node with two children: Get the inorder successor (smallest in the right subtree)
@@ -55,7 +55,8 @@ const BSTp5 = (
 
 Node* minValueNode(Node* node) {
     Node* current = node;
-    while (current && current->left != NULL) current = current->left;
+    while (current && current->left != NULL)
+        current = current->left;
     return current;
 }`}
 		</CSyntax>

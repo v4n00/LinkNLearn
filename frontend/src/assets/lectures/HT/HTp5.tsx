@@ -57,10 +57,7 @@ void insert(HashTable* table, int key, int value) {
     newNode->value = value;
     newNode->next = table->list[index];
     table->list[index] = newNode;
-}
-
-// Additional functions for search and delete could be implemented here
-`}
+}`}
 		</CSyntax>
 		<p>This basic implementation of chaining in a hash table introduces the concept of managing collisions by linking entries together at a single index. Further enhancements can include implementing search, delete operations, and considering dynamic resizing of the hash table for efficiency.</p>
 	</>

@@ -1,4 +1,5 @@
 import CSyntax from '@/components/Lecture/CSyntax';
+import InlineCode from '@/components/Lecture/InlineCode';
 
 const BSTp3 = (
 	<>
@@ -19,11 +20,14 @@ const BSTp3 = (
 		<p>Here’s a simple C function to insert a new node into a BST:</p>
 		<CSyntax>
 			{`void insert(Node** root, int data) {
-    if (*root == NULL) { // If the tree is empty, create a new node as root
+    if (*root == NULL) {
+		// If the tree is empty, create a new node as root
         *root = createNode(data);
-    } else if (data < (*root)->data) { // Value is less, go to left subtree
+    } else if (data < (*root)->data) {
+		// Value is less, go to left subtree
         insert(&(*root)->left, data);
-    } else { // Value is greater, go to right subtree
+    } else {
+		// Value is greater, go to right subtree
         insert(&(*root)->right, data);
     }
 }
@@ -31,13 +35,17 @@ const BSTp3 = (
 // Helper function to create a new node
 Node* createNode(int data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
+
     newNode->data = data;
     newNode->left = NULL;
     newNode->right = NULL;
+
     return newNode;
 }`}
 		</CSyntax>
-		<p>This function begins at the root and traverses the tree based on the value of the new node. It recursively calls itself, moving left or right as necessary, until it finds an empty spot (a `NULL` pointer) where the new node can be inserted.</p>
+		<p>
+			This function begins at the root and traverses the tree based on the value of the new node. It recursively calls itself, moving left or right as necessary, until it finds an empty spot (a <InlineCode>NULL</InlineCode> pointer) where the new node can be inserted.
+		</p>
 		<p>By following these steps, you can ensure that the BST maintains its structural and ordering properties after each insertion, allowing for efficient search, deletion, and traversal operations.</p>
 	</>
 );

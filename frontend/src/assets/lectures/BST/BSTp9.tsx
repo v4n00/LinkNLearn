@@ -21,11 +21,6 @@ const BSTp9 = (
 
 		<h2>Why BSTs Matter</h2>
 		<p>BSTs play a crucial role in computer science and software engineering, offering a balanced mix of efficiency and simplicity for data storage and retrieval operations. They are foundational for understanding more complex data structures and algorithms and are widely applied in database systems, file systems, and more.</p>
-
-		<h2>Looking Forward</h2>
-		<p>With a solid understanding of BSTs, you're well-equipped to dive deeper into data structures and algorithms. Whether it's exploring self-balancing trees in more detail, or applying BST concepts to tackle more complex problems, the skills you've developed here form a strong foundation for your continued learning journey in computer science.</p>
-
-		<p>Thank you for engaging with this course on Binary Search Trees. We encourage you to continue experimenting with the code examples provided, exploring further reading, and applying what you've learned to real-world problems.</p>
 	</>
 );
 

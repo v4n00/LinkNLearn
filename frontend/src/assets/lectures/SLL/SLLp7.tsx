@@ -33,7 +33,8 @@ const SLLp7 = (
         *head = NULL;
     } else {
         Node* temp = *head;
-        while (temp->next->next != NULL) temp = temp->next; // move to the second-to-last node
+        // move to the second-to-last node
+        while (temp->next->next != NULL) temp = temp->next;
       
         free(temp->next); // free the last node
         temp->next = NULL; // set the new last node's next to NULL
@@ -55,9 +56,11 @@ const SLLp7 = (
     }
   
     // find the node before the one we want to delete
-    for (int i = 0; temp != NULL && i < position - 1; i++) temp = temp->next;
-    
-    if (temp == NULL || temp->next == NULL) return; // position is out of bounds
+    for (int i = 0; temp != NULL && i < position - 1; i++)
+        temp = temp->next;
+
+    // position is out of bounds
+    if (temp == NULL || temp->next == NULL) return; 
     
     Node* next = temp->next->next;
     free(temp->next); // delete the node at position

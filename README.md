@@ -2,7 +2,15 @@
 
 Bachelor Thesis Project
 
-## TODO frontend - 99%
+## EXTRAS - 0%
+
+- [ ] quiz stats
+- [ ] forgot password
+- [ ] email verification
+- [ ] reset password
+- [ ] responsive design (use drawer for log in/sheet for menu)
+
+## TODO frontend - 100%
 
 - [x] ~~fill data structures lectures~~
 - [x] ~~fill quizzes~~
@@ -48,14 +56,6 @@ Bachelor Thesis Project
 - [x] ~~Rewrite quiz routes - validation~~
 - [x] ~~Add quiz sysadmin routes~~
 - [x] ~~Rewrite question model & controller~~
-
-## EXTRAS - 0%
-
-- [ ] quiz stats
-- [ ] forgot password
-- [ ] email verification
-- [ ] reset password
-- [ ] responsive design (use drawer for log in/sheet for menu)
 
 ## Database design
 

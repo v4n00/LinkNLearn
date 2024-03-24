@@ -4,7 +4,7 @@ import DLL from '@/assets/lectures/DLL/DLL';
 import HT from '@/assets/lectures/HT/HT';
 import SLL from '@/assets/lectures/SLL/SLL';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CollapsibleText from '../CollapsibleText';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
@@ -13,9 +13,17 @@ import { TabsContent } from '../ui/tabs';
 
 const LearnContainer = ({ type }: { type: DataStructureTypes }) => {
 	const [currentPage, setCurrentPage] = useState(0);
+	const scrollRef = useRef<HTMLDivElement>(null);
+
 	useEffect(() => {
 		setCurrentPage(0);
 	}, [type]);
+
+	useEffect(() => {
+		if (scrollRef.current) {
+			scrollRef.current.scrollTop = 0;
+		}
+	}, [currentPage]);
 
 	const nextPage = () => {
 		if (currentPage < pages.length - 1) {
@@ -33,7 +41,9 @@ const LearnContainer = ({ type }: { type: DataStructureTypes }) => {
 	return (
 		<TabsContent value="Learn" className="h-full">
 			<div className="h-full flex flex-col gap-2">
-				<ScrollArea className="h-0 grow rounded-md border p-2 pr-5">{pages[currentPage]}</ScrollArea>
+				<ScrollArea ref={scrollRef} className="h-0 grow rounded-md border p-2 pr-5">
+					{pages[currentPage]}
+				</ScrollArea>
 				<Card className="h-[60px] px-2 flex items-center justify-between gap-3">
 					<Button className="w-full" onClick={prevPage} disabled={currentPage === 0}>
 						<ArrowLeft className="mx-1" />

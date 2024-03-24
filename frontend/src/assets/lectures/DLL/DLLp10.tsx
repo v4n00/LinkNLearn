@@ -1,7 +1,7 @@
 const DLLp10 = (
 	<>
 		<h1>Summary of Double Linked Lists</h1>
-		<p>Congratulations on completing this section on double linked lists! Let's recap the key concepts and operations we've covered:</p>
+		<p>Congratulations on completing this module on double linked lists! Let's recap the key concepts and operations we've covered:</p>
 
 		<h2>Concept and Structure</h2>
 		<p>A double linked list is a collection of nodes, where each node is connected to both its previous and next node, allowing for bidirectional traversal.</p>

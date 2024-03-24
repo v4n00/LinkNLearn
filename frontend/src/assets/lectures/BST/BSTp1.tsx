@@ -30,13 +30,11 @@ const BSTp1 = (
 
 Node* createNode(int data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
-    if (newNode == NULL) {
-        fprintf(stderr, "Allocation error");
-        exit(1);
-    }
+
     newNode->data = data;
     newNode->left = NULL;
     newNode->right = NULL;
+
     return newNode;
 }`}
 		</CSyntax>

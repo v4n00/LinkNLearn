@@ -21,7 +21,7 @@ const BSTp7 = (
 
 		<h2>Red-Black Trees</h2>
 		<p>Red-Black trees enforce balance through five properties that relate to node coloring, root properties, and more. These properties guide the rotations and recolorings needed to balance the tree after insertions and deletions.</p>
-
+		<br />
 		<p>Balancing a BST is essential for maintaining its performance advantages. Self-balancing trees provide mechanisms to automatically ensure this balance, making them a powerful choice for applications where efficient data manipulation is crucial.</p>
 	</>
 );

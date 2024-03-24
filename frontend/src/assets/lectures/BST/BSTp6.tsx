@@ -21,15 +21,13 @@ const BSTp6 = (
 		<h2>Pre-order Traversal</h2>
 		<p>Pre-order traversal visits the current node before its child nodes. This method is useful for creating a copy of the tree or expressing the tree in a way that can be reconstructed later.</p>
 		<CSyntax>
-			{`
-void preorder(Node* root) {
+			{`void preorder(Node* root) {
   	if (root != NULL) {
   		printf("%d ", root->data);
   		preorder(root->left);
   		preorder(root->right);
   	}
-}
-      `}
+}`}
 		</CSyntax>
 
 		<h2>Post-order Traversal</h2>

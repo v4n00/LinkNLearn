@@ -25,7 +25,8 @@ const HTp10 = (
 		<p>Here's an illustrative example in C:</p>
 		<CSyntax>
 			{`void resizeHashTable(HashTable *ht) {
-    int newCapacity = ht->capacity * 2; // Example: double the size
+	// Example: double the size
+    int newCapacity = ht->capacity * 2;
     HashTableNode **newBuckets = calloc(newCapacity, sizeof(HashTableNode*));
     // Rehash and insert items into new buckets
     for (int i = 0; i < ht->capacity; i++) {
@@ -35,7 +36,7 @@ const HTp10 = (
             HashTableNode *newNode = malloc(sizeof(HashTableNode));
             newNode->key = strdup(node->key);
             newNode->value = node->value;
-            // Insert into new bucket list without changing order
+            // Insert into new bucket list in the same order
             newNode->next = newBuckets[newIndex];
             newBuckets[newIndex] = newNode;
             node = node->next;

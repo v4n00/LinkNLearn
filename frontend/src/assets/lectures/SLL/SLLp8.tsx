@@ -9,7 +9,7 @@ const SLLp8 = (
 			<h2>Linear Search Algorithm</h2>
 			<p>The most straightforward method for searching in a linked list is the linear search. It sequentially checks each node's data against the search value until it finds a match or reaches the end of the list.</p>
 
-			<h2>C Code Example: Searching for a Value</h2>
+			<h2>Code Example: Searching for a Value</h2>
 			<p>Below is an example function in C that searches for a node with a given value in a linked list. If the node is found, it returns the node's position in the list (starting from 0); otherwise, it returns -1 to indicate the value is not present.</p>
 			<CSyntax>
 				{`int searchLinkedList(Node* head, int value) {

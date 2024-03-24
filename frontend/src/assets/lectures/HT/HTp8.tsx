@@ -28,14 +28,16 @@ const HTp8 = (
         if (strcmp(ht->buckets[index].key, key) == 0) {
             return ht->buckets[index].value; // Key found
         }
-        index = (originalIndex + ++i) % ht->capacity; // Linear probing
-        if (i == ht->capacity) break; // Prevent infinite loop if key is not present
+		// Linear probing
+        index = (originalIndex + ++i) % ht->capacity;
+		// Prevent infinite loop if key is not present
+        if (i == ht->capacity) break;
     }
     return -1; // Key not found
 }`}
 		</CSyntax>
 		<p>This search function calculates the initial index for the key, then linearly probes through the buckets if the initial position is occupied by a different key. The search either returns the value associated with the key or indicates that the key is not found.</p>
-
+		<br />
 		<p>The efficiency of the search process in a hash table is directly influenced by the choice of hash function and collision resolution strategy. Understanding these components and their implementation in C is essential for optimizing data retrieval times in software development.</p>
 	</>
 );

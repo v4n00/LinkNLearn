@@ -1,7 +1,7 @@
 const SLLp10 = (
 	<>
 		<h1>Advantages and Disadvantages of Linked Lists</h1>
-		<p>Linked lists are a fundamental data structure, offering several benefits over arrays in certain scenarios. However, they also come with drawbacks that are important to consider. Understanding these pros and cons will help you choose the most appropriate data structure for your needs.</p>
+		<p>Linked lists are a fundamental data structure, offering several benefits over arrays in certain scenarios. However, they also come with drawbacks that are important to consider.</p>
 
 		<h2>Advantages</h2>
 		<ol>
@@ -28,6 +28,7 @@ const SLLp10 = (
 				<strong>Complexity:</strong> Implementing and managing linked lists can be more complex due to pointer usage and the need for careful memory management.
 			</li>
 		</ol>
+		<br />
 		<p>By weighing these advantages and disadvantages, you can make more informed choices about when to use linked lists in your projects. They are particularly well-suited for applications where the flexibility of dynamic size and frequent insertions and deletions outweigh the disadvantages of increased memory usage and slower element access times.</p>
 	</>
 );

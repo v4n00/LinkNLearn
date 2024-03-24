@@ -15,10 +15,9 @@ const HTp1 = (
 		<h2>Basic Concept of Hashing</h2>
 		<p>Hashing transforms a given key into an index in an array where the value is stored. This process is done using a hash function.</p>
 		<CSyntax>index = hashFunction(key);</CSyntax>
-		<br />
 		<p>Here's a simple hash function example in C:</p>
 		<CSyntax>
-			{`unsigned int simpleHashFunction(char *str) {
+			{`unsigned int hashFunction(char *str) {
     unsigned int hash = 0;
     int c;
 
@@ -38,7 +37,6 @@ const HTp1 = (
     int value;
 } KeyValuePair;`}
 		</CSyntax>
-		<p>Understanding Hash Tables and their underlying mechanisms is foundational to mastering data structures in C. This introduction paves the way for deeper exploration into hashing techniques, collision resolution strategies, and their applications.</p>
 	</>
 );
 
