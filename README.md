@@ -9,6 +9,7 @@ Bachelor Thesis Project
 - [ ] email verification
 - [ ] reset password
 - [ ] responsive design (use drawer for log in/sheet for menu)
+- [ ] nginx
 
 ## TODO frontend - 100%
 
