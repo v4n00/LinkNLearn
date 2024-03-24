@@ -103,7 +103,7 @@ const AuthenticatedComponent = () => {
 			<DialogHeader>
 				<div className="flex items-center gap-3">
 					<Avatar className="h-12 w-12">
-						<AvatarFallback>{user?.email?.at(0)?.toUpperCase()}</AvatarFallback>
+						<AvatarFallback>{user?.email?.charAt(0)?.toUpperCase()}</AvatarFallback>
 					</Avatar>
 					<div className="grid gap-0.5 text-xs">
 						<div className=" text-base">You are logged in as:</div>
