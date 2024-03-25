@@ -43,9 +43,10 @@ export default function Component() {
 	};
 
 	return (
-		<main>
+		<div className="w-full h-full">
+			<div className="bg-[url('@/assets/bg.webp')] opacity-5 fixed w-full -z-10 left-1/2 -translate-x-1/2 bg-top" style={{ height: 'calc(100vh - 5rem)' }}></div>
 			<p className="page-title">Welcome to LinkNLearn</p>
-			<p className="mt-20 page-subtitle">Your one-stop solution for learning data structures concepts</p>
+			<p className="page-subtitle">Your one-stop solution for learning data structures concepts</p>
 			<div className="flex flex-wrap justify-center gap-4 mt-20">
 				{cards.map((card) =>
 					card.href !== '/data-structures' ? (
@@ -60,11 +61,11 @@ export default function Component() {
 							<DrawerContent>
 								<div className="grid items-center grid-cols-2 gap-5 flex-row p-5 md:px-[20vw]">
 									{DS_LINKS.map((link) => (
-										<Card key={link.title} className="w-full text-center">
-											<Link to={link.href}>
+										<Link to={link.href} key={link.title}>
+											<Card className="w-full text-center items-center justify-center h-[100px] content-center ">
 												<CardHeader>{link.title}</CardHeader>
-											</Link>
-										</Card>
+											</Card>
+										</Link>
 									))}
 								</div>
 							</DrawerContent>
@@ -72,6 +73,6 @@ export default function Component() {
 					)
 				)}
 			</div>
-		</main>
+		</div>
 	);
 }

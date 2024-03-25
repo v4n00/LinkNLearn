@@ -67,7 +67,7 @@ export default function Navbar() {
 						<Button variant="outline">Account</Button>
 					</DialogTrigger>
 					<DialogContent className="w-[400px]">
-						<DialogTitle className="text-3xl">Account</DialogTitle>
+						<DialogTitle className="text-3xl m-0">Account</DialogTitle>
 						{user ? <AuthenticatedComponent /> : <NotAuthenticatedComponent />}
 					</DialogContent>
 				</Dialog>

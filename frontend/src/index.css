@@ -68,10 +68,10 @@
 		transform: translate(-50%, -50%) rotateX(180deg);
 	}
 	.page-title {
-		@apply whitespace-pre-wrap text-7xl font-extrabold text-center my-10;
+		@apply whitespace-pre-wrap text-6xl font-extrabold text-center m-10;
 	}
 	.page-subtitle {
-		@apply text-3xl text-center;
+		@apply text-3xl text-center m-10;
 	}
 	.inline-code {
 		@apply bg-card px-1 rounded-sm;

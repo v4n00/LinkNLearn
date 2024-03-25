@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-export const isDebugging: boolean = false;
+export const isDebugging: boolean = true;
 
 export const serverAddress = isDebugging ? 'localhost' : process.env.SERVER_ADDRESS;
 export const pathToKey: string | undefined = process.env.KEY_FILE;
