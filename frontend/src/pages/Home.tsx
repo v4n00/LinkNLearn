@@ -45,7 +45,7 @@ export default function Component() {
 	return (
 		<main>
 			<p className="page-title">Welcome to LinkNLearn</p>
-			<p className="mt-20 page-subtitle">Your one-stop solution for learning and structures concepts</p>
+			<p className="mt-20 page-subtitle">Your one-stop solution for learning data structures concepts</p>
 			<div className="flex flex-wrap justify-center gap-4 mt-20">
 				{cards.map((card) =>
 					card.href !== '/data-structures' ? (
