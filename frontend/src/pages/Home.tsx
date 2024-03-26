@@ -46,7 +46,7 @@ export default function Component() {
 		<div className="w-full h-full">
 			<div className="bg-[url('@/assets/bg.webp')] opacity-5 fixed w-full -z-10 left-1/2 -translate-x-1/2 bg-top" style={{ height: 'calc(100vh - 5rem)' }}></div>
 			<p className="page-title">Welcome to LinkNLearn</p>
-			<p className="page-subtitle">Your one-stop solution for learning data structures concepts</p>
+			<p className="text-3xl text-center m-10">Your one-stop solution for learning data structures concepts</p>
 			<div className="flex flex-wrap justify-center gap-4 mt-20">
 				{cards.map((card) =>
 					card.href !== '/data-structures' ? (

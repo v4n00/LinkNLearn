@@ -70,9 +70,6 @@
 	.page-title {
 		@apply whitespace-pre-wrap text-6xl font-extrabold text-center m-10;
 	}
-	.page-subtitle {
-		@apply text-3xl text-center m-10;
-	}
 	.inline-code {
 		@apply bg-card px-1 rounded-sm;
 	}
