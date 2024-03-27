@@ -4,11 +4,11 @@ Bachelor Thesis Project
 
 ## EXTRAS - 10%
 
+- [ ] responsive design (use drawer for log in/sheet for menu)
 - [ ] quiz stats
 - [ ] forgot password
 - [ ] email verification
 - [ ] reset password
-- [ ] responsive design (use drawer for log in/sheet for menu)
 - [x] ~~nginx~~
 
 ## TODO frontend - 100%

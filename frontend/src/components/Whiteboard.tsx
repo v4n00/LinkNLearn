@@ -9,7 +9,7 @@ export interface WhiteboardHandles {
 
 const Whiteboard = forwardRef(({ children, type }: { children: ReactNode; type: DataStructureTypes }, ref) => {
 	const offsetY = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? (window.innerHeight - 80) / 2 : 100;
-	const offsetX = type === DataStructureTypes.BST ? -1500 : 100;
+	const offsetX = type === DataStructureTypes.BST ? -500 : 100;
 	useEffect(() => {
 		setOffset({ x: offsetX, y: offsetY });
 	}, [offsetX, offsetY, type]);

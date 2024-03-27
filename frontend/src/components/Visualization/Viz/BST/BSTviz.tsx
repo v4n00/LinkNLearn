@@ -19,7 +19,7 @@ const BSTviz = () => {
 		.attr('width', 9999)
 		.attr('height', 9999);
 
-	RecursiveDrawNode({ svg, node: ds.root, coordinates: { x: 2000, y: 10 }, level: 1 });
+	RecursiveDrawNode({ svg, node: ds.root, coordinates: { x: 700, y: 10 }, level: 1 });
 
 	return <svg ref={ref}></svg>;
 };

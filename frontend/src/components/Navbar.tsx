@@ -27,7 +27,7 @@ export default function Navbar() {
 	const { setTheme } = useTheme();
 
 	return (
-		<header className="bg-background sticky z-20 flex h-20 items-center px-6 border-b-2">
+		<header className="bg-background sticky z-20 flex h-20 items-center px-6 border-b-2 top-0">
 			<div className="flex w-full">
 				<NavigationMenu>
 					<NavigationMenuList>

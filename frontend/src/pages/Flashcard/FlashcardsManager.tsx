@@ -51,9 +51,9 @@ const FlashcardsManager = () => {
 	};
 
 	return (
-		<main>
+		<div className="h-full flex flex-col">
 			<p className="page-title">Manage flashcards</p>
-			<div className="flex flex-col justify-between items-center gap-5">
+			<div className="flex flex-col justify-between items-center gap-5 h-full">
 				<FlashcardEditor setOnChange={setOnChange} />
 				<Input
 					placeholder="Search..."
@@ -63,15 +63,15 @@ const FlashcardsManager = () => {
 					value={filter}
 				/>
 				{/* prettier-ignore */}
-				<ScrollArea className="h-[375px] border rounded-lg px-5 py-2 gap-y-5">
-					{data
-						? filterFlashcards().length > 0
-							? filterFlashcards().map((flashcard) => <FlashcardEditor key={flashcard.id} flashcard={flashcard} setOnChange={setOnChange} />)
-							: <p className="w-[600px] text-center mt-10">No flashcards found</p>
-						: <Loader2 className="w-[600px] animate-spin mt-10" />}
-				</ScrollArea>
+				<ScrollArea className="mb-5 h-0 grow border rounded-lg px-5 py-2 gap-y-5">
+						{data
+							? filterFlashcards().length > 0
+								? filterFlashcards().map((flashcard) => <FlashcardEditor key={flashcard.id} flashcard={flashcard} setOnChange={setOnChange} />)
+								: <p className="w-[600px] text-center mt-10">No flashcards found</p>
+							: <Loader2 className="w-[600px] animate-spin mt-10" />}
+					</ScrollArea>
 			</div>
-		</main>
+		</div>
 	);
 };
 
