@@ -100,7 +100,7 @@ const QuizTaker = () => {
 	return (
 		<div>
 			<p className="page-title">{data?.title ?? ' '}</p>
-			<div>
+			<div className="flex justify-center items-center flex-col">
 				{data !== undefined ? (
 					data.questions.length > 0 ? (
 						currentQuestionIndex < data.questions.length - 1 ? (
@@ -118,8 +118,8 @@ const QuizTaker = () => {
 						<Loader2 className="animate-spin" />
 					</Card>
 				)}
+				<Progress className="mt-10 rounded-md w-[700px]" value={data && ((currentQuestionIndex + questionIndexOffset) / (data.questions.length + questionIndexOffset)) * 100} />
 			</div>
-			<Progress className="mt-10 rounded-md" value={data && ((currentQuestionIndex + questionIndexOffset) / (data.questions.length + questionIndexOffset)) * 100} />
 		</div>
 	);
 };
