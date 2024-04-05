@@ -32,6 +32,7 @@ const FlashcardsViewer = ({ type }: FlashcardViewerType) => {
 		queryFn: queryFn,
 		gcTime: 0,
 		retry: 0,
+		refetchOnWindowFocus: false,
 	});
 
 	if (error) {

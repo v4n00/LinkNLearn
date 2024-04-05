@@ -41,6 +41,7 @@ const QuestionManager = () => {
 				}),
 		gcTime: 0,
 		retry: 0,
+		refetchOnWindowFocus: false,
 		enabled: quizId !== undefined || user?.token === undefined,
 	});
 

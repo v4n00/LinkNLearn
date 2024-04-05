@@ -42,6 +42,7 @@ const QuizTaker = () => {
 				}),
 		gcTime: 0,
 		retry: 0,
+		refetchOnWindowFocus: false,
 	});
 
 	const submitAnswersToServer = useMutation({

@@ -25,6 +25,7 @@ const QuizManager = () => {
 				}),
 		gcTime: 0,
 		retry: 0,
+		refetchOnWindowFocus: false,
 	});
 
 	useEffect(() => {

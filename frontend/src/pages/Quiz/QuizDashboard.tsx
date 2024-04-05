@@ -36,6 +36,7 @@ export default function QuizDashboard() {
 				}),
 		gcTime: 0,
 		retry: 0,
+		refetchOnWindowFocus: false,
 	});
 
 	const progressQuery = useQuery({
@@ -49,6 +50,9 @@ export default function QuizDashboard() {
 					else errorToast(`Error: ${(e as AxiosError).response?.data}`);
 				}),
 		enabled: user !== undefined && user.id !== 0,
+		gcTime: 0,
+		retry: 0,
+		refetchOnWindowFocus: false,
 	});
 
 	if (user && user.id === 0) {

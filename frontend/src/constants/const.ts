@@ -1,4 +1,4 @@
-const isDebugging = true;
+const isDebugging = false;
 
 export const PORT: number = 3000;
 export const APIURL = `http${isDebugging ? '' : 's'}://${isDebugging ? 'localhost' : import.meta.env.VITE_SERVER_ADDRESS}:${PORT}`;
