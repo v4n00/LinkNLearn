@@ -2,8 +2,6 @@
 
 Bachelor Thesis Project
 
-## EXTRAS - 10%
-
 ## TODO frontend - 100%
 
 - [ ] responsive design (use drawer for log in/sheet for menu)
