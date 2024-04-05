@@ -4,15 +4,11 @@ Bachelor Thesis Project
 
 ## EXTRAS - 10%
 
-- [ ] responsive design (use drawer for log in/sheet for menu)
-- [ ] quiz stats
-- [ ] forgot password
-- [ ] email verification
-- [ ] reset password
-- [x] ~~nginx~~
-
 ## TODO frontend - 100%
 
+- [ ] responsive design (use drawer for log in/sheet for menu)
+- [ ] more data structures options (add node after value)
+- [x] ~~nginx~~
 - [x] ~~fill data structures lectures~~
 - [x] ~~fill quizzes~~
 - [x] ~~fill flashcards~~
