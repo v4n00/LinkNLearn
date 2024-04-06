@@ -84,19 +84,19 @@ const FlashcardEditor = ({ flashcard, setOnChange }: { flashcard?: FlashcardType
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)}>
-				<Card className="w-[600px] h-[100px] flex flex-row justify-start items-center gap-5 mb-2">
+				<Card className="w-full h-[100px] flex flex-row justify-start items-center gap-2 mb-2">
 					<FormField
 						control={form.control}
 						name="id"
 						render={({ field }) => (
 							<FormItem>
 								<FormControl>
-									<Input className="size-[80px] ml-5 text-center text-2xl" disabled placeholder="ID" {...field} />
+									<Input className="w-[70px] h-[80px] ml-2 text-center text-xl grow" disabled placeholder="ID" {...field} />
 								</FormControl>
 							</FormItem>
 						)}
 					/>
-					<div className="flex flex-col gap-2 justify-between h-[80px] w-[400px]">
+					<div className="flex flex-col gap-2 justify-between h-[80px] grow">
 						<FormField
 							control={form.control}
 							name="frontSide"
@@ -120,11 +120,11 @@ const FlashcardEditor = ({ flashcard, setOnChange }: { flashcard?: FlashcardType
 							)}
 						/>
 					</div>
-					<div className="flex flex-col gap-2 justify-between h-[80px] mr-5">
-						<Button className="size-[80px] p-0" variant="success" type="submit">
+					<div className="flex flex-col gap-2 justify-between h-[80px] mr-2 max-w-[80px] grow">
+						<Button className="h-1/2 w-full px-2 py-0" variant="success" type="submit">
 							<Save size={25} />
 						</Button>
-						<Button className="size-[80px] p-0" variant="destructive" type="reset" onClick={onDelete}>
+						<Button className="h-1/2 w-full px-2 py-0" variant="destructive" type="reset" onClick={onDelete}>
 							<Trash size={25} />
 						</Button>
 					</div>

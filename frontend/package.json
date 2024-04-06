@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@hookform/resolvers": "^3.3.4",
 		"@radix-ui/react-avatar": "^1.0.4",
+		"@radix-ui/react-collapsible": "^1.0.3",
 		"@radix-ui/react-dialog": "^1.0.5",
 		"@radix-ui/react-dropdown-menu": "^2.0.6",
 		"@radix-ui/react-label": "^2.0.2",
@@ -32,7 +33,7 @@
 		"d3": "^7.8.5",
 		"embla-carousel-react": "^8.0.0-rc19",
 		"embla-carousel-wheel-gestures": "^8.0.0-rc05",
-		"lucide-react": "^0.311.0",
+		"lucide-react": "^0.365.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-hook-form": "^7.49.3",

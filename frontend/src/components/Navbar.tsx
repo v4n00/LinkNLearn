@@ -9,9 +9,12 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DS_LINKS } from '@/constants/const';
 import useAuth from '@/hooks/useAuth';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Collapsible } from '@radix-ui/react-collapsible';
 import { AxiosError } from 'axios';
-import { Github, Moon, Sun } from 'lucide-react';
+import { ChevronsUpDown, CircleUser, FileQuestion, Github, Home, Moon, Pyramid, RectangleEllipsis, Sun } from 'lucide-react';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -21,22 +24,75 @@ import { Logo } from './Logo';
 import { PasswordInput } from './PasswordInput';
 import { useTheme } from './ThemeProvider';
 import { errorToast, successToast } from './Toasts';
+import { CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
+import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 
 export default function Navbar() {
 	const { user } = useAuth();
 	const { setTheme } = useTheme();
+	const isDesktop = useMediaQuery('(min-width: 768px)');
+	const [isOpen, setIsOpen] = useState(false);
+	const sheetStyle = 'font-medium text-xl border rounded-md p-2 text-center flex flex-row items-center justify-center gap-1';
 
 	return (
 		<header className="bg-background sticky z-20 flex h-20 items-center px-6 border-b-2 top-0">
-			<div className="flex w-full">
+			<div className="flex grow">
 				<NavigationMenu>
 					<NavigationMenuList>
 						<NavigationMenuItem>
-							<Link to="/" className={navigationMenuTriggerStyle()}>
-								<Logo className="fill-black dark:fill-white size-8" />
-							</Link>
+							{isDesktop ? (
+								<Link to="/" className={navigationMenuTriggerStyle()}>
+									<Logo className="fill-black dark:fill-white size-8" />
+								</Link>
+							) : (
+								<Sheet open={isOpen} onOpenChange={setIsOpen}>
+									<SheetTrigger>
+										<Logo className="fill-black dark:fill-white size-8" />
+									</SheetTrigger>
+									<SheetContent side="left">
+										<div className="flex flex-col gap-2 mr-4">
+											<Link to="/" onClick={() => setIsOpen(false)}>
+												<div className={sheetStyle}>
+													<Home />
+													Home
+												</div>
+											</Link>
+											<Collapsible className="w-full">
+												<CollapsibleTrigger className={cn(sheetStyle, 'w-full flex flex-row items-center justify-center')}>
+													<Pyramid />
+													Data Structures
+													<ChevronsUpDown className="size-4" />
+												</CollapsibleTrigger>
+												<CollapsibleContent className="mt-2">
+													<ul className="flex flex-col gap-2 justify-center items-center">
+														{DS_LINKS.map((component) => (
+															<li className={cn(sheetStyle, 'w-5/6')} key={component.title}>
+																<Link to={component.href} onClick={() => setIsOpen(false)}>
+																	{component.title}
+																</Link>
+															</li>
+														))}
+													</ul>
+												</CollapsibleContent>
+											</Collapsible>
+											<Link to="/quizzes" onClick={() => setIsOpen(false)}>
+												<div className={sheetStyle}>
+													<FileQuestion />
+													Quizzes
+												</div>
+											</Link>
+											<Link to="/flashcards" onClick={() => setIsOpen(false)}>
+												<div className={sheetStyle}>
+													<RectangleEllipsis />
+													Flaschards
+												</div>
+											</Link>
+										</div>
+									</SheetContent>
+								</Sheet>
+							)}
 						</NavigationMenuItem>
-						<NavigationMenuItem>
+						<NavigationMenuItem className="md:block hidden">
 							<NavigationMenuTrigger>Data Structures</NavigationMenuTrigger>
 							<NavigationMenuContent>
 								<ul className="grid gap-3 p-4 md:grid-cols-2 md:w-[400px] grid-cols-1 w-[200px] text-center">
@@ -48,12 +104,12 @@ export default function Navbar() {
 								</ul>
 							</NavigationMenuContent>
 						</NavigationMenuItem>
-						<NavigationMenuItem>
+						<NavigationMenuItem className="md:block hidden">
 							<Link to="/quizzes" className={navigationMenuTriggerStyle()}>
 								Quizzes
 							</Link>
 						</NavigationMenuItem>
-						<NavigationMenuItem>
+						<NavigationMenuItem className="md:block hidden">
 							<Link to="/flashcards" className={navigationMenuTriggerStyle()}>
 								Flashcards
 							</Link>
@@ -61,10 +117,13 @@ export default function Navbar() {
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>
-			<div className="flex flex-row">
+			<div className="flex flex-row gap-2">
 				<Dialog>
 					<DialogTrigger asChild>
-						<Button variant="outline">Account</Button>
+						<Button variant="outline" className="px-2">
+							<CircleUser className="md:mr-2 mr-0" />
+							<p className="collapse size-0 md:visible md:size-auto">Account</p>
+						</Button>
 					</DialogTrigger>
 					<DialogContent className="w-[400px]">
 						<DialogTitle className="text-3xl m-0">Account</DialogTitle>
@@ -74,7 +133,7 @@ export default function Navbar() {
 
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant="outline" size="icon" className="mx-3">
+						<Button variant="outline" size="icon">
 							<Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
 							<Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
 						</Button>

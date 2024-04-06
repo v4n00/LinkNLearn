@@ -11,7 +11,7 @@ import useAuth from '@/hooks/useAuth';
 import { TooltipContent, TooltipTrigger } from '@radix-ui/react-tooltip';
 import { useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
-import { Check, Loader2, ShieldQuestion } from 'lucide-react';
+import { ArrowLeftRight, Check, Loader2, ShieldQuestion } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuizManager from '../../components/Quiz/QuizManager';
@@ -155,7 +155,7 @@ export default function QuizDashboard() {
 	return (
 		<main>
 			<p className="page-title">Quizzes</p>
-			<div>
+			<div className="flex flex-col gap-y-5 items-center w-full">
 				<Carousel className="2xl:w-[1400px] xl:w-[1100px] lg:w-[900px] md:w-[600px] w-[400px] border shadow-sm rounded-lg p-2">
 					<CarouselContent>
 						{quizQuery.data !== undefined ? (
@@ -172,9 +172,13 @@ export default function QuizDashboard() {
 							</div>
 						)}
 					</CarouselContent>
-					<CarouselPrevious />
-					<CarouselNext />
+					<CarouselPrevious className="md:flex hidden" />
+					<CarouselNext className="md:flex hidden" />
 				</Carousel>
+				<Card className="flex md:hidden text-muted-foreground/80 p-2 bg-muted">
+					<ArrowLeftRight className="mr-2" />
+					<p>Swipe to navigate</p>
+				</Card>
 			</div>
 		</main>
 	);

@@ -27,9 +27,9 @@ const Flashcard = ({ frontSide, backSide }: { frontSide: string; backSide: strin
 				tabIndex={0}
 				ref={ref}
 			>
-				{frontSide.length > 400 ? <ScrollArea className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 absolute text-center select-none [transform:translate(-50%,-50%)] [backface-visibility:hidden]', frontSide)}>{frontSide}</ScrollArea> : <CardHeader className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 absolute flex items-center justify-center text-center select-none [transform:translate(-50%,-50%)] [backface-visibility:hidden]', frontSide)}>{frontSide}</CardHeader>}
+				{frontSide.length > 400 ? <ScrollArea className={handleLength('w-full h-full top-1/2 left-1/2 absolute text-center select-none [transform:translate(-50%,-50%)] [backface-visibility:hidden]', frontSide)}>{frontSide}</ScrollArea> : <CardHeader className={handleLength('w-full h-full top-1/2 left-1/2 absolute flex items-center justify-center text-center select-none [transform:translate(-50%,-50%)] [backface-visibility:hidden]', frontSide)}>{frontSide}</CardHeader>}
 
-				{backSide.length > 400 ? <ScrollArea className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 rotate-x-180 absolute flex items-center justify-center text-center select-none [backface-visibility:hidden]', backSide)}>{backSide}</ScrollArea> : <CardHeader className={handleLength('w-[400px] h-[300px] top-1/2 left-1/2 rotate-x-180 absolute flex items-center justify-center text-center select-none [backface-visibility:hidden]', backSide)}>{backSide}</CardHeader>}
+				{backSide.length > 400 ? <ScrollArea className={handleLength('w-full h-full top-1/2 left-1/2 rotate-x-180 absolute flex items-center justify-center text-center select-none [backface-visibility:hidden]', backSide)}>{backSide}</ScrollArea> : <CardHeader className={handleLength('w-full h-full top-1/2 left-1/2 rotate-x-180 absolute flex items-center justify-center text-center select-none [backface-visibility:hidden]', backSide)}>{backSide}</CardHeader>}
 			</Card>
 		</div>
 	);

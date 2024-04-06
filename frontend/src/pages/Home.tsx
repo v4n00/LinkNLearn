@@ -1,7 +1,7 @@
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import { DS_LINKS } from '@/constants/const';
-import { CreditCard, Database, FileQuestion } from 'lucide-react';
+import { FileQuestion, Pyramid, RectangleEllipsis } from 'lucide-react';
 import { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ export default function Component() {
 	const cards = [
 		{
 			href: '/data-structures',
-			icon: <Database className="size-12" />,
+			icon: <Pyramid className="size-12" />,
 			title: 'Data Structures',
 			description: 'Learn and understand various data structures used in computer science.',
 		},
@@ -26,7 +26,7 @@ export default function Component() {
 		},
 		{
 			href: '/flashcards',
-			icon: <CreditCard className="size-12" />,
+			icon: <RectangleEllipsis className="size-12" />,
 			title: 'Flashcards',
 			description: 'Revise concepts quickly with our handy flashcards.',
 		},
@@ -34,7 +34,7 @@ export default function Component() {
 
 	const HomeCard = ({ title, description, icon }: { title: string; description: string; icon: JSX.Element }) => {
 		return (
-			<Card className="flex flex-col items-center p-6 space-y-4 shadow-lg rounded-lg h-[200px] w-[280px]">
+			<Card className="flex flex-col items-center p-6 space-y-4 shadow-lg rounded-lg h-[200px] w-full max-w-[350px]">
 				{icon}
 				<CardTitle className="text-2xl font-semibold text-center">{title}</CardTitle>
 				<CardDescription className="text-center">{description}</CardDescription>
@@ -44,10 +44,10 @@ export default function Component() {
 
 	return (
 		<div className="w-full h-full">
-			<div className="bg-[url('@/assets/bg.webp')] opacity-5 fixed w-full -z-10 left-1/2 -translate-x-1/2 bg-top" style={{ height: 'calc(100vh - 5rem)' }}></div>
+			<div className="bg-[url('@/assets/bg.webp')] top-20 opacity-5 fixed w-full -z-10 left-1/2 -translate-x-1/2 bg-top h-full"></div>
 			<p className="page-title">Welcome to LinkNLearn</p>
-			<p className="text-3xl text-center m-10">Your one-stop solution for learning data structures concepts</p>
-			<div className="flex flex-wrap justify-center gap-4 mt-20">
+			<p className="md:text-3xl text-2xl text-center m-10">Your one-stop solution for learning data structures concepts</p>
+			<div className="flex flex-wrap justify-center gap-4 mt-20 pb-10 px-10">
 				{cards.map((card) =>
 					card.href !== '/data-structures' ? (
 						<Link key={card.title} to={card.href}>

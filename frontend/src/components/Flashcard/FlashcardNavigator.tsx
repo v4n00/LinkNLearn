@@ -1,5 +1,5 @@
 import { FlashcardType } from '@/constants/interfaces';
-import { Loader2, Shuffle } from 'lucide-react';
+import { ArrowLeftRight, Loader2, Shuffle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
@@ -25,9 +25,9 @@ const FlashcardNavigator = ({ flashcards }: { flashcards?: FlashcardType[] }) =>
 	}, [flashcards]);
 
 	return (
-		<div className="flex flex-col gap-y-5 items-center">
+		<div className="flex flex-col gap-y-5 items-center w-full">
 			<Carousel opts={{ loop: true }}>
-				<CarouselContent className="w-[500px] h-[400px]">
+				<CarouselContent className="max-w-[500px] w-screen h-[400px]">
 					{flashcardsArray !== undefined ? (
 						flashcardsArray.length > 0 ? (
 							flashcardsArray.map((flashcard) => (
@@ -38,7 +38,7 @@ const FlashcardNavigator = ({ flashcards }: { flashcards?: FlashcardType[] }) =>
 						) : (
 							<CarouselItem>
 								<div className="p-4 w-full h-full">
-									<Card className="p-4 w-[452px] h-[368px] rounded-xl flex items-center justify-center">
+									<Card className="p-4 w-full h-full rounded-xl flex items-center justify-center">
 										<p>No flashcards found</p>
 									</Card>
 								</div>
@@ -47,20 +47,26 @@ const FlashcardNavigator = ({ flashcards }: { flashcards?: FlashcardType[] }) =>
 					) : (
 						<CarouselItem>
 							<div className="p-4 w-full h-full">
-								<Card className="p-4 w-[452px] h-[368px] rounded-xl flex items-center justify-center">
+								<Card className="p-4 w-full h-full rounded-xl flex items-center justify-center">
 									<Loader2 className="animate-spin" />
 								</Card>
 							</div>
 						</CarouselItem>
 					)}
 				</CarouselContent>
-				<CarouselPrevious />
-				<CarouselNext />
+				<CarouselPrevious className="md:flex hidden" />
+				<CarouselNext className="md:flex hidden" />
 			</Carousel>
-			<Button onClick={shuffleOrder} variant="outline">
-				<Loader2 className={!loading ? 'hidden' : 'mr-2 size-7 animate-spin'} />
-				<Shuffle className={!loading ? 'mr-3' : 'hidden'} /> Shuffle
-			</Button>
+			<div className="flex flex-row gap-3">
+				<Button onClick={shuffleOrder} variant="outline">
+					<Loader2 className={!loading ? 'hidden' : 'mr-2 size-7 animate-spin'} />
+					<Shuffle className={!loading ? 'mr-3' : 'hidden'} /> Shuffle
+				</Button>
+				<Card className="flex md:hidden text-muted-foreground/80 p-2 bg-muted">
+					<ArrowLeftRight className="mr-2" />
+					<p>Swipe to navigate</p>
+				</Card>
+			</div>
 		</div>
 	);
 };
