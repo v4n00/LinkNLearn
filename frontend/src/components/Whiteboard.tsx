@@ -1,4 +1,5 @@
 import { DataStructureTypes } from '@/assets/data structures/types';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { MouseEvent, ReactNode, forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
 export interface WhiteboardHandles {
@@ -8,7 +9,8 @@ export interface WhiteboardHandles {
 }
 
 const Whiteboard = forwardRef(({ children, type }: { children: ReactNode; type: DataStructureTypes }, ref) => {
-	const offsetY = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? (window.innerHeight - 80) / 2 : 100;
+	const isDesktop = useMediaQuery('(min-width: 768px)');
+	const offsetY = type === DataStructureTypes.SLL || type === DataStructureTypes.DLL ? (isDesktop ? (window.innerHeight - 80) / 2 : 200) : 100;
 	const offsetX = type === DataStructureTypes.BST ? -500 : 100;
 	useEffect(() => {
 		setOffset({ x: offsetX, y: offsetY });
