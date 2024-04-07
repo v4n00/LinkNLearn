@@ -9,7 +9,7 @@ const QuizScores = ({ score, maxScore }: { score?: number; maxScore?: number }) 
 	const navigate = useNavigate();
 
 	return (
-		<Card className="flex flex-col justify-center items-center p-4 gap-4 min-h-[250px] min-w-[400px]">
+		<Card className="w-11/12 max-w-[400px]  flex flex-col justify-center items-center p-4 gap-4">
 			{score !== undefined && maxScore ? (
 				<>
 					<div className="flex flex-col justify-center items-center">

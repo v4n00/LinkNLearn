@@ -32,8 +32,8 @@ const Question = ({ question, doOnSubmit, buttonText }: QuestionProps) => {
 	}
 
 	return (
-		<Card className="max-w-[600px] max-h-[550px] min-w-[500px]">
-			<CardHeader className="text-center p-6">
+		<Card className="w-11/12 max-w-[600px] mx-10">
+			<CardHeader className="text-center p-4">
 				<p className="m-0 text-3xl text-center">{question.text}</p>
 			</CardHeader>
 			<CardContent>

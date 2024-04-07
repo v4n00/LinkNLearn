@@ -1,8 +1,8 @@
 import { DataStructureActionTypes, DataStructureTypes } from '@/assets/data structures/types';
 import useDS from '@/hooks/useDS';
-import { ChevronRightSquare, ListRestart } from 'lucide-react';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { ChevronRightSquare, ListRestart, RotateCwSquare } from 'lucide-react';
 import { useEffect } from 'react';
-import CollapsibleText from '../CollapsibleText';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
 import { Separator } from '../ui/separator';
@@ -14,6 +14,7 @@ import SandboxControls from './SandboxControls';
 
 const SandboxContainer = ({ type }: { type: DataStructureTypes }) => {
 	const { dispatch, data } = useDS();
+	const isDesktop = useMediaQuery('(min-width: 768px)');
 
 	const dsName = type === DataStructureTypes.SLL ? 'Singly Linked List' : type === DataStructureTypes.DLL ? 'Doubly Linked List' : type === DataStructureTypes.HT ? 'Hash Table' : 'Binary Search Tree';
 
@@ -34,19 +35,26 @@ const SandboxContainer = ({ type }: { type: DataStructureTypes }) => {
 
 	return (
 		<TabsContent value="Sandbox" className="h-full">
-			<div className="h-full flex flex-col justify-around gap-2 text-2xl font-bold">
+			<div className="h-full flex flex-col gap-2 text-2xl font-bold">
 				<Card className="flex flex-col p-2 gap-4 grow">
 					<div className="text-center">{dsName} Controls</div>
 					<Separator />
 					<div className="flex flex-col gap-2">
-						<Button className="w-full" onClick={reinitializeDS}>
+						<Button className="w-full h-full" onClick={reinitializeDS}>
 							<ListRestart className="mx-1" />
-							<CollapsibleText>Reinitialize {dsName}</CollapsibleText>
+							<p className="text-wrap">Reinitialize {dsName}</p>
 						</Button>
-						<Button className="w-full" onClick={logDS}>
-							<ChevronRightSquare className="mx-1" />
-							<CollapsibleText>Log {dsName} to console</CollapsibleText>
-						</Button>
+						{isDesktop ? (
+							<Button className="w-full h-full" onClick={logDS}>
+								<ChevronRightSquare className="mx-1" />
+								<p className="text-wrap">Log {dsName} to console</p>
+							</Button>
+						) : (
+							<Button className="w-full h-full" disabled variant="outline">
+								<RotateCwSquare className="mx-1" />
+								<p className="text-wrap">Rotate your device to access the visualization</p>
+							</Button>
+						)}
 					</div>
 					<Separator />
 					{DSControl}

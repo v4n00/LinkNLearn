@@ -2,10 +2,10 @@
 
 Bachelor Thesis Project
 
-## TODO frontend - 100%
+## TODO frontend - 99%
 
-- [ ] responsive design (use drawer for log in/sheet for menu)
 - [ ] more data structures options (add node after value)
+- [x] ~~responsive design (use drawer for log in/sheet for menu)~~
 - [x] ~~nginx~~
 - [x] ~~fill data structures lectures~~
 - [x] ~~fill quizzes~~

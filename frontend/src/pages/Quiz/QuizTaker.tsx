@@ -31,7 +31,7 @@ const QuizTaker = () => {
 				.then((res) => {
 					// randomly shuffle the questions
 					(res.data as QuizType).questions = (res.data as QuizType).questions.sort(() => Math.random() - 0.5);
-					// randomyl shuffle the options for each question
+					// randomly shuffle the options for each question
 					(res.data as QuizType).questions.forEach((question) => {
 						question.options = question.options.sort(() => Math.random() - 0.5);
 					});
@@ -101,7 +101,7 @@ const QuizTaker = () => {
 	return (
 		<div>
 			<p className="page-title">{data?.title ?? ' '}</p>
-			<div className="flex justify-center items-center flex-col">
+			<div className="flex justify-center items-center flex-col w-screen">
 				{data !== undefined ? (
 					data.questions.length > 0 ? (
 						currentQuestionIndex < data.questions.length - 1 ? (
@@ -112,14 +112,14 @@ const QuizTaker = () => {
 							<Question buttonText="Submit" question={data.questions[currentQuestionIndex]} doOnSubmit={submitAnswers} />
 						)
 					) : (
-						<Card className="w-[500px] h-[350px] flex justify-center items-center">This quiz has no questions.</Card>
+						<Card className="w-11/12 h-[500px] flex justify-center items-center">This quiz has no questions.</Card>
 					)
 				) : (
-					<Card className="w-[500px] h-[350px] flex justify-center items-center">
+					<Card className="w-11/12 h-[500px] flex justify-center items-center">
 						<Loader2 className="animate-spin" />
 					</Card>
 				)}
-				<Progress className="mt-10 rounded-md w-[700px]" value={data && ((currentQuestionIndex + questionIndexOffset) / (data.questions.length + questionIndexOffset)) * 100} />
+				<Progress className="my-5 max-w-[350px] rounded-md w-5/6" value={data && ((currentQuestionIndex + questionIndexOffset) / (data.questions.length + questionIndexOffset)) * 100} />
 			</div>
 		</div>
 	);

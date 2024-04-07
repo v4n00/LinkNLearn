@@ -63,7 +63,7 @@ export default function QuizDashboard() {
 		const navigate = useNavigate();
 
 		return (
-			<CarouselItem key={quiz.id} className="xl:basis-1/3 lg:basis-1/2">
+			<CarouselItem key={quiz.id} className=" md:basis-1/2">
 				<Card>
 					<CardHeader>
 						<CardTitle className="text-center">{quiz.title}</CardTitle>
@@ -153,33 +153,33 @@ export default function QuizDashboard() {
 	};
 
 	return (
-		<main>
+		<div>
 			<p className="page-title">Quizzes</p>
-			<div className="flex flex-col gap-y-5 items-center w-full">
-				<Carousel className="2xl:w-[1400px] xl:w-[1100px] lg:w-[900px] md:w-[600px] w-[400px] border shadow-sm rounded-lg p-2">
+			<div className="flex flex-col gap-y-5 items-center w-screen p-3">
+				<Carousel className="max-w-[900px] w-full border shadow-sm rounded-lg p-3">
 					<CarouselContent>
 						{quizQuery.data !== undefined ? (
 							quizQuery.data.length > 0 ? (
 								quizQuery.data.map((quiz) => <QuizCarouselItem key={quiz.id} quiz={quiz} quizProgress={progressQuery.data ? progressQuery.data?.filter((p) => p.quizId === quiz.id) : ([] as QuizProgressType[])} />)
 							) : (
-								<div className="h-[434.5px] w-full flex justify-center items-center">
+								<div className="w-full flex justify-center items-center">
 									<p>No quizzes found</p>
 								</div>
 							)
 						) : (
-							<div className="h-[434.5px] w-full flex justify-center items-center">
+							<div className="w-full flex justify-center items-center">
 								<Loader2 className="animate-spin" />
 							</div>
 						)}
 					</CarouselContent>
-					<CarouselPrevious className="md:flex hidden" />
-					<CarouselNext className="md:flex hidden" />
+					<CarouselPrevious className="lg:flex hidden" />
+					<CarouselNext className="lg:flex hidden" />
 				</Carousel>
 				<Card className="flex md:hidden text-muted-foreground/80 p-2 bg-muted">
 					<ArrowLeftRight className="mr-2" />
 					<p>Swipe to navigate</p>
 				</Card>
 			</div>
-		</main>
+		</div>
 	);
 }

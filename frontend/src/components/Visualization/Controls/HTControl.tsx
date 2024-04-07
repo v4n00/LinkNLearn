@@ -1,5 +1,4 @@
 import { DataStructureActionTypes } from '@/assets/data structures/types';
-import CollapsibleText from '@/components/CollapsibleText';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useDS from '@/hooks/useDS';
@@ -36,14 +35,14 @@ const HTControl = () => {
 				</div>
 				<Button className="flex-1 grow h-full text-xl" onClick={addHT} disabled={addKey === '' || addValue === undefined || isNaN(addValue)}>
 					<PlusCircle className="mx-1" />
-					<CollapsibleText>Add Key Value Pair</CollapsibleText>
+					<p className="text-wrap">Add Key Value Pair</p>
 				</Button>
 			</div>
 			<div className="flex gap-2 h-[50px] flex-col">
 				<Input id="input3" className="h-[50px] text-center text-xl" placeholder="Key" value={removeKeyValue} onChange={(e) => onChangeHT(e, setRemoveKeyValue)} />
 				<Button className="h-[50px] flex-1 grow text-xl" onClick={removeHT} disabled={removeKeyValue === ''}>
 					<MinusCircle className="mx-1" />
-					<CollapsibleText>Remove Key</CollapsibleText>
+					<p className="text-wrap">Remove Key</p>
 				</Button>
 			</div>
 		</div>

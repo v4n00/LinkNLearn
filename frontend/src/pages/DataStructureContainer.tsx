@@ -12,6 +12,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DSProvider } from '@/contexts/DSContext';
 import { WhiteboardProvider } from '@/contexts/WhiteboardContext';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { BookText, Box } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -23,34 +24,57 @@ const DataStructureContainer = ({ type }: { type: DataStructureTypes }) => {
 	const CompViz = type === DataStructureTypes.SLL ? SLLviz : type === DataStructureTypes.DLL ? DLLviz : type === DataStructureTypes.HT ? HTviz : BSTviz;
 	const whiteboardRef = useRef<WhiteboardHandles>(null);
 
+	const isDesktop = useMediaQuery('(min-width: 1024px)');
+
+	const LeftTab = () => {
+		return (
+			<Tabs defaultValue="Learn" className="h-full p-3 flex-col lg:flex sm:hidden flex w-full">
+				<TabsList className="grid w-full grid-cols-2">
+					<TabsTrigger value="Learn" className="tracking-widest">
+						<BookText className="size-5 mr-1" />
+						Learn
+					</TabsTrigger>
+					<TabsTrigger value="Sandbox" className="tracking-widest">
+						<Box className="size-5 mr-1" />
+						Sandbox
+					</TabsTrigger>
+				</TabsList>
+				<SandboxContainer type={type} />
+				<LearnContainer type={type} />
+			</Tabs>
+		);
+	};
+
+	const RightTab = () => {
+		return (
+			<div className="lg:block sm:block hidden w-full h-full">
+				<Whiteboard ref={whiteboardRef} type={type}>
+					<CompViz />
+				</Whiteboard>
+				<ErrorHandler />
+			</div>
+		);
+	};
+
 	return (
 		<WhiteboardProvider innerRef={whiteboardRef}>
 			<DSProvider initialData={initialData}>
-				<ResizablePanelGroup direction="horizontal">
-					<ResizablePanel defaultSize={33} minSize={33} maxSize={66}>
-						<Tabs defaultValue="Learn" className="h-full p-3 flex flex-col">
-							<TabsList className="grid w-full grid-cols-2">
-								<TabsTrigger value="Learn" className="tracking-widest">
-									<BookText className="size-5 mr-1" />
-									Learn
-								</TabsTrigger>
-								<TabsTrigger value="Sandbox" className="tracking-widest">
-									<Box className="size-5 mr-1" />
-									Sandbox
-								</TabsTrigger>
-							</TabsList>
-							<LearnContainer type={type} />
-							<SandboxContainer type={type} />
-						</Tabs>
-					</ResizablePanel>
-					<ResizableHandle withHandle />
-					<ResizablePanel>
-						<Whiteboard ref={whiteboardRef} type={type}>
-							<CompViz />
-						</Whiteboard>
-						<ErrorHandler />
-					</ResizablePanel>
-				</ResizablePanelGroup>
+				{isDesktop ? (
+					<ResizablePanelGroup direction="horizontal">
+						<ResizablePanel defaultSize={33} minSize={33} maxSize={66}>
+							<LeftTab />
+						</ResizablePanel>
+						<ResizableHandle withHandle />
+						<ResizablePanel>
+							<RightTab />
+						</ResizablePanel>
+					</ResizablePanelGroup>
+				) : (
+					<>
+						<LeftTab />
+						<RightTab />
+					</>
+				)}
 			</DSProvider>
 		</WhiteboardProvider>
 	);

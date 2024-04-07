@@ -47,7 +47,9 @@ export default function Navbar() {
 							) : (
 								<Sheet open={isOpen} onOpenChange={setIsOpen}>
 									<SheetTrigger>
-										<Logo className="fill-black dark:fill-white size-8" />
+										<div className={navigationMenuTriggerStyle()}>
+											<Logo className="fill-black dark:fill-white size-8" />
+										</div>
 									</SheetTrigger>
 									<SheetContent side="left">
 										<div className="flex flex-col gap-2 mr-4">

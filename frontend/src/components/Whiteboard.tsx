@@ -85,7 +85,7 @@ const Whiteboard = forwardRef(({ children, type }: { children: ReactNode; type: 
 	}));
 
 	return (
-		<div onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onWheel={handleWheel} className={`w-screen h-screen overflow-hidden relative select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
+		<div onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onWheel={handleWheel} className={`w-full h-full overflow-hidden relative select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
 			<div
 				className="absolute"
 				style={{
