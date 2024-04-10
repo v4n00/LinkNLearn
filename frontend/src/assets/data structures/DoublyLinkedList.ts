@@ -92,6 +92,24 @@ export default class DoublyLinkedList<T> {
 		return this;
 	}
 
+	insertAfter(value: T, after: T): DoublyLinkedList<T> {
+		const foundNode = this.find({ value: after });
+
+		if (foundNode) {
+			const newNode = new DoublyLinkedListNode(value, foundNode.next, foundNode);
+			if (foundNode.next) {
+				foundNode.next.previous = newNode;
+			} else {
+				this.tail = newNode;
+			}
+			foundNode.next = newNode;
+		} else {
+			throw new Error(`Node with value ${after} not found.`);
+		}
+
+		return this;
+	}
+
 	delete(value: T): DoublyLinkedListNode<T> {
 		if (!this.head) {
 			throw new Error('List is empty.');
@@ -126,6 +144,65 @@ export default class DoublyLinkedList<T> {
 		}
 
 		return deletedNode;
+	}
+
+	deleteAt(rawIndex: number): DoublyLinkedListNode<T> {
+		const index = rawIndex < 0 ? 0 : rawIndex;
+
+		if (!this.head) {
+			throw new Error('List is empty.');
+		}
+
+		let deletedNode = null;
+
+		if (index === 0) {
+			deletedNode = this.head;
+			this.head = this.head.next;
+		} else {
+			let count = 1;
+			let currentNode = this.head;
+
+			while (currentNode.next && count < index) {
+				currentNode = currentNode.next;
+				count++;
+			}
+
+			if (currentNode.next) {
+				deletedNode = currentNode.next;
+				currentNode.next = currentNode.next.next;
+				if (currentNode.next) {
+					currentNode.next.previous = currentNode;
+				} else {
+					this.tail = currentNode;
+				}
+			} else {
+				throw new Error(`Node at index ${index} not found.`);
+			}
+		}
+
+		return deletedNode;
+	}
+
+	find({ value, callback = undefined }: { value?: T; callback?: (value: T) => boolean }): DoublyLinkedListNode<T> | null {
+		if (!this.head) {
+			return null;
+		}
+
+		let currentNode: DoublyLinkedListNode<T> | null = this.head;
+
+		while (currentNode) {
+			if (callback && callback(currentNode.value)) {
+				return currentNode;
+			}
+
+			if (value !== undefined && currentNode.value === value) {
+				return currentNode;
+			}
+
+			currentNode = currentNode.next;
+		}
+
+		return null;
 	}
 
 	toArray(): T[] {

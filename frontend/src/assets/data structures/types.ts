@@ -37,8 +37,10 @@ export enum DataStructureTypes {
 export enum DataStructureActionTypes {
 	INITIALIZE = 'INITIALIZE',
 	ADD = 'ADD',
-	INSERT = 'INSERT',
-	DELETE = 'DELETE',
+	INSERT_POS = 'INSERT_POS',
+	INSERT_AFTER_VALUE = 'INSERT_AFTER_VALUE',
+	DELETE_VALUE = 'DELETE_VALUE',
+	DELETE_POS = 'DELETE_POS',
 }
 
 export type BinarySearchTreeActions = ActionMap<BinarySearchTreePayload>[keyof ActionMap<BinarySearchTreePayload>];
@@ -56,12 +58,19 @@ export type SinglyLinkedListPayload = {
 	[DataStructureActionTypes.ADD]: {
 		value: number;
 	};
-	[DataStructureActionTypes.INSERT]: {
+	[DataStructureActionTypes.INSERT_POS]: {
 		index: number;
 		value: number;
 	};
-	[DataStructureActionTypes.DELETE]: {
+	[DataStructureActionTypes.INSERT_AFTER_VALUE]: {
 		value: number;
+		after: number;
+	};
+	[DataStructureActionTypes.DELETE_VALUE]: {
+		value: number;
+	};
+	[DataStructureActionTypes.DELETE_POS]: {
+		index: number;
 	};
 };
 
@@ -72,12 +81,19 @@ export type DoublyLinkedListPayload = {
 	[DataStructureActionTypes.ADD]: {
 		value: number;
 	};
-	[DataStructureActionTypes.INSERT]: {
+	[DataStructureActionTypes.INSERT_POS]: {
 		index: number;
 		value: number;
 	};
-	[DataStructureActionTypes.DELETE]: {
+	[DataStructureActionTypes.INSERT_AFTER_VALUE]: {
 		value: number;
+		after: number;
+	};
+	[DataStructureActionTypes.DELETE_VALUE]: {
+		value: number;
+	};
+	[DataStructureActionTypes.DELETE_POS]: {
+		index: number;
 	};
 };
 
@@ -89,7 +105,7 @@ export type HashTablePayload = {
 		key: string;
 		value: number;
 	};
-	[DataStructureActionTypes.DELETE]: {
+	[DataStructureActionTypes.DELETE_VALUE]: {
 		key: string;
 	};
 };
@@ -101,7 +117,7 @@ export type BinarySearchTreePayload = {
 	[DataStructureActionTypes.ADD]: {
 		value: number;
 	};
-	[DataStructureActionTypes.DELETE]: {
+	[DataStructureActionTypes.DELETE_VALUE]: {
 		value: number;
 	};
 };

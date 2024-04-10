@@ -74,6 +74,19 @@ export default class SinglyLinkedList<T> {
 		return this;
 	}
 
+	insertAfter(value: T, after: T): SinglyLinkedList<T> {
+		const foundNode = this.find({ value: after });
+
+		if (foundNode) {
+			const newNode = new SinglyLinkedListNode(value, foundNode.next);
+			foundNode.next = newNode;
+		} else {
+			throw new Error(`Node with value ${after} not found.`);
+		}
+
+		return this;
+	}
+
 	delete(value: T): SinglyLinkedListNode<T> {
 		if (!this.head) {
 			throw new Error('List is empty.');
@@ -110,7 +123,38 @@ export default class SinglyLinkedList<T> {
 		return deletedNode;
 	}
 
-	find({ value = undefined, callback = undefined }: { value?: T; callback?: (value: T) => boolean }): SinglyLinkedListNode<T> | null {
+	deleteAt(rawIndex: number): SinglyLinkedListNode<T> {
+		const index = rawIndex < 0 ? 0 : rawIndex;
+
+		if (!this.head) {
+			throw new Error('List is empty.');
+		}
+
+		let deletedNode = null;
+
+		if (index === 0) {
+			deletedNode = this.head;
+			this.head = this.head.next;
+		} else {
+			let count = 1;
+			let currentNode = this.head;
+			while (currentNode.next) {
+				if (count === index) break;
+				currentNode = currentNode.next;
+				count += 1;
+			}
+			if (currentNode.next) {
+				deletedNode = currentNode.next;
+				currentNode.next = currentNode.next.next;
+			} else {
+				throw new Error(`Node at index ${index} not found.`);
+			}
+		}
+
+		return deletedNode;
+	}
+
+	find({ value, callback = undefined }: { value?: T; callback?: (value: T) => boolean }): SinglyLinkedListNode<T> | null {
 		if (!this.head) {
 			return null;
 		}

@@ -12,11 +12,17 @@ export const singlyLinkedListReducer = (state: SinglyLinkedList<number>, action:
 		case 'ADD':
 			state.append(action.payload.value);
 			return state;
-		case 'INSERT':
+		case 'INSERT_POS':
 			state.insert(action.payload.value, action.payload.index);
 			return state;
-		case 'DELETE':
+		case 'INSERT_AFTER_VALUE':
+			state.insertAfter(action.payload.value, action.payload.after);
+			return state;
+		case 'DELETE_VALUE':
 			state.delete(action.payload.value);
+			return state;
+		case 'DELETE_POS':
+			state.deleteAt(action.payload.index);
 			return state;
 		default:
 			return state;
@@ -30,11 +36,17 @@ export const doublyLinkestListReducer = (state: DoublyLinkedList<number>, action
 		case 'ADD':
 			state.append(action.payload.value);
 			return state;
-		case 'INSERT':
+		case 'INSERT_POS':
 			state.insert(action.payload.value, action.payload.index);
 			return state;
-		case 'DELETE':
+		case 'INSERT_AFTER_VALUE':
+			state.insertAfter(action.payload.value, action.payload.after);
+			return state;
+		case 'DELETE_VALUE':
 			state.delete(action.payload.value);
+			return state;
+		case 'DELETE_POS':
+			state.deleteAt(action.payload.index);
 			return state;
 		default:
 			return state;
@@ -48,7 +60,7 @@ export const hashTableReducer = (state: HashTable, action: HashTableActions) => 
 		case 'ADD':
 			state.set(action.payload.key, action.payload.value);
 			return state;
-		case 'DELETE':
+		case 'DELETE_VALUE':
 			state.delete(action.payload.key);
 			return state;
 		default:
@@ -63,7 +75,7 @@ export const bstReducer = (state: BinarySearchTree<number>, action: BinarySearch
 		case 'ADD':
 			state.insert(action.payload.value);
 			return state;
-		case 'DELETE':
+		case 'DELETE_VALUE':
 			state.remove(action.payload.value);
 			return state;
 		default:

@@ -23,7 +23,7 @@ const HTControl = () => {
 	};
 
 	const removeHT = () => {
-		if (removeKeyValue !== undefined) dispatch({ type: DataStructureActionTypes.DELETE, payload: { key: removeKeyValue } });
+		if (removeKeyValue !== undefined) dispatch({ type: DataStructureActionTypes.DELETE_VALUE, payload: { key: removeKeyValue } });
 	};
 
 	return (

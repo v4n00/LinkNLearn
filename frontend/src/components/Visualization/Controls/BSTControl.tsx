@@ -16,7 +16,7 @@ const BSTControl = () => {
 	};
 
 	const removeNode = () => {
-		if (removeNodeValue !== undefined) dispatch({ type: DataStructureActionTypes.DELETE, payload: { value: removeNodeValue } });
+		if (removeNodeValue !== undefined) dispatch({ type: DataStructureActionTypes.DELETE_VALUE, payload: { value: removeNodeValue } });
 	};
 
 	return (
