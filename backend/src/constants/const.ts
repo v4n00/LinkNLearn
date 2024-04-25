@@ -1,7 +1,6 @@
 import 'dotenv/config';
 
-export const isDebugging: boolean = true;
-
+export const isDebugging: boolean = process.env.IS_DEBUGGING == 'false' ? false : true;
 export const serverAddress = isDebugging ? 'localhost' : process.env.SERVER_ADDRESS;
 export const pathToKey: string | undefined = process.env.KEY_FILE;
 export const pathToCert: string | undefined = process.env.CERT_FILE;

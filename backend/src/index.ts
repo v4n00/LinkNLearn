@@ -12,7 +12,7 @@ import questionRoutes from './routes/questionRoutes';
 import quizRoutes from './routes/quizRoutes';
 
 // setup
-const missingVars = ['JWT_KEY', 'SYSADMIN_KEY', 'SERVER_ADDRESS'].filter((v) => !process.env[v]);
+const missingVars = ['JWT_KEY', 'SYSADMIN_KEY', 'SERVER_ADDRESS', 'IS_DEBUGGING'].filter((v) => !process.env[v]);
 if (missingVars.length > 0) {
 	console.error(`Missing environment variables: ${missingVars.join(', ')}`);
 	process.exit(1);

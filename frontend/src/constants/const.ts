@@ -1,5 +1,4 @@
-const isDebugging = true;
-
+const isDebugging = import.meta.env.VITE_IS_DEBUGGING == 'false' ? false : true;
 export const PORT: number = 3000;
 export const APIURL = `http${isDebugging ? '' : 's'}://${isDebugging ? 'localhost' : import.meta.env.VITE_SERVER_ADDRESS}:${PORT}`;
 export const QUIZ_THRESHOLD = 0.7;
