@@ -1,57 +1,36 @@
 # LinkNLearn
 
-Bachelor Thesis Project
+My Bachelor's thesis project. An interactive data structures e-learning platform, built with the the SERN stack (MySQL, Express, React, Node.js).
 
-## TODO frontend - 100%
+## Preview
 
-- [x] ~~more data structures options (add node after value)~~
-- [x] ~~responsive design (use drawer for log in/sheet for menu)~~
-- [x] ~~nginx~~
-- [x] ~~fill data structures lectures~~
-- [x] ~~fill quizzes~~
-- [x] ~~fill flashcards~~
-- [x] ~~General: Data structure page~~
-- [x] ~~BST viz~~
-- [x] ~~Error handling for vizualisations~~
-- [x] ~~HT viz~~
-- [x] ~~DLL viz~~
-- [x] ~~SLL viz~~
-- [x] ~~Sandbox controls~~
-- [x] ~~Sandbox data link~~
-- [x] ~~Data structures code~~
-- [x] ~~Learn tab~~
-- [x] ~~Quiz sysadmin page~~
-- [x] ~~Remake Home page~~
-- [x] ~~Flashcard sysadmin page~~
-- [x] ~~Flashcard search functionality~~
-- [x] ~~General: Quiz page~~
-- [x] ~~Quiz refresh keeps data~~
-- [x] ~~Quiz show past attempts~~
-- [x] ~~Question design~~
-- [x] ~~Quiz show progress~~
-- [x] ~~Quiz submit functionality~~
-- [x] ~~Logo~~
-- [x] ~~Seed database~~
-- [x] ~~General: Flashcard page~~
-- [x] ~~Protected routes~~
-- [x] ~~Flashcard default~~
-- [x] ~~Flashcard custom~~
-- [x] ~~Flashcard manage design~~
-- [x] ~~Flashcard manage functionality~~
-- [x] ~~404 page~~
-- [x] ~~Unauthorized page~~
-- [x] ~~Dark theme~~
-- [x] ~~Account functionality~~
-- [x] ~~Navbar~~
+The application has an account system for users to track their progress, save their quizzes and create custom flashcards.
 
-## TODO backend - 100%
+![LinkNLearn homepage](./frontend/previews/homepage.png)
 
-- [x] ~~Update database design image~~
-- [x] ~~Add flashcard sysadmin routes~~
-- [x] ~~Rewrite quiz routes - validation~~
-- [x] ~~Add quiz sysadmin routes~~
-- [x] ~~Rewrite question model & controller~~
+## Features
 
-## Database design
+### Data Structures
 
-![Database design](backend/database%20design.png)
+The data structures page shows the user to a list of data structures, where they can click on a data structure to learn more about it.
+
+Users are presented with a screen where:
+
+- they can learn about the data structure
+- they can interact with the datastructure (e.g. initialize, insert, delete, etc.)
+
+![Data structures page - Learn tab](./frontend/previews/bstlearn.png)
+
+![Data structures page - Sandbox tab](./frontend/previews/sllsandbox.png)
+
+### Flashcards
+
+Users can create custom flashcards to help them study.
+
+![Flashcards page](./frontend/previews/flashcards.gif)
+
+### Quizzes
+
+The application supports dark mode and is mobile responsive.
+
+![Quizzes page](./frontend/previews/quizzes.png)
