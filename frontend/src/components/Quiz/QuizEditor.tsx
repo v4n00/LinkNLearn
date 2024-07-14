@@ -84,7 +84,7 @@ const QuizEditor = ({ quiz, setOnChange }: { quiz?: QuizEditType; setOnChange: D
 		// hope nobody sees this :D
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)}>
-				<Card className="w-[600px] h-[50px] flex flex-row justify-start items-center gap-2 mb-2">
+				<Card className="w-full h-[50px] flex flex-row justify-start items-center gap-2 mb-2">
 					<FormField
 						control={form.control}
 						name="id"

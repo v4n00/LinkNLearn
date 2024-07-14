@@ -18,8 +18,8 @@
 		--muted-foreground: 240 3.8% 46.1%;
 		--accent: 240 4.8% 95.9%;
 		--accent-foreground: 240 5.9% 10%;
-		--success: 144.9, 100%, 46.22%;
-		--warning-foreground: 0 0% 0%;
+		--success: 144.9 100% 46.22%;
+		--success-foreground: 0 0% 0%;
 		--warning: 48.9 98.04% 60%;
 		--warning-foreground: 0 0% 0%;
 		--destructive: 4.11 89.62% 58.43%;
@@ -57,6 +57,7 @@
 		--border: 240 3.7% 15.9%;
 		--input: 240 3.7% 15.9%;
 		--ring: 346.8 77.2% 49.8%;
+		--radius: 0.75rem;
 		--node: 211.93 80.28% 41.76%;
 		--node-muted: 198.57 91.3% 48.92%;
 		--node-foreground: 0 0% 0%;

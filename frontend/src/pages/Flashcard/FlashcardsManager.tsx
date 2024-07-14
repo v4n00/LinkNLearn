@@ -69,8 +69,8 @@ const FlashcardsManager = () => {
 						{data
 							? filterFlashcards().length > 0
 								? filterFlashcards().map((flashcard : FlashcardType) => <FlashcardEditor key={flashcard.id} flashcard={flashcard} setOnChange={setOnChange} />)
-								: <p className="w-[600px] text-center mt-10">No flashcards found</p>
-							: <Loader2 className="w-[600px] animate-spin mt-10" />}
+								: <p className="w-full text-center mt-10">No flashcards found</p>
+							: <Loader2 className="w-full animate-spin mt-10" />}
 					</ScrollArea>
 			</div>
 		</div>

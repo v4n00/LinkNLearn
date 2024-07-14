@@ -83,7 +83,7 @@ const FlashcardEditor = ({ flashcard, setOnChange }: { flashcard?: FlashcardType
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
 				<Card className="w-full h-[100px] flex flex-row justify-start items-center gap-2 mb-2">
 					<FormField
 						control={form.control}
